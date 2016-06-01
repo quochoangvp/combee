@@ -1,0 +1,20 @@
+{
+    "package"         : "system.dashboard",
+    "description"     : "",
+    "version"         : "1.0",
+    "activate"        : "info/activate",
+    "deactivate"      : "info/deactivate",
+    "upgrade"         : "info/upgrade",
+    "maps"            : {
+        "backend"     : {
+            "item" : {
+                "link" : "dashboard",
+                "text" : "Dashboard",
+                "icon" : "icon-dashboard"
+            },
+            "child" : [
+            ]
+        }
+    },
+    "public"          : true
+}
