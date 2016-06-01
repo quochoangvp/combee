@@ -1,0 +1,28 @@
+{
+    "package"         : "combee.article",
+    "description"     : "",
+    "version"         : "1.0",
+    "activate"        : "info/activate",
+    "deactivate"      : "info/deactivate",
+    "upgrade"         : "info/upgrade",
+    "maps"            : {
+        "backend"     : {
+            "item" : {
+                "link" : "article",
+                "text" : "Article",
+                "icon" : "icon-book"
+            },
+            "child" : [
+                {
+                    "link" : "create",
+                    "text" : "Create new"
+                },
+                {
+                    "link" : "index",
+                    "text" : "All article"
+                }
+            ]
+        }
+    },
+    "public"          : true
+}
