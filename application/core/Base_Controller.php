@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Base_Controller extends CI_Controller
+class Base_Controller extends MX_Controller
 {
 
     public $modules = [];
