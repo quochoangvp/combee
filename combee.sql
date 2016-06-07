@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.4.1deb2ubuntu1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 07, 2016 at 09:52 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.6
+-- Host: localhost
+-- Generation Time: Jun 07, 2016 at 05:14 PM
+-- Server version: 10.0.24-MariaDB-7
+-- PHP Version: 7.0.4-7ubuntu2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -59,7 +59,10 @@ INSERT INTO `main_admin_menu` (`amenu_id`, `amenu_link`, `amenu_text`, `amenu_ic
 (7, 'user', 'Users', 'icon-user', 0, 2, 'y', ''),
 (8, 'user/all', 'All users', NULL, 7, 1, 'y', ''),
 (9, 'user/create', 'Add new', NULL, 7, 2, 'y', ''),
-(10, 'user/group', 'Groups', NULL, 7, 3, 'y', '');
+(10, 'user/group', 'Groups', NULL, 7, 3, 'y', ''),
+(11, 'media', 'Media', 'icon-camera', 0, 4, 'y', ''),
+(12, 'media/all', 'All media', NULL, 11, 1, 'y', ''),
+(13, 'media/create', 'Add new', NULL, 11, 2, 'y', '');
 
 -- --------------------------------------------------------
 
@@ -292,9 +295,9 @@ TRUNCATE TABLE `main_language`;
 
 DROP TABLE IF EXISTS `main_layout`;
 CREATE TABLE `main_layout` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `template` text NOT NULL
+  `layout_id` int(11) UNSIGNED NOT NULL,
+  `layout_name` varchar(100) NOT NULL,
+  `layout_title` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -302,6 +305,64 @@ CREATE TABLE `main_layout` (
 --
 
 TRUNCATE TABLE `main_layout`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_media`
+--
+
+DROP TABLE IF EXISTS `main_media`;
+CREATE TABLE `main_media` (
+  `media_id` int(10) UNSIGNED NOT NULL,
+  `media_title` varchar(100) NOT NULL,
+  `media_slug` varchar(255) NOT NULL,
+  `media_thumbnail` varchar(255) DEFAULT NULL,
+  `media_content` text,
+  `position` int(10) UNSIGNED NOT NULL,
+  `is_show` enum('y','n') NOT NULL DEFAULT 'y',
+  `user_group_ids` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_media`
+--
+
+TRUNCATE TABLE `main_media`;
+--
+-- Dumping data for table `main_media`
+--
+
+INSERT INTO `main_media` (`media_id`, `media_title`, `media_slug`, `media_thumbnail`, `media_content`, `position`, `is_show`, `user_group_ids`, `created_at`, `updated_at`) VALUES
+(1, 'Main slideshow', '', NULL, 'Main slideshow', 1, 'y', '1|2', '2016-06-07 16:12:00', '2016-06-07 16:12:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_mediameta`
+--
+
+DROP TABLE IF EXISTS `main_mediameta`;
+CREATE TABLE `main_mediameta` (
+  `meta_id` int(10) UNSIGNED NOT NULL,
+  `meta_title` varchar(100) NOT NULL,
+  `meta_thumbnail` varchar(255) DEFAULT NULL,
+  `meta_file` varchar(255) DEFAULT NULL,
+  `meta_url` varchar(500) DEFAULT NULL,
+  `meta_description` text,
+  `position` int(10) UNSIGNED NOT NULL DEFAULT '1',
+  `is_show` enum('y','n') NOT NULL DEFAULT 'y',
+  `media_id` int(10) UNSIGNED NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_mediameta`
+--
+
+TRUNCATE TABLE `main_mediameta`;
 -- --------------------------------------------------------
 
 --
@@ -448,6 +509,69 @@ INSERT INTO `main_usergroup` (`group_id`, `group_name`, `permission`, `status`) 
 (4, 'Plugins & Theme Manager', '{"can_activate_theme":"no","can_edit_theme":"no","can_setting_theme":"no","can_control_theme":"no","can_install_plugin":"no","can_run_plugin":"no","can_setting_plugin":"no","can_uninstall_plugin":"no","can_activate_plugin":"no","can_deactivate_plugin":"no","can_import_plugin":"no","can_manage_link":"no","default_free_point_eachday":"0","can_manage_post":"no","can_addnew_category":"no","can_addnew_redirect":"no","can_manage_contactus":"no","can_addnew_page":"no","can_addnew_user":"no","can_addnew_usergroup":"no","can_edit_usergroup":"no","can_setting_system":"no","can_manage_plugins":"no","can_manage_themes":"no","can_import_theme":"no","can_manage_category":"no","can_manage_user":"no","can_manage_usergroup":"no","show_category_manager":"no","show_post_manager":"no","show_comment_manager":"no","show_page_manager":"no","show_link_manager":"no","show_user_manager":"no","show_usergroup_manager":"no","show_contact_manager":"no","show_theme_manager":"no","show_plugin_manager":"no","show_setting_manager":"no","can_change_profile":"yes","can_control_plugin":"yes"}', 1),
 (5, 'Pending Member', '{"can_view_admincp":"no","can_view_usercp":"no","can_view_homepage":"yes","can_view_post":"yes","can_insert_comment":"no","can_manage_post":"no","can_addnew_post":"no","can_edit_post":"no","can_remove_post":"no","can_manage_link":"no","can_addnew_link":"no","can_edit_link":"no","can_remove_link":"no","can_addnew_category":"no","can_edit_category":"no","can_remove_category":"no","can_addnew_redirect":"no","can_edit_redirect":"no","can_remove_redirect":"no","can_manage_contactus":"no","can_remove_contactus":"no","can_addnew_page":"no","can_edit_page":"no","can_remove_page":"no","can_addnew_user":"no","can_edit_user":"no","can_remove_user":"no","can_edit_user_group":"no","can_addnew_usergroup":"no","can_edit_usergroup":"no","can_remove_usergroup":"no","can_setting_system":"no","can_manage_plugins":"no","can_manage_themes":"no","can_activate_theme":"no","can_edit_theme":"no","can_setting_theme":"no","can_control_theme":"no","can_install_plugin":"no","can_run_plugin":"no","can_setting_plugin":"no","can_uninstall_plugin":"no","can_activate_plugin":"no","can_deactivate_plugin":"no","can_import_plugin":"no","can_manage_category":"no","can_manage_user":"no","can_manage_usergroup":"no","can_login_to_admincp":"no","can_login_to_usercp":"no","can_remove_owner_post":"no","default_new_post_status":"0","show_category_manager":"no","show_post_manager":"no","show_comment_manager":"no","show_page_manager":"no","show_link_manager":"no","show_user_manager":"no","show_usergroup_manager":"no","show_contact_manager":"no","show_theme_manager":"no","show_plugin_manager":"no","show_setting_manager":"no","default_free_point_eachday":"0","can_import_theme":"no","can_change_profile":"yes","can_control_plugin":"yes"}', 1);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_widget`
+--
+
+DROP TABLE IF EXISTS `main_widget`;
+CREATE TABLE `main_widget` (
+  `widget_id` int(10) UNSIGNED NOT NULL,
+  `widget_name` varchar(100) NOT NULL,
+  `widget_title` varchar(100) DEFAULT NULL,
+  `description` text,
+  `data_url` varchar(255) DEFAULT NULL,
+  `user_group_ids` varchar(255) NOT NULL,
+  `position` int(5) UNSIGNED NOT NULL DEFAULT '1',
+  `is_active` enum('y','n') NOT NULL DEFAULT 'y',
+  `content` text,
+  `position_name` varchar(255) NOT NULL,
+  `config` text,
+  `layout_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_widget`
+--
+
+TRUNCATE TABLE `main_widget`;
+--
+-- Dumping data for table `main_widget`
+--
+
+INSERT INTO `main_widget` (`widget_id`, `widget_name`, `widget_title`, `description`, `data_url`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout_id`) VALUES
+(1, 'main_slideshow', 'Main slideshow', 'Main slideshow', 'slideshow/widget/main', '3', 1, 'y', NULL, 'main_slideshow', '{"media_id":"1"}', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_widgettype`
+--
+
+DROP TABLE IF EXISTS `main_widgettype`;
+CREATE TABLE `main_widgettype` (
+  `type_id` int(10) UNSIGNED NOT NULL,
+  `type_name` varchar(60) NOT NULL,
+  `type_title` varchar(125) NOT NULL,
+  `config` text,
+  `is_active` enum('y','n') NOT NULL DEFAULT 'y'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_widgettype`
+--
+
+TRUNCATE TABLE `main_widgettype`;
+--
+-- Dumping data for table `main_widgettype`
+--
+
+INSERT INTO `main_widgettype` (`type_id`, `type_name`, `type_title`, `config`, `is_active`) VALUES
+(1, 'support', 'Support', NULL, 'y'),
+(2, 'nav', 'Navigation', NULL, 'y'),
+(3, 'article', 'Article', NULL, 'y');
+
 --
 -- Indexes for dumped tables
 --
@@ -504,7 +628,20 @@ ALTER TABLE `main_language`
 -- Indexes for table `main_layout`
 --
 ALTER TABLE `main_layout`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`layout_id`);
+
+--
+-- Indexes for table `main_media`
+--
+ALTER TABLE `main_media`
+  ADD PRIMARY KEY (`media_id`);
+
+--
+-- Indexes for table `main_mediameta`
+--
+ALTER TABLE `main_mediameta`
+  ADD PRIMARY KEY (`meta_id`),
+  ADD KEY `slideshow_id` (`media_id`);
 
 --
 -- Indexes for table `main_module`
@@ -538,6 +675,20 @@ ALTER TABLE `main_usergroup`
   ADD PRIMARY KEY (`group_id`);
 
 --
+-- Indexes for table `main_widget`
+--
+ALTER TABLE `main_widget`
+  ADD PRIMARY KEY (`widget_id`),
+  ADD KEY `user_group_id` (`user_group_ids`),
+  ADD KEY `layout_id` (`layout_id`);
+
+--
+-- Indexes for table `main_widgettype`
+--
+ALTER TABLE `main_widgettype`
+  ADD PRIMARY KEY (`type_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -545,7 +696,7 @@ ALTER TABLE `main_usergroup`
 -- AUTO_INCREMENT for table `main_admin_menu`
 --
 ALTER TABLE `main_admin_menu`
-  MODIFY `amenu_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `amenu_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `main_article`
 --
@@ -585,7 +736,17 @@ ALTER TABLE `main_language`
 -- AUTO_INCREMENT for table `main_layout`
 --
 ALTER TABLE `main_layout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `layout_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `main_media`
+--
+ALTER TABLE `main_media`
+  MODIFY `media_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `main_mediameta`
+--
+ALTER TABLE `main_mediameta`
+  MODIFY `meta_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `main_module`
 --
@@ -611,6 +772,16 @@ ALTER TABLE `main_user`
 --
 ALTER TABLE `main_usergroup`
   MODIFY `group_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `main_widget`
+--
+ALTER TABLE `main_widget`
+  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `main_widgettype`
+--
+ALTER TABLE `main_widgettype`
+  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
