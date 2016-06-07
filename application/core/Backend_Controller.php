@@ -18,14 +18,13 @@ class Backend_Controller extends Base_Controller
         $this->load->model('admin_menu_model');
         $this->menus = $this->admin_menu_model->get_menu_recursive();
 
-        $this->load->section('top_menu');
-        $this->load->section('top_nav');
-        $this->load->section('sidebar', ['menus' => $this->menus]);
+        $this->output->set_output_data('top_menu', $this->load->section('top_menu'));
+        $this->output->set_output_data('top_nav', $this->load->section('top_nav'));
+        $this->output->set_output_data('sidebar', $this->load->section('sidebar', ['menus' => $this->menus]));
 
         if (!is_admin()) {
             redirect(site_url('member/login'));
         }
-
     }
 
 }

@@ -48,12 +48,12 @@
             <!--logo start-->
             <a href="index.html" class="logo" >Flat<span>lab</span></a>
             <!--logo end-->
-            <?php echo $this->load->get_section('top_menu'); ?>
-            <?php echo $this->load->get_section('top_nav'); ?>
+            <?php echo $top_menu; ?>
+            <?php echo $top_nav; ?>
         </header>
         <!--header end-->
         <!--sidebar start-->
-        <?php echo $this->load->get_section('sidebar'); ?>
+        <?php echo $sidebar; ?>
         <!--sidebar end-->
         <!--main content start-->
         <section id="main-content">
