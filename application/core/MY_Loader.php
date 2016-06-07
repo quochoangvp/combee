@@ -155,7 +155,7 @@ class MY_Loader extends MX_Loader
         $content = $this->view($view, $data, true);
         $checksum = md5($view . serialize($data));
         $this->_sections[$area][$checksum] = $content;
-        return $checksum;
+        return $content;
     }
     public function layout($layout, $data = array())
     {
