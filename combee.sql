@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2016 at 01:47 AM
+-- Generation Time: Jun 07, 2016 at 09:52 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -55,7 +55,11 @@ INSERT INTO `main_admin_menu` (`amenu_id`, `amenu_link`, `amenu_text`, `amenu_ic
 (3, 'article/create', 'Add new', '', 2, 1, 'y', ''),
 (4, 'article/all', 'All article', '', 2, 2, 'y', ''),
 (5, 'category/all', 'Category', '', 2, 3, 'y', ''),
-(6, 'tag/all', 'Tags', '', 2, 4, 'y', '');
+(6, 'tag/all', 'Tags', '', 2, 4, 'y', ''),
+(7, 'user', 'Users', 'icon-user', 0, 2, 'y', ''),
+(8, 'user/all', 'All users', NULL, 7, 1, 'y', ''),
+(9, 'user/create', 'Add new', NULL, 7, 2, 'y', ''),
+(10, 'user/group', 'Groups', NULL, 7, 3, 'y', '');
 
 -- --------------------------------------------------------
 
@@ -396,8 +400,8 @@ CREATE TABLE `main_user` (
   `join_date` datetime NOT NULL,
   `last_active` datetime DEFAULT NULL,
   `token` varchar(32) NOT NULL,
-  `role` tinyint(2) NOT NULL,
-  `status` tinyint(2) NOT NULL
+  `group_id` int(10) UNSIGNED NOT NULL,
+  `status` tinyint(2) NOT NULL COMMENT '0:Inactived, 1:Actived, 2:Locked'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -409,8 +413,40 @@ TRUNCATE TABLE `main_user`;
 -- Dumping data for table `main_user`
 --
 
-INSERT INTO `main_user` (`user_id`, `user_email`, `user_pass`, `full_name`, `join_date`, `last_active`, `token`, `role`, `status`) VALUES
-(1, 'quochoangvp@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trịnh Quốc Hoàng', '2016-05-30 10:15:00', NULL, '8d6239c01e6e481b961046493ea51ff7', 20, 10);
+INSERT INTO `main_user` (`user_id`, `user_email`, `user_pass`, `full_name`, `join_date`, `last_active`, `token`, `group_id`, `status`) VALUES
+(1, 'quochoangvp@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trịnh Quốc Hoàng', '2016-05-30 10:15:00', NULL, '8d6239c01e6e481b961046493ea51ff7', 1, 1),
+(2, 'admin@localhost.com', '123456', 'Admin', '2016-06-06 22:55:25', '2016-06-06 22:55:25', '', 1, 1),
+(3, 'admin@localhost.vm', 'd41d8cd98f00b204e9800998ecf8427e', 'Admin', '2016-06-06 22:55:58', '2016-06-06 22:55:58', '', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_usergroup`
+--
+
+DROP TABLE IF EXISTS `main_usergroup`;
+CREATE TABLE `main_usergroup` (
+  `group_id` int(10) UNSIGNED NOT NULL,
+  `group_name` varchar(100) NOT NULL,
+  `permission` text NOT NULL,
+  `status` tinyint(2) UNSIGNED NOT NULL COMMENT '0: Inactived, 1: Actived'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_usergroup`
+--
+
+TRUNCATE TABLE `main_usergroup`;
+--
+-- Dumping data for table `main_usergroup`
+--
+
+INSERT INTO `main_usergroup` (`group_id`, `group_name`, `permission`, `status`) VALUES
+(1, 'Administrator', '{"can_view_admincp":"yes","can_view_usercp":"yes","can_view_homepage":"yes","can_view_post":"yes","can_insert_comment":"yes","can_manage_post":"yes","can_addnew_post":"yes","can_edit_post":"yes","can_remove_post":"yes","can_manage_link":"yes","can_addnew_link":"yes","can_edit_link":"yes","can_remove_link":"yes","can_addnew_category":"yes","can_edit_category":"yes","can_remove_category":"yes","can_addnew_redirect":"yes","can_edit_redirect":"yes","can_remove_redirect":"yes","can_manage_contactus":"yes","can_remove_contactus":"yes","can_addnew_page":"yes","can_edit_page":"yes","can_remove_page":"yes","can_addnew_user":"yes","can_edit_user":"yes","can_remove_user":"yes","can_edit_user_group":"yes","can_addnew_usergroup":"yes","can_edit_usergroup":"yes","can_remove_usergroup":"yes","can_setting_system":"yes","can_manage_plugins":"yes","can_manage_themes":"yes","can_activate_theme":"yes","can_edit_theme":"yes","can_setting_theme":"yes","can_control_theme":"yes","can_import_theme":"yes","can_install_plugin":"yes","can_run_plugin":"yes","can_setting_plugin":"yes","can_uninstall_plugin":"yes","can_activate_plugin":"yes","can_deactivate_plugin":"yes","can_import_plugin":"yes","can_manage_category":"yes","can_manage_user":"yes","can_manage_usergroup":"yes","can_remove_owner_post":"yes","default_new_post_status":"1","show_category_manager":"yes","show_post_manager":"yes","show_comment_manager":"yes","show_page_manager":"yes","show_link_manager":"yes","show_user_manager":"yes","show_usergroup_manager":"yes","show_contact_manager":"yes","show_theme_manager":"yes","show_plugin_manager":"yes","show_setting_manager":"yes","show_all_post":"yes","can_remove_all_post":"yes","can_change_password":"yes","can_change_profile":"yes","can_setting_mail":"yes","can_update_system":"yes","can_clear_cache":"yes","default_free_point_eachday":"0","can_control_plugin":"yes"}', 1),
+(2, 'Member', '{"can_view_admincp":"yes","can_view_usercp":"yes","can_view_homepage":"yes","can_view_post":"yes","can_insert_comment":"yes","can_manage_post":"no","can_addnew_post":"yes","can_edit_post":"yes","can_remove_post":"yes","can_manage_link":"no","can_addnew_link":"no","can_edit_link":"no","can_remove_link":"no","can_addnew_category":"no","can_edit_category":"no","can_remove_category":"no","can_addnew_redirect":"no","can_edit_redirect":"no","can_remove_redirect":"no","can_manage_contactus":"no","can_remove_contactus":"no","can_addnew_page":"no","can_edit_page":"no","can_remove_page":"no","can_addnew_user":"no","can_edit_user":"no","can_remove_user":"no","can_edit_user_group":"no","can_addnew_usergroup":"no","can_edit_usergroup":"no","can_remove_usergroup":"no","can_setting_system":"no","can_manage_plugins":"no","can_manage_themes":"no","can_activate_theme":"no","can_import_theme":"no","can_edit_theme":"no","can_setting_theme":"no","can_control_theme":"no","can_install_plugin":"no","can_run_plugin":"yes","can_setting_plugin":"yes","can_uninstall_plugin":"no","can_activate_plugin":"no","can_deactivate_plugin":"no","can_import_plugin":"no","can_manage_category":"no","can_manage_user":"no","can_manage_usergroup":"no","can_login_to_admincp":"yes","can_login_to_usercp":"yes","can_remove_owner_post":"yes","default_new_post_status":"0","show_category_manager":"no","show_post_manager":"no","show_comment_manager":"no","show_page_manager":"no","show_link_manager":"no","show_user_manager":"no","show_usergroup_manager":"no","show_contact_manager":"no","show_theme_manager":"no","show_plugin_manager":"no","show_setting_manager":"no","show_all_post":"no","can_remove_all_post":"no","default_free_point_eachday":"0","can_change_profile":"yes","can_control_plugin":"yes"}', 1),
+(3, 'Banned Member', '{"can_view_admincp":"no","can_view_usercp":"no","can_view_homepage":"yes","can_view_post":"yes","can_insert_comment":"no","can_manage_post":"no","can_addnew_post":"no","can_edit_post":"no","can_remove_post":"no","can_manage_link":"no","can_addnew_link":"no","can_edit_link":"no","can_remove_link":"no","can_addnew_category":"no","can_edit_category":"no","can_remove_category":"no","can_addnew_redirect":"no","can_edit_redirect":"no","can_remove_redirect":"no","can_manage_contactus":"no","can_remove_contactus":"no","can_addnew_page":"no","can_edit_page":"no","can_remove_page":"no","can_addnew_user":"no","can_edit_user":"no","can_remove_user":"no","can_edit_user_group":"no","can_addnew_usergroup":"no","can_edit_usergroup":"no","can_remove_usergroup":"no","can_setting_system":"no","can_manage_plugins":"no","can_manage_themes":"no","can_import_theme":"no","can_manage_category":"no","can_manage_user":"no","can_manage_usergroup":"no","can_login_to_admincp":"no","can_login_to_usercp":"no","can_remove_owner_post":"no","default_new_post_status":"0","show_category_manager":"no","show_post_manager":"no","show_comment_manager":"no","show_page_manager":"no","show_link_manager":"no","show_user_manager":"no","show_usergroup_manager":"no","show_contact_manager":"no","show_theme_manager":"no","show_plugin_manager":"no","show_setting_manager":"no","show_all_post":"no","default_free_point_eachday":"0","can_activate_plugin":"no","can_uninstall_plugin":"no","can_deactivate_plugin":"no","can_install_plugin":"no","can_import_plugin":"no","can_change_profile":"yes","can_control_plugin":"yes"}', 1),
+(4, 'Plugins & Theme Manager', '{"can_activate_theme":"no","can_edit_theme":"no","can_setting_theme":"no","can_control_theme":"no","can_install_plugin":"no","can_run_plugin":"no","can_setting_plugin":"no","can_uninstall_plugin":"no","can_activate_plugin":"no","can_deactivate_plugin":"no","can_import_plugin":"no","can_manage_link":"no","default_free_point_eachday":"0","can_manage_post":"no","can_addnew_category":"no","can_addnew_redirect":"no","can_manage_contactus":"no","can_addnew_page":"no","can_addnew_user":"no","can_addnew_usergroup":"no","can_edit_usergroup":"no","can_setting_system":"no","can_manage_plugins":"no","can_manage_themes":"no","can_import_theme":"no","can_manage_category":"no","can_manage_user":"no","can_manage_usergroup":"no","show_category_manager":"no","show_post_manager":"no","show_comment_manager":"no","show_page_manager":"no","show_link_manager":"no","show_user_manager":"no","show_usergroup_manager":"no","show_contact_manager":"no","show_theme_manager":"no","show_plugin_manager":"no","show_setting_manager":"no","can_change_profile":"yes","can_control_plugin":"yes"}', 1),
+(5, 'Pending Member', '{"can_view_admincp":"no","can_view_usercp":"no","can_view_homepage":"yes","can_view_post":"yes","can_insert_comment":"no","can_manage_post":"no","can_addnew_post":"no","can_edit_post":"no","can_remove_post":"no","can_manage_link":"no","can_addnew_link":"no","can_edit_link":"no","can_remove_link":"no","can_addnew_category":"no","can_edit_category":"no","can_remove_category":"no","can_addnew_redirect":"no","can_edit_redirect":"no","can_remove_redirect":"no","can_manage_contactus":"no","can_remove_contactus":"no","can_addnew_page":"no","can_edit_page":"no","can_remove_page":"no","can_addnew_user":"no","can_edit_user":"no","can_remove_user":"no","can_edit_user_group":"no","can_addnew_usergroup":"no","can_edit_usergroup":"no","can_remove_usergroup":"no","can_setting_system":"no","can_manage_plugins":"no","can_manage_themes":"no","can_activate_theme":"no","can_edit_theme":"no","can_setting_theme":"no","can_control_theme":"no","can_install_plugin":"no","can_run_plugin":"no","can_setting_plugin":"no","can_uninstall_plugin":"no","can_activate_plugin":"no","can_deactivate_plugin":"no","can_import_plugin":"no","can_manage_category":"no","can_manage_user":"no","can_manage_usergroup":"no","can_login_to_admincp":"no","can_login_to_usercp":"no","can_remove_owner_post":"no","default_new_post_status":"0","show_category_manager":"no","show_post_manager":"no","show_comment_manager":"no","show_page_manager":"no","show_link_manager":"no","show_user_manager":"no","show_usergroup_manager":"no","show_contact_manager":"no","show_theme_manager":"no","show_plugin_manager":"no","show_setting_manager":"no","default_free_point_eachday":"0","can_import_theme":"no","can_change_profile":"yes","can_control_plugin":"yes"}', 1);
 
 --
 -- Indexes for dumped tables
@@ -492,7 +528,14 @@ ALTER TABLE `main_tag`
 -- Indexes for table `main_user`
 --
 ALTER TABLE `main_user`
-  ADD PRIMARY KEY (`user_id`);
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `group_id` (`group_id`);
+
+--
+-- Indexes for table `main_usergroup`
+--
+ALTER TABLE `main_usergroup`
+  ADD PRIMARY KEY (`group_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -502,7 +545,7 @@ ALTER TABLE `main_user`
 -- AUTO_INCREMENT for table `main_admin_menu`
 --
 ALTER TABLE `main_admin_menu`
-  MODIFY `amenu_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `amenu_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `main_article`
 --
@@ -562,7 +605,12 @@ ALTER TABLE `main_tag`
 -- AUTO_INCREMENT for table `main_user`
 --
 ALTER TABLE `main_user`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `main_usergroup`
+--
+ALTER TABLE `main_usergroup`
+  MODIFY `group_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
