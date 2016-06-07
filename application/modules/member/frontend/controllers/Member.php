@@ -7,9 +7,9 @@ class Member extends Frontend_Controller {
 	{
 		parent::__construct();
 		$this->output->unset_layout();
-		$this->load->model('common/user_model', 'common_user');
+		$this->load->model('user/common/user_model', 'common_user');
 		if ($auth = $this->session->userdata('auth')) {
-			if ($this->common_user->get_role($auth['role']) == 'admin') {
+			if (is_admin()) {
 				redirect(admin_url('dashboard'));
 			} else {
 				redirect(site_url('account/profile'));

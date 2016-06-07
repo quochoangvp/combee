@@ -6,7 +6,7 @@ class Member extends Api_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('common/user_model', 'common_user');
+		$this->load->model('user/common/user_model', 'common_user');
 		$this->load->library('form_validation');
 		$this->form_validation->set_error_delimiters('<p class="help-block">', '</p>');
 	}
@@ -29,7 +29,7 @@ class Member extends Api_Controller {
 						$this->session->sess_expiration = $_data['new_expiration'];
 					}
 					$this->session->set_userdata(['auth' => $user_data]);
-					if ($this->common_user->get_role($user_data['role']) == 'admin') {
+					if (is_admin()) {
 						$url = admin_url('dashboard');
 					} else {
 						$url = site_url('account/profile');

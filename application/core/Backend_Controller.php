@@ -22,7 +22,7 @@ class Backend_Controller extends Base_Controller
         $this->load->section('top_nav');
         $this->load->section('sidebar', ['menus' => $this->menus]);
 
-        if (!$this->session->userdata('auth')) {
+        if (!is_admin()) {
             redirect(site_url('member/login'));
         }
 

@@ -107,3 +107,17 @@ function string_to_url($str)
     $str = preg_replace("/[^\w-]+/", '', $str);
     return trim($str, '-');
 }
+
+function is_admin()
+{
+    $CI =& get_instance();
+    $auth = $CI->session->userdata('auth');
+    if (!isset($auth['permission'])) {
+        return false;
+    }
+    $permission = (array) json_decode($auth['permission']);
+    if (isset($permission['can_view_admincp']) && $permission['can_view_admincp'] == 'yes') {
+        return true;
+    }
+    return false;
+}
