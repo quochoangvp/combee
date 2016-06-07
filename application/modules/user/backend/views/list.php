@@ -1,6 +1,6 @@
 <section class="panel">
     <header class="panel-heading">
-        All articles
+        All users
     </header>
     <div class="panel-body">
         <div class="adv-table">
@@ -8,30 +8,30 @@
                 <thead>
                     <tr>
                         <th class="w5">No</th>
-                        <th>Title</th>
-                        <th class="w12">Category</th>
-                        <th class="w12">Tags</th>
-                        <th>Author</th>
-                        <th>Publish date</th>
+                        <th>Email</th>
+                        <th>Full name</th>
+                        <th class="w12">Group</th>
+                        <th>Join date</th>
+                        <th>Last active</th>
                         <th>Status</th>
                         <th class="w8">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($articles as $index => $article): ?>
+                    <?php foreach ($users as $index => $user): ?>
                         <tr>
                             <td><?php echo $index + 1 + $offset ?></td>
-                            <td><?php echo $article['article_title'] ?></td>
-                            <td><?php echo $article['article_categories'] ?></td>
-                            <td><?php echo $article['article_tags'] ?></td>
-                            <td><?php echo $article['author'] ?></td>
-                            <td><?php echo $article['publish_date'] ?></td>
-                            <td><?php echo ucfirst($article['status']) ?></td>
+                            <td><?php echo $user['user_email'] ?></td>
+                            <td><?php echo $user['full_name'] ?></td>
+                            <td><?php echo $user['group_name'] ?></td>
+                            <td><?php echo $user['join_date'] ?></td>
+                            <td><?php echo $user['last_active'] ?></td>
+                            <td><?php echo ($user['status']==0)?'Deactived':($user['status']==1)?'Actived':'Locked' ?></td>
                             <td class="text-center">
-                                <a class="btn btn-primary btn-xs" href="<?php echo admin_url('article/edit/' . $article['article_id']) ?>">
+                                <a class="btn btn-primary btn-xs" href="<?php echo admin_url('user/edit/' . $user['user_id']) ?>">
                                     <i class="icon-pencil"></i>
                                 </a>
-                                <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                <button class="btn btn-danger btn-xs" onclick="delete_user(<?php echo $user['user_id'] ?>)"><i class="icon-trash "></i></button>
                             </td>
                         </tr>
                     <?php endforeach?>
