@@ -21,7 +21,7 @@ function array_uniqueif($array, $attr, $attr_to_keep = null)
     return $result;
 }
 
-function admin_url($url)
+function admin_url($url = '')
 {
     return site_url('admin/' . $url);
 }
