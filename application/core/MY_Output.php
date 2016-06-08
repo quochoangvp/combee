@@ -26,6 +26,12 @@ class MY_Output extends CI_Output
 
     private $_theme_dir = "default/";
     private $_layout_dir = "layouts/";
+    private $_javascript = array();
+    private $_css = array();
+    private $_inline_scripting = array("infile" => "", "stripped" => "", "unstripped" => "");
+    private $_sections = array();
+    private $_cached_css = array();
+    private $_cached_js = array();
     private $_title = "";
     private $_charset = "utf-8";
     private $_language = "en-us";
@@ -130,6 +136,16 @@ class MY_Output extends CI_Output
         $this->_title = "{$title} - {$this->_title}";
     }
 
+    public function add_js($js_file)
+    {
+        $this->_javascript[] = $js_file;
+    }
+
+    public function add_css($css_file)
+    {
+        $this->_css[] = $css_file;
+    }
+
     public function set_message($message, $type = "error")
     {
 //         log_message($type, $message);
@@ -187,8 +203,8 @@ class MY_Output extends CI_Output
 
             $data = array();
 
-            $css_files = $ci->load->get_css_files();
-            $js_files = $ci->load->get_js_files();
+            $css_files = $this->_css;
+            $js_files = $this->_javascript;
 
             $cached_js_files = $ci->load->get_cached_js_files();
             if (!empty($cached_js_files)) {
