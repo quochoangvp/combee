@@ -133,6 +133,7 @@ class MY_Loader extends MX_Loader
     public function theme($theme_name)
     {
         $this->_theme_dir = '../themes/' . $theme_name . '/';
+        $this->output->set_theme($theme_name);
         return $this->_theme_dir;
     }
     /**
@@ -155,11 +156,13 @@ class MY_Loader extends MX_Loader
         $content = $this->view($view, $data, true);
         $checksum = md5($view . serialize($data));
         $this->_sections[$area][$checksum] = $content;
+        $this->output->set_output_data($area, $content);
         return $content;
     }
     public function layout($layout, $data = array())
     {
         $this->_layout_dir = $layout;
+        $this->output->set_layout($layout);
         return $this->_layout_dir;
     }
 
