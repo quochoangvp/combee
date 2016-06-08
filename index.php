@@ -275,6 +275,9 @@ switch (ENVIRONMENT)
 
 	define('MODULE_PATH', APPPATH . 'modules' . DIRECTORY_SEPARATOR);
 
+	define('THEME_PATH', APPPATH . 'themes' . DIRECTORY_SEPARATOR);
+
+
 	// The path to the "views" directory
 	if ( ! isset($view_folder[0]) && is_dir(APPPATH.'views'.DIRECTORY_SEPARATOR))
 	{
