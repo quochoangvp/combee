@@ -158,6 +158,8 @@ function form_errors_append(form, error_arr, error_msg = '') {
     $(form).find('.help-block').remove();
     $(form).find('[name]').each(function(index, el) {
         var attr_name = $(el).attr('name');
+        attr_name = attr_name.replace('[', '');
+        attr_name = attr_name.replace(']', '');
         if (error_arr[attr_name]) {
             $(el).after(error_arr[attr_name]);
             $(el).parent().parent().addClass('has-error');
