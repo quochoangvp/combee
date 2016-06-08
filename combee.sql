@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu1
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jun 07, 2016 at 05:14 PM
--- Server version: 10.0.24-MariaDB-7
--- PHP Version: 7.0.4-7ubuntu2.1
+-- Host: 127.0.0.1
+-- Generation Time: Jun 08, 2016 at 09:57 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -62,7 +62,9 @@ INSERT INTO `main_admin_menu` (`amenu_id`, `amenu_link`, `amenu_text`, `amenu_ic
 (10, 'user/group', 'Groups', NULL, 7, 3, 'y', ''),
 (11, 'media', 'Media', 'icon-camera', 0, 4, 'y', ''),
 (12, 'media/all', 'All media', NULL, 11, 1, 'y', ''),
-(13, 'media/create', 'Add new', NULL, 11, 2, 'y', '');
+(13, 'media/create', 'Add new', NULL, 11, 2, 'y', ''),
+(14, 'setting', 'Setting', 'icon-cog', 0, 5, 'y', ''),
+(15, 'widget', 'Widget', NULL, 14, 1, 'y', '');
 
 -- --------------------------------------------------------
 
@@ -528,7 +530,9 @@ CREATE TABLE `main_widget` (
   `content` text,
   `position_name` varchar(255) NOT NULL,
   `config` text,
-  `layout_id` int(10) UNSIGNED NOT NULL
+  `layout` varchar(30) NOT NULL,
+  `theme` varchar(30) NOT NULL,
+  `type_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -540,8 +544,8 @@ TRUNCATE TABLE `main_widget`;
 -- Dumping data for table `main_widget`
 --
 
-INSERT INTO `main_widget` (`widget_id`, `widget_name`, `widget_title`, `description`, `data_url`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout_id`) VALUES
-(1, 'main_slideshow', 'Main slideshow', 'Main slideshow', 'slideshow/widget/main', '3', 1, 'y', NULL, 'main_slideshow', '{"media_id":"1"}', 1);
+INSERT INTO `main_widget` (`widget_id`, `widget_name`, `widget_title`, `description`, `data_url`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout`, `theme`, `type_id`) VALUES
+(1, 'main_slideshow', 'Main slideshow', 'Main slideshow', 'slideshow/widget/main', '3', 1, 'y', NULL, 'main_slideshow', '{"media_id":"1"}', 'home', 'news', 7);
 
 -- --------------------------------------------------------
 
@@ -570,7 +574,11 @@ TRUNCATE TABLE `main_widgettype`;
 INSERT INTO `main_widgettype` (`type_id`, `type_name`, `type_title`, `config`, `is_active`) VALUES
 (1, 'support', 'Support', NULL, 'y'),
 (2, 'nav', 'Navigation', NULL, 'y'),
-(3, 'article', 'Article', NULL, 'y');
+(3, 'article', 'Article', NULL, 'y'),
+(4, 'ultilities', 'Ultilities', NULL, 'y'),
+(5, 'product', 'Product', NULL, 'y'),
+(6, 'html', 'Html', NULL, 'y'),
+(7, 'media', 'Media', NULL, 'y');
 
 --
 -- Indexes for dumped tables
@@ -680,7 +688,8 @@ ALTER TABLE `main_usergroup`
 ALTER TABLE `main_widget`
   ADD PRIMARY KEY (`widget_id`),
   ADD KEY `user_group_id` (`user_group_ids`),
-  ADD KEY `layout_id` (`layout_id`);
+  ADD KEY `layout_id` (`layout`),
+  ADD KEY `type_id` (`type_id`);
 
 --
 -- Indexes for table `main_widgettype`
@@ -696,7 +705,7 @@ ALTER TABLE `main_widgettype`
 -- AUTO_INCREMENT for table `main_admin_menu`
 --
 ALTER TABLE `main_admin_menu`
-  MODIFY `amenu_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `amenu_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `main_article`
 --
@@ -781,7 +790,7 @@ ALTER TABLE `main_widget`
 -- AUTO_INCREMENT for table `main_widgettype`
 --
 ALTER TABLE `main_widgettype`
-  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
