@@ -46,7 +46,7 @@
                 <div data-original-title="Toggle Navigation" data-placement="right" class="icon-reorder tooltips"></div>
             </div>
             <!--logo start-->
-            <a href="index.html" class="logo" >Flat<span>lab</span></a>
+            <a href="<?php echo admin_url() ?>" class="logo" >Flat<span>lab</span></a>
             <!--logo end-->
             <?php echo $top_menu; ?>
             <?php echo $top_nav; ?>
@@ -60,7 +60,7 @@
             <section class="wrapper site-min-height">
                 <!-- page start-->
                 <!-- Page content goes here -->
-                <?php echo $output; ?>
+                <?php echo $content; ?>
                 <!-- page end-->
             </section>
         </section>
@@ -92,7 +92,6 @@
 
     <!--common script for all pages-->
     <script src="<?php echo base_url(); ?>assets/themes/flatlab/js/common-scripts.js"></script>
-
     <?php foreach ($js as $file): ?>
         <script src="<?php echo $file ?>" type="text/javascript"></script>
     <?php endforeach?>

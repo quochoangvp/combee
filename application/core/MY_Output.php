@@ -212,7 +212,7 @@ class MY_Output extends CI_Output
                 $this->_meta["keywords"] = implode(" ,", $this->_meta["keywords"]);
             }
 
-            $data["output"] = $output;
+            $data["content"] = $output;
             $data["messages"] = $this->_messages;
             $data["modules"] = $ci->load->get_sections();
             $data["title"] = $this->_title;
