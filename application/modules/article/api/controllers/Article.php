@@ -10,8 +10,6 @@ class Article extends Api_Controller {
 		$this->load->model('common/article_tag_model', 'common_article_tag');
 		$this->load->model('common/article_category_model', 'common_article_category');
 		$this->load->model('tag/common/tag_model', 'common_tag');
-		$this->load->library('form_validation');
-		$this->form_validation->set_error_delimiters('<p class="help-block">', '</p>');
 	}
 
 	public function create_post()
@@ -64,7 +62,7 @@ class Article extends Api_Controller {
 					'message' => 'Can\'t not create article'
 				], REST_Controller::HTTP_BAD_REQUEST);
 			}
-			
+
 		} else {
 			return $this->response([
 				'status' => REST_Controller::HTTP_BAD_REQUEST,
@@ -93,7 +91,7 @@ class Article extends Api_Controller {
 				unset($data['category']);
 
 				$data = set_data($data);
-				
+
 				if (!isset($data['status'])) {
 					$data['status'] = 'draft';
 				}
@@ -143,7 +141,7 @@ class Article extends Api_Controller {
 						'message' => 'Can\'t not create article'
 					], REST_Controller::HTTP_BAD_REQUEST);
 				}
-				
+
 			} else {
 				return $this->response([
 					'status' => REST_Controller::HTTP_BAD_REQUEST,
