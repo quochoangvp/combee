@@ -1,0 +1,27 @@
+{
+	"layouts": {
+		"home": {
+			"title": "Home layout",
+			"positions": {
+				"main_nav": "Main navigation on top",
+				"main_slideshow": "Main slideshow",
+				"body": "Center position",
+				"footer_col_1": "The footer first column",
+				"footer_col_2": "The footer second column",
+				"footer_col_3": "The footer third column"
+			}
+		},
+		"blog": {
+			"title": "Blog layout",
+			"positions": {
+				"main_nav": "Main navigation on top",
+				"main_slideshow": "Main slideshow",
+				"body": "Center position",
+				"sidebar": "Sidebar content",
+				"footer_col_1": "The footer first column",
+				"footer_col_2": "The footer second column",
+				"footer_col_3": "The footer third column"
+			}
+		}
+	}
+}
