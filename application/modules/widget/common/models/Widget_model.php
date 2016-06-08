@@ -7,14 +7,9 @@ class Widget_model extends Base_model {
     public $primary_key = 'widget_id';
     public $rules = array(
         array(
-            'field' => 'widget_name',
-            'label' => 'Name',
-            'rules' => 'trim|required|min_length[2]|max_length[100]'
-            ),
-        array(
             'field' => 'widget_title',
             'label' => 'Title',
-            'rules' => 'trim|min_length[2]|max_length[100]'
+            'rules' => 'trim|required|min_length[2]|max_length[100]'
             ),
         array(
             'field' => 'description',
@@ -32,36 +27,31 @@ class Widget_model extends Base_model {
         	'rules' => 'trim|required|strip_tags'
         	),
         array(
-        	'field' => 'position',
-        	'lable' => 'Order',
-        	'rules' => 'integer'
-        	),
-        array(
         	'field' => 'is_active',
         	'lable' => 'Status',
-        	'rules' => 'alpha|exact_length[1]'
+        	'rules' => 'alpha|required|exact_length[1]'
         	),
        	array(
        		'field' => 'position_name',
        		'label' => 'Position',
-       		'rules' => 'trim|require|alpha'
+       		'rules' => 'trim|required|strip_tags'
        		),
        	array(
        		'field' => 'layout',
        		'label' => 'Layout',
-       		'rules' => 'trim|require|alpha'
+       		'rules' => 'trim|required|strip_tags'
        		),
        	array(
        		'field' => 'theme',
        		'label' => 'Theme',
-       		'rules' => 'trim|require|alpha'
+       		'rules' => 'trim|required|strip_tags'
        		),
         array(
             'field' => 'type_id',
             'label' => 'Type',
-            'rules' => 'require|integer'
+            'rules' => 'required|integer'
             ),
-        );
+      );
 
     public function __construct()
     {
@@ -75,7 +65,7 @@ class Widget_model extends Base_model {
     {
     	$type_table = $this->widget_type_model->table;
     	$widget_table = $this->table;
-    	$sql = "SELECT {$widget_table}.widget_id, {$widget_table}.widget_name, {$widget_table}.position_name, {$widget_table}.layout, {$widget_table}.is_active, {$widget_table}.widget_title, {$type_table}.type_title
+    	$sql = "SELECT {$widget_table}.widget_id, {$widget_table}.position_name, {$widget_table}.layout, {$widget_table}.position_name, {$widget_table}.theme, {$widget_table}.is_active, {$widget_table}.widget_title, {$type_table}.type_title
     			FROM {$widget_table}
     			LEFT JOIN {$type_table} ON {$widget_table}.type_id = {$type_table}.type_id
 				ORDER BY {$widget_table}.position

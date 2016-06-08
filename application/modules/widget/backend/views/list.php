@@ -1,6 +1,11 @@
 <section class="panel">
     <header class="panel-heading">
-        All widgets
+        <h4>
+            All widgets
+            <span class="pull-right">
+                <a href="<?php echo admin_url('widget/create') ?>" class="btn btn-sm btn-primary">Add new</a>
+            </span>
+        </h4>
     </header>
     <div class="panel-body">
         <div class="adv-table">
@@ -11,6 +16,8 @@
                         <th>Title</th>
                         <th class="w12">Type</th>
                         <th class="w12">Position</th>
+                        <th class="w12">Theme</th>
+                        <th class="w12">Layout</th>
                         <th>Status</th>
                         <th class="w8">Action</th>
                     </tr>
@@ -22,6 +29,8 @@
                             <td><?php echo $widget['widget_title'] ?></td>
                             <td><?php echo $widget['type_title'] ?></td>
                             <td><?php echo $widget['position_name'] ?></td>
+                            <td><?php echo $widget['theme'] ?></td>
+                            <td><?php echo $widget['layout'] ?></td>
                             <td><?php echo ($widget['is_active'] == 'y')?'<span class="label label-mini label-success">Show</span>':'<span class="label label-mini label-default">Hide</span>' ?></td>
                             <td class="text-center">
                                 <a class="btn btn-primary btn-xs" href="<?php echo admin_url('widget/edit/' . $widget['widget_id']) ?>">
