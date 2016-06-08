@@ -7,6 +7,8 @@ class Api_Controller extends REST_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<p class="help-block">', '</p>');
     }
 
 }
