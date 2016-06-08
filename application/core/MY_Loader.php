@@ -59,7 +59,7 @@ class MY_Loader extends MX_Loader
             if (!in_array($css_file, $this->_css)) {
                 $this->_css[] = $css_file;
             }
-
+            $this->output->add_css($css_file);
         }
         return;
     }
@@ -85,7 +85,7 @@ class MY_Loader extends MX_Loader
             if (!in_array($script_file, $this->_javascript)) {
                 $this->_javascript[] = $script_file;
             }
-
+            $this->output->add_js($script_file);
         }
         return;
     }
@@ -157,7 +157,7 @@ class MY_Loader extends MX_Loader
         $checksum = md5($view . serialize($data));
         $this->_sections[$area][$checksum] = $content;
         $this->output->set_output_data($area, $content);
-        return $content;
+        return $checksum;
     }
     public function layout($layout, $data = array())
     {
