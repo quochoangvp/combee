@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.4.1deb2ubuntu1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 08, 2016 at 09:57 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.6
+-- Host: localhost
+-- Generation Time: Jun 08, 2016 at 05:46 PM
+-- Server version: 10.0.24-MariaDB-7
+-- PHP Version: 7.0.4-7ubuntu2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -520,7 +520,6 @@ INSERT INTO `main_usergroup` (`group_id`, `group_name`, `permission`, `status`) 
 DROP TABLE IF EXISTS `main_widget`;
 CREATE TABLE `main_widget` (
   `widget_id` int(10) UNSIGNED NOT NULL,
-  `widget_name` varchar(100) NOT NULL,
   `widget_title` varchar(100) DEFAULT NULL,
   `description` text,
   `data_url` varchar(255) DEFAULT NULL,
@@ -544,8 +543,8 @@ TRUNCATE TABLE `main_widget`;
 -- Dumping data for table `main_widget`
 --
 
-INSERT INTO `main_widget` (`widget_id`, `widget_name`, `widget_title`, `description`, `data_url`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout`, `theme`, `type_id`) VALUES
-(1, 'main_slideshow', 'Main slideshow', 'Main slideshow', 'slideshow/widget/main', '3', 1, 'y', NULL, 'main_slideshow', '{"media_id":"1"}', 'home', 'news', 7);
+INSERT INTO `main_widget` (`widget_id`, `widget_title`, `description`, `data_url`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout`, `theme`, `type_id`) VALUES
+(1, 'Main slideshow', 'Main slideshow', 'slideshow/widget/main', '3', 1, 'y', NULL, 'main_slideshow', '{"media_id":"1"}', 'home|blog', 'news', 7);
 
 -- --------------------------------------------------------
 
