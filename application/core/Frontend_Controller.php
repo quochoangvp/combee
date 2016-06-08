@@ -8,8 +8,7 @@ class Frontend_Controller extends Base_Controller
     {
         parent::__construct();
 
-        $theme = $this->load->theme('news');
-        $this->output->set_theme($theme);
+        $this->load->theme('news');
     }
 
 }
