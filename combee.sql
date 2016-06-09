@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 09, 2016 at 10:18 AM
+-- Generation Time: Jun 09, 2016 at 01:25 PM
 -- Server version: 10.0.24-MariaDB-7
 -- PHP Version: 7.0.4-7ubuntu2.1
 
@@ -60,9 +60,9 @@ INSERT INTO `main_admin_menu` (`amenu_id`, `amenu_link`, `amenu_text`, `amenu_ic
 (8, 'user/all', 'All users', NULL, 7, 1, 'y', ''),
 (9, 'user/create', 'Add new', NULL, 7, 2, 'y', ''),
 (10, 'user/group', 'Groups', NULL, 7, 3, 'y', ''),
-(11, 'media', 'Media', 'icon-camera', 0, 4, 'y', ''),
-(12, 'media/all', 'All media', NULL, 11, 1, 'y', ''),
-(13, 'media/create', 'Add new', NULL, 11, 2, 'y', ''),
+(11, 'gallery', 'Gallery', 'icon-camera', 0, 4, 'y', ''),
+(12, 'gallery/all', 'All gallery', NULL, 11, 1, 'y', ''),
+(13, 'gallery/create', 'Add new', NULL, 11, 2, 'y', ''),
 (14, 'setting', 'Setting', 'icon-cog', 0, 5, 'y', ''),
 (15, 'widget', 'Widget', NULL, 14, 1, 'y', ''),
 (16, 'link', 'Links', 'icon-link', 0, 6, 'y', ''),
@@ -338,10 +338,10 @@ TRUNCATE TABLE `main_link`;
 
 INSERT INTO `main_link` (`link_id`, `link_title`, `link_url`, `position`, `is_show`, `parent_id`) VALUES
 (1, 'Home', '/', 1, 'y', 0),
-(2, 'Contact', '/contact', 5, 'y', 0),
-(3, 'About', '/about', 2, 'n', 0),
-(4, 'Administrator', '/about/administrator', 3, 'n', 3),
-(5, 'Trinh Quoc Hoang', '/about/trinh-quoc-hoang', 4, 'y', 3);
+(2, 'Contact', '/contact', 2, 'y', 0),
+(3, 'About', '/about', 3, 'n', 0),
+(4, 'Administrator', '/about/administrator', 5, 'n', 3),
+(5, 'Trinh Quoc Hoang', '/about/trinh-quoc-hoang', 4, 'y', 4);
 
 -- --------------------------------------------------------
 
@@ -352,15 +352,16 @@ INSERT INTO `main_link` (`link_id`, `link_title`, `link_url`, `position`, `is_sh
 DROP TABLE IF EXISTS `main_media`;
 CREATE TABLE `main_media` (
   `media_id` int(10) UNSIGNED NOT NULL,
-  `media_title` varchar(100) NOT NULL,
-  `media_slug` varchar(255) NOT NULL,
-  `media_thumbnail` varchar(255) DEFAULT NULL,
-  `media_content` text,
-  `position` int(10) UNSIGNED NOT NULL,
-  `is_show` enum('y','n') NOT NULL DEFAULT 'y',
-  `user_group_ids` varchar(255) NOT NULL,
+  `media_title` varchar(255) NOT NULL,
+  `media_url` varchar(255) NOT NULL,
+  `thumbnail` varchar(255) DEFAULT NULL,
+  `media_link` varchar(255) NOT NULL,
+  `description` text,
+  `position` int(10) UNSIGNED NOT NULL DEFAULT '1',
+  `widget_id` int(10) UNSIGNED DEFAULT NULL,
+  `galary_id` int(10) UNSIGNED DEFAULT NULL,
   `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
+  `update_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -368,39 +369,6 @@ CREATE TABLE `main_media` (
 --
 
 TRUNCATE TABLE `main_media`;
---
--- Dumping data for table `main_media`
---
-
-INSERT INTO `main_media` (`media_id`, `media_title`, `media_slug`, `media_thumbnail`, `media_content`, `position`, `is_show`, `user_group_ids`, `created_at`, `updated_at`) VALUES
-(1, 'Main slideshow', '', NULL, 'Main slideshow', 1, 'y', '1|2', '2016-06-07 16:12:00', '2016-06-07 16:12:00');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `main_mediameta`
---
-
-DROP TABLE IF EXISTS `main_mediameta`;
-CREATE TABLE `main_mediameta` (
-  `meta_id` int(10) UNSIGNED NOT NULL,
-  `meta_title` varchar(100) NOT NULL,
-  `meta_thumbnail` varchar(255) DEFAULT NULL,
-  `meta_file` varchar(255) DEFAULT NULL,
-  `meta_url` varchar(500) DEFAULT NULL,
-  `meta_description` text,
-  `position` int(10) UNSIGNED NOT NULL DEFAULT '1',
-  `is_show` enum('y','n') NOT NULL DEFAULT 'y',
-  `media_id` int(10) UNSIGNED NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Truncate table before insert `main_mediameta`
---
-
-TRUNCATE TABLE `main_mediameta`;
 -- --------------------------------------------------------
 
 --
@@ -688,14 +656,9 @@ ALTER TABLE `main_link`
 -- Indexes for table `main_media`
 --
 ALTER TABLE `main_media`
-  ADD PRIMARY KEY (`media_id`);
-
---
--- Indexes for table `main_mediameta`
---
-ALTER TABLE `main_mediameta`
-  ADD PRIMARY KEY (`meta_id`),
-  ADD KEY `slideshow_id` (`media_id`);
+  ADD PRIMARY KEY (`media_id`),
+  ADD KEY `widget_id` (`widget_id`),
+  ADD KEY `galary_id` (`galary_id`);
 
 --
 -- Indexes for table `main_module`
@@ -801,12 +764,7 @@ ALTER TABLE `main_link`
 -- AUTO_INCREMENT for table `main_media`
 --
 ALTER TABLE `main_media`
-  MODIFY `media_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `main_mediameta`
---
-ALTER TABLE `main_mediameta`
-  MODIFY `meta_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `media_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `main_module`
 --
