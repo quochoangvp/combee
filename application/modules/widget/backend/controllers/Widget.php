@@ -7,6 +7,7 @@ class Widget extends Backend_Controller {
 	{
 		parent::__construct();
 		$this->load->model('common/widget_model', 'common_widget');
+		$this->load->model('common/widget_type_model', 'common_widget_type');
 		$this->load->library('pagination');
 		$this->per_pager = 7;
 		$this->load->js('js/pages/widgets.js');
@@ -30,10 +31,36 @@ class Widget extends Backend_Controller {
 
 	public function create()
 	{
+		$data = $this->_get_data_for_form();
+
+		$this->load->view('form', $data);
+	}
+
+	public function edit($id)
+	{
+		$data = $this->_get_data_for_form();
+		$id = intval($id);
+		$widget = $this->common_widget->get($id);
+
+		$widget['layout'] = explode('|', $widget['layout']);
+		$widget['user_group_ids'] = explode('|', $widget['user_group_ids']);
+		$widget['position_name'] = explode('|', $widget['position_name']);
+		$widget['theme'] = explode('|', $widget['theme']);
+		$data['widget'] = $widget;
+
+		$this->load->view('form', $data);
+	}
+
+	private function _get_data_for_form()
+	{
 		// Get theme elements
 		$this->load->library('file');
 		$elements = $this->file->read(THEME_PATH . 'news/elements.json');
-		$data['elements'] = json_decode($elements);
+		$data['layouts'] = json_decode($elements)->layouts;
+		$data['positions'] = array();
+		foreach ($data['layouts'] as $layout_name => $layout) {
+			$data['positions'] = array_merge($data['positions'], (array) $layout->positions);
+		}
 
 		// Get themes list
 		$this->load->library('dir');
@@ -42,7 +69,10 @@ class Widget extends Backend_Controller {
 		// Get user groups
 		$this->load->model('user/common/user_group_model', 'common_group_model');
 		$data['user_groups'] = $this->common_group_model->get_all();
-		$this->load->view('form', $data);
+
+		// Get widget type
+		$data['types'] = $this->common_widget_type->get_all();
+		return $data;
 	}
 
 }

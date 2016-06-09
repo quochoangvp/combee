@@ -36,7 +36,7 @@
                                 <a class="btn btn-primary btn-xs" href="<?php echo admin_url('widget/edit/' . $widget['widget_id']) ?>">
                                     <i class="icon-pencil"></i>
                                 </a>
-                                <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                <button class="btn btn-danger btn-xs" onclick="delete_widget(<?php echo $widget['widget_id'] ?>)"><i class="icon-trash "></i></button>
                             </td>
                         </tr>
                     <?php endforeach?>

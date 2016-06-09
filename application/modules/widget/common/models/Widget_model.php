@@ -29,7 +29,7 @@ class Widget_model extends Base_model {
         array(
         	'field' => 'is_active',
         	'lable' => 'Status',
-        	'rules' => 'alpha|required|exact_length[1]'
+        	'rules' => 'alpha|exact_length[1]'
         	),
        	array(
        		'field' => 'position_name',
@@ -47,9 +47,19 @@ class Widget_model extends Base_model {
        		'rules' => 'trim|required|strip_tags'
        		),
         array(
+            'field' => 'is_static_content',
+            'label' => 'Static content',
+            'rules' => 'alpha|exact_length[1]'
+            ),
+        array(
             'field' => 'type_id',
             'label' => 'Type',
             'rules' => 'required|integer'
+            ),
+        array(
+            'field' => 'content',
+            'label' => 'Content',
+            'rules' => 'trim'
             ),
       );
 
@@ -72,6 +82,11 @@ class Widget_model extends Base_model {
 				LIMIT ?, ?
 		";
 		return $this->db->query($sql, array($offset, $limit))->result_array();
+    }
+
+    public function delete_widget($id)
+    {
+        return $this->db->delete($this->table, array($this->primary_key => $id));
     }
 
 }

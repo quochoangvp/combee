@@ -1,17 +1,22 @@
 $(document).ready(function() {
 
-	$('[name="layout[]"]').change(function() {
-		var selected = $(this).val();
-		if (selected.length>0) {
-			$('[data-layout]').hide();
-			$.each(selected, function(index, layout) {
-				$('[data-layout="'+layout+'"]').show();
-			});
+	if ($('[name="is_static_content"]').prop('checked') == true) {
+		$('[data-id="content"]').show();
+	} else {
+		$('[data-id="content"]').hide();
+	}
+
+	$('[name="is_static_content"]').on('change', function() {
+		if ($(this).prop('checked') == true) {
+			$('[data-id="content"]').show();
+		} else {
+			$('[data-id="content"]').hide();
 		}
 	});
 
 	$('#createwidget').submit(function(event) {
 		event.preventDefault();
+		$('.alert').remove();
 		var method = 'POST';
 		if (parseInt($('input[name="widget_id"]').val()) > 0) {
 			method = 'PUT';
@@ -44,3 +49,31 @@ $(document).ready(function() {
 
 	});
 });
+
+function delete_widget(id) {
+    var cf = confirm('Do you want delete this widget?');
+    if (cf) {
+        $.ajax({
+            url: '/api/widget/delete',
+            type: 'DELETE',
+            dataType: 'json',
+            data: {id: id},
+        })
+        .done(function(rs) {
+            if (rs.status == 200) {
+                location.reload();
+            } else {
+                alert(rs.message);
+            }
+        })
+        .fail(function(rs) {
+        	if (!rs.message) {
+        		rs.message = 'An error occurred';
+        	}
+            alert(rs.message);
+        })
+        .always(function() {
+            // console.log("complete");
+        });
+    }
+}
