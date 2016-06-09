@@ -96,15 +96,5 @@
         <script src="<?php echo $file ?>" type="text/javascript"></script>
     <?php endforeach?>
 
-    <script>
-
-      $(function() {
-          $( ".sortable" ).sortable();
-          $( ".sortable" ).disableSelection();
-      });
-
-    </script>
-
-
 </body>
 </html>
