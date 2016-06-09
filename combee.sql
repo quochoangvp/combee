@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu1
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jun 08, 2016 at 05:46 PM
--- Server version: 10.0.24-MariaDB-7
--- PHP Version: 7.0.4-7ubuntu2.1
+-- Host: 127.0.0.1
+-- Generation Time: Jun 09, 2016 at 10:49 AM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -64,7 +64,10 @@ INSERT INTO `main_admin_menu` (`amenu_id`, `amenu_link`, `amenu_text`, `amenu_ic
 (12, 'media/all', 'All media', NULL, 11, 1, 'y', ''),
 (13, 'media/create', 'Add new', NULL, 11, 2, 'y', ''),
 (14, 'setting', 'Setting', 'icon-cog', 0, 5, 'y', ''),
-(15, 'widget', 'Widget', NULL, 14, 1, 'y', '');
+(15, 'widget', 'Widget', NULL, 14, 1, 'y', ''),
+(16, 'link', 'Links', 'icon-link', 0, 6, 'y', ''),
+(17, 'link/create', 'Add new', NULL, 16, 1, 'y', ''),
+(18, 'link/all', 'All links', NULL, 16, 2, 'y', '');
 
 -- --------------------------------------------------------
 
@@ -310,6 +313,27 @@ TRUNCATE TABLE `main_layout`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `main_link`
+--
+
+DROP TABLE IF EXISTS `main_link`;
+CREATE TABLE `main_link` (
+  `link_id` int(10) UNSIGNED NOT NULL,
+  `link_title` varchar(255) NOT NULL,
+  `link_url` varchar(255) NOT NULL,
+  `position` int(10) UNSIGNED NOT NULL,
+  `is_show` enum('y','n') NOT NULL DEFAULT 'n',
+  `parent_id` int(10) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_link`
+--
+
+TRUNCATE TABLE `main_link`;
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `main_media`
 --
 
@@ -525,12 +549,13 @@ CREATE TABLE `main_widget` (
   `data_url` varchar(255) DEFAULT NULL,
   `user_group_ids` varchar(255) NOT NULL,
   `position` int(5) UNSIGNED NOT NULL DEFAULT '1',
-  `is_active` enum('y','n') NOT NULL DEFAULT 'y',
+  `is_active` enum('y','n') NOT NULL DEFAULT 'n',
   `content` text,
   `position_name` varchar(255) NOT NULL,
   `config` text,
   `layout` varchar(30) NOT NULL,
   `theme` varchar(30) NOT NULL,
+  `is_static_content` enum('y','n') NOT NULL DEFAULT 'n',
   `type_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -543,8 +568,10 @@ TRUNCATE TABLE `main_widget`;
 -- Dumping data for table `main_widget`
 --
 
-INSERT INTO `main_widget` (`widget_id`, `widget_title`, `description`, `data_url`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout`, `theme`, `type_id`) VALUES
-(1, 'Main slideshow', 'Main slideshow', 'slideshow/widget/main', '3', 1, 'y', NULL, 'main_slideshow', '{"media_id":"1"}', 'home|blog', 'news', 7);
+INSERT INTO `main_widget` (`widget_id`, `widget_title`, `description`, `data_url`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout`, `theme`, `is_static_content`, `type_id`) VALUES
+(1, 'Main slideshow', 'Main slideshow', 'slideshow/widget/main', '1|2|3|4|5', 1, 'n', '&lt;p&gt;&lt;img src=&quot;/assets/uploads/HaiDongVat.png?1465455200049&quot; alt=&quot;bicycle-art-hd-wallpaper-desktop-b57&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;&lt;/p&gt;', 'main_slideshow', '{"media_id":"1"}', 'home|blog', 'flatlab|news', 'n', 1),
+(2, 'Main navigation', '', '', '1|2|3|4|5', 1, 'y', '&lt;p&gt;&lt;iframe src=&quot;//www.youtube.com/embed/jXKrmQNx6NY&quot; width=&quot;560&quot; height=&quot;315&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;allowfullscreen&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;', 'main_nav', NULL, 'home|blog', 'news', 'n', 1),
+(3, 'Demo 2', '', 'demo/demo2', '1|2|3|4', 1, 'y', '', 'main_slideshow|sidebar', NULL, 'home|blog', 'flatlab|news', 'n', 4);
 
 -- --------------------------------------------------------
 
@@ -577,7 +604,8 @@ INSERT INTO `main_widgettype` (`type_id`, `type_name`, `type_title`, `config`, `
 (4, 'ultilities', 'Ultilities', NULL, 'y'),
 (5, 'product', 'Product', NULL, 'y'),
 (6, 'html', 'Html', NULL, 'y'),
-(7, 'media', 'Media', NULL, 'y');
+(7, 'media', 'Media', NULL, 'y'),
+(8, 'menu', 'Menu', NULL, 'y');
 
 --
 -- Indexes for dumped tables
@@ -636,6 +664,13 @@ ALTER TABLE `main_language`
 --
 ALTER TABLE `main_layout`
   ADD PRIMARY KEY (`layout_id`);
+
+--
+-- Indexes for table `main_link`
+--
+ALTER TABLE `main_link`
+  ADD PRIMARY KEY (`link_id`),
+  ADD KEY `parent_id` (`parent_id`);
 
 --
 -- Indexes for table `main_media`
@@ -704,7 +739,7 @@ ALTER TABLE `main_widgettype`
 -- AUTO_INCREMENT for table `main_admin_menu`
 --
 ALTER TABLE `main_admin_menu`
-  MODIFY `amenu_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `amenu_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `main_article`
 --
@@ -746,6 +781,11 @@ ALTER TABLE `main_language`
 ALTER TABLE `main_layout`
   MODIFY `layout_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `main_link`
+--
+ALTER TABLE `main_link`
+  MODIFY `link_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `main_media`
 --
 ALTER TABLE `main_media`
@@ -784,12 +824,12 @@ ALTER TABLE `main_usergroup`
 -- AUTO_INCREMENT for table `main_widget`
 --
 ALTER TABLE `main_widget`
-  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `main_widgettype`
 --
 ALTER TABLE `main_widgettype`
-  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
