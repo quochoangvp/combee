@@ -45,7 +45,7 @@
                         <select class="form-control" name="parent_id" id="parent_id" data-select="<?php echo isset($category) ? $category['parent_id'] : '' ?>">
                             <option value="">Select a parent</option>
                             <option value="0">Root</option>
-                            <?php echo general_option_nested($category_nested); ?>
+                            <?php echo general_option_nested($category_nested, 'category_id', 'category_title'); ?>
                         </select>
                     </div>
                 </div>

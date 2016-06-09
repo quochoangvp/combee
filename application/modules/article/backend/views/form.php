@@ -58,7 +58,7 @@
                         <div class="form-group">
                             <label for="category_id" class="control-label">Category</label>
                             <div class="list-category-nested">
-                                <?php echo general_checkbox_nested($category_nested, isset($article['category']) ? $article['category'] : []); ?>
+                                <?php echo general_checkbox_nested($category_nested, isset($article['category']) ? $article['category'] : [], 'category_id', 'category_title', 'category'); ?>
                             </div>
                         </div>
                         <div class="form-group">
