@@ -4350,7 +4350,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 }
 
 .ui-sortable > li {
-    padding: 15px 0 15px 35px !important ;
+    padding: 10px 10px 10px 15px !important;
     position: relative;
     background: #f5f6f8;
     margin-bottom: 2px;
@@ -4909,4 +4909,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 }
 .panel-heading .pull-right {
     margin-top: -5px;
+}
+.cursor-default {
+    cursor: default;
 }
