@@ -46,43 +46,43 @@ function set_data($data)
     return $result;
 }
 
-function general_option_nested($nested_array, $level = 0)
+function general_option_nested($nested_array, $id, $title, $level = 0)
 {
     $sp = '-- ';
     $options = '';
     $sp = str_repeat($sp, $level);
     foreach ($nested_array as $nested) {
-        $options .= '<option value="' . $nested['category_id'] . '">' . $sp . $nested['category_title'] . '</option>' . PHP_EOL;
+        $options .= '<option value="' . $nested[$id] . '">' . $sp . $nested[$title] . '</option>' . PHP_EOL;
 
         if (isset($nested['children'])) {
             $level++;
             if ($nested['parent_id'] == 0) {
                 $level = 1;
             }
-            $options .= general_option_nested($nested['children'], $level);
+            $options .= general_option_nested($nested['children'], $id, $title, $level);
         }
     }
     return $options;
 }
 
-function general_checkbox_nested($nested_array, $current_array = [], $level = 0)
+function general_checkbox_nested($nested_array, $current_array = [], $id, $title, $input_name, $level = 0)
 {
     $sp = '---- ';
     $list = '';
     $sp = str_repeat($sp, $level);
     foreach ($nested_array as $nested) {
-        $list .= '<div><label>' . $sp . '<input type="checkbox" name="category[]" value="' . $nested['category_id'] . '"';
-        if (in_array($nested['category_id'], $current_array)) {
+        $list .= '<div><label>' . $sp . '<input type="checkbox" name="'.$input_name.'[]" value="' . $nested[$id] . '"';
+        if (in_array($nested[$id], $current_array)) {
             $list .= ' checked';
         }
-        $list .= '> ' . $nested['category_title'] . '</label></div>';
+        $list .= '> ' . $nested[$title] . '</label></div>';
 
         if (isset($nested['children'])) {
             $level++;
             if ($nested['parent_id'] == 0) {
                 $level = 1;
             }
-            $list .= general_checkbox_nested($nested['children'], $current_array, $level);
+            $list .= general_checkbox_nested($nested['children'], $current_array, $id, $title, $input_name, $level);
         }
     }
     return $list;
