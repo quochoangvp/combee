@@ -14,7 +14,7 @@ class Admin_menu_model extends Base_model {
 
 	public function get_menu_recursive()
 	{
-		$db_menu = parent::as_array()->get_all();
+		$db_menu = parent::as_array()->order_by(['position' => 'ASC'])->get_all();
 		return $this->_menu_recursive($db_menu);
 	}
 
