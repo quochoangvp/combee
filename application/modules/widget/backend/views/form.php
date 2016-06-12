@@ -27,7 +27,7 @@
                             <?php foreach ($themes as $theme): ?>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="theme[]" value="<?php echo $theme ?>" <?php echo (in_array($theme, $widget['theme']))?'checked':'' ?>>
+                                    <input type="checkbox" name="theme[]" value="<?php echo $theme ?>" <?php echo (isset($widget) && in_array($theme, $widget['theme']))?'checked':'' ?>>
                                     <?php echo $theme ?>
                                 </label>
                             </div>
@@ -40,7 +40,7 @@
                             <?php foreach ($layouts as $layout_name => $layout): ?>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="layout[]" value="<?php echo $layout_name ?>" <?php echo (in_array($layout_name, $widget['layout']))?'checked':'' ?>>
+                                    <input type="checkbox" name="layout[]" value="<?php echo $layout_name ?>" <?php echo (isset($widget) && in_array($layout_name, $widget['layout']))?'checked':'' ?>>
                                     <?php echo $layout->title ?>
                                 </label>
                             </div>
@@ -53,7 +53,7 @@
                             <?php foreach ($positions as $position_name => $position_title): ?>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="position_name[]" value="<?php echo $position_name ?>" <?php echo (in_array($position_name, $widget['position_name']))?'checked':'' ?>>
+                                    <input type="checkbox" name="position_name[]" value="<?php echo $position_name ?>" <?php echo (isset($widget) && in_array($position_name, $widget['position_name']))?'checked':'' ?>>
                                     <?php echo $position_title ?>
                                 </label>
                             </div>
@@ -66,7 +66,7 @@
                             <?php foreach ($user_groups as $group): ?>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="user_group_ids[]" value="<?php echo $group['group_id'] ?>" <?php echo (in_array($group['group_id'], $widget['user_group_ids']))?'checked':'' ?>>
+                                    <input type="checkbox" name="user_group_ids[]" value="<?php echo $group['group_id'] ?>" <?php echo (isset($widget) && in_array($group['group_id'], $widget['user_group_ids']))?'checked':'' ?>>
                                     <?php echo $group['group_name'] ?>
                                 </label>
                             </div>
@@ -94,7 +94,7 @@
                         <div class="col-lg-10">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="y" name="is_static_content" <?php echo ($widget['is_static_content'] == 'y') ? 'checked' : '' ?>>
+                                    <input type="checkbox" value="y" name="is_static_content" <?php echo (isset($widget) && $widget['is_static_content'] == 'y') ? 'checked' : '' ?>>
                                     Yes
                                 </label>
                             </div>
@@ -111,7 +111,7 @@
                         <div class="col-lg-10">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" value="y" name="is_active" <?php echo ($widget['is_active'] == 'y') ? 'checked' : '' ?>>
+                                    <input type="checkbox" value="y" name="is_active" <?php echo (isset($widget) && $widget['is_active'] == 'y') ? 'checked' : '' ?>>
                                     Yes
                                 </label>
                             </div>
