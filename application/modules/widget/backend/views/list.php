@@ -19,7 +19,7 @@
                         <th class="w12">Theme</th>
                         <th class="w12">Layout</th>
                         <th>Status</th>
-                        <th class="w8">Action</th>
+                        <th class="w12">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,6 +33,9 @@
                             <td><?php echo $widget['layout'] ?></td>
                             <td><?php echo ($widget['is_active'] == 'y')?'<span class="label label-mini label-success">Show</span>':'<span class="label label-mini label-default">Hide</span>' ?></td>
                             <td class="text-center">
+                                <a class="btn btn-info btn-xs" href="<?php echo admin_url('widget/config/' . $widget['widget_id']) ?>">
+                                    <i class="icon-cog"></i>
+                                </a>
                                 <a class="btn btn-primary btn-xs" href="<?php echo admin_url('widget/edit/' . $widget['widget_id']) ?>">
                                     <i class="icon-pencil"></i>
                                 </a>
