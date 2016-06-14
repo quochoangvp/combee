@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 12, 2016 at 03:41 PM
+-- Generation Time: Jun 14, 2016 at 03:37 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -552,7 +552,7 @@ CREATE TABLE `main_widget` (
   `widget_id` int(10) UNSIGNED NOT NULL,
   `widget_title` varchar(100) DEFAULT NULL,
   `description` text,
-  `data_url` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   `user_group_ids` varchar(255) NOT NULL,
   `position` int(5) UNSIGNED NOT NULL DEFAULT '1',
   `is_active` enum('y','n') NOT NULL DEFAULT 'n',
@@ -574,10 +574,10 @@ TRUNCATE TABLE `main_widget`;
 -- Dumping data for table `main_widget`
 --
 
-INSERT INTO `main_widget` (`widget_id`, `widget_title`, `description`, `data_url`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout`, `theme`, `is_static_content`, `type_id`) VALUES
-(1, 'Main slideshow', 'Main slideshow', 'slideshow/widget/main', '1|2|3|4|5', 1, 'n', '&lt;p&gt;&lt;img src=&quot;/assets/uploads/HaiDongVat.png?1465455200049&quot; alt=&quot;bicycle-art-hd-wallpaper-desktop-b57&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;&lt;/p&gt;', 'main_slideshow', '{"media_id":"1"}', 'home|blog', 'flatlab|news', 'n', 1),
-(2, 'Main navigation', '', '', '1|2|3|4|5', 1, 'y', '&lt;p&gt;&lt;iframe src=&quot;//www.youtube.com/embed/jXKrmQNx6NY&quot; width=&quot;560&quot; height=&quot;315&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;allowfullscreen&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;', 'main_nav', NULL, 'home|blog', 'news', 'n', 1),
-(3, 'Demo 2', '', 'demo/demo2', '1|2|3|4', 1, 'y', '', 'main_slideshow|sidebar', NULL, 'home|blog', 'flatlab|news', 'n', 4);
+INSERT INTO `main_widget` (`widget_id`, `widget_title`, `description`, `image`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout`, `theme`, `is_static_content`, `type_id`) VALUES
+(1, 'Main slideshow', 'Main slideshow', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '1|2|3|4', 1, 'y', '&lt;p&gt;&lt;img src=&quot;/assets/uploads/HaiDongVat.png?1465455200049&quot; alt=&quot;bicycle-art-hd-wallpaper-desktop-b57&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;&lt;/p&gt;', 'main_slideshow', '{"media_id":"1"}', 'home|blog', 'flatlab|news', 'n', 1),
+(2, 'Main navigation', '', NULL, '1|2|3|4|5', 1, 'y', '&lt;p&gt;&lt;iframe src=&quot;//www.youtube.com/embed/jXKrmQNx6NY&quot; width=&quot;560&quot; height=&quot;315&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;allowfullscreen&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;', 'main_nav', NULL, 'home|blog', 'news', 'n', 1),
+(3, 'Demo 2', '', NULL, '1|2|3|4', 1, 'y', '', 'main_slideshow|sidebar', NULL, 'home|blog', 'flatlab|news', 'n', 4);
 
 -- --------------------------------------------------------
 
@@ -822,17 +822,17 @@ ALTER TABLE `main_tag`
 -- AUTO_INCREMENT for table `main_user`
 --
 ALTER TABLE `main_user`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `main_usergroup`
 --
 ALTER TABLE `main_usergroup`
-  MODIFY `group_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `group_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `main_widget`
 --
 ALTER TABLE `main_widget`
-  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `main_widgettype`
 --
