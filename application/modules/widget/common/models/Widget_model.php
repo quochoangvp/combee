@@ -17,9 +17,9 @@ class Widget_model extends Base_model {
             'rules' => 'trim|strip_tags'
             ),
         array(
-            'field' => 'data_url',
-            'label' => 'Data url',
-            'rules' => 'trim|min_length[2]|max_length[255]'
+            'field' => 'image',
+            'label' => 'Image',
+            'rules' => 'trim|max_length[255]|strip_tags'
             ),
         array(
         	'field' => 'user_group_ids',

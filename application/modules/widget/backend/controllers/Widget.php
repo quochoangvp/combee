@@ -11,6 +11,7 @@ class Widget extends Backend_Controller {
 		$this->load->library('pagination');
 		$this->per_pager = 7;
 		$this->load->js('js/pages/widgets.js');
+		$this->load->css('assets/bootstrap-fileupload/bootstrap-fileupload.css');
 	}
 
 	public function index($offset = 0)

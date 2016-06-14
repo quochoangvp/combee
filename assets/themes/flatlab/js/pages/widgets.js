@@ -77,3 +77,19 @@ function delete_widget(id) {
         });
     }
 }
+
+function responsive_filemanager_callback(field_id) {
+    var url = $('#' + field_id).val();
+    $('#thumbnailPreview').attr('src', url);
+    url = url.replace(window.location.origin, '');
+    $('#' + field_id).val(url);
+    $('.btn-group-file .fileupload-exists').show();
+    $('.btn-group-file .fileupload-new').hide();
+}
+
+function removeThumbnail() {
+    $('#thumbnailPreview').attr('src', $('#thumbnailPreview').data('origin'));
+    $('.btn-group-file .fileupload-exists').hide();
+    $('.btn-group-file .fileupload-new').show();
+    $('#image').val('');
+}
