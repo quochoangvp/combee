@@ -8,6 +8,7 @@ class Widget extends Backend_Controller {
 		parent::__construct();
 		$this->load->model('common/widget_model', 'common_widget');
 		$this->load->model('common/widget_type_model', 'common_widget_type');
+		$this->load->model('category/common/category_model', 'common_category');
 		$this->load->library('pagination');
 		$this->per_pager = 7;
 		$this->load->js('js/pages/widgets.js');
@@ -50,6 +51,25 @@ class Widget extends Backend_Controller {
 		$data['widget'] = $widget;
 
 		$this->load->view('form', $data);
+	}
+
+	public function config($id)
+	{
+		$data = $this->_get_data_for_form();
+		$id = intval($id);
+		$widget = $this->common_widget->get_details($id);
+		$_function = '_parse_data_' . $widget['type_name'];
+		$widget = $this->{$_function}($widget);
+
+		$data['categories'] = $this->common_category->get_category_nested();
+		$data['widget'] = $widget;
+		$this->load->view($widget['type_name'], $data);
+	}
+
+	private function _parse_data_nav($data)
+	{
+		$data['config'] = (array) json_decode($data['config']);
+		return $data;
 	}
 
 	private function _get_data_for_form()
