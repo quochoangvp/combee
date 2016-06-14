@@ -93,3 +93,7 @@ function removeThumbnail() {
     $('.btn-group-file .fileupload-new').show();
     $('#image').val('');
 }
+
+function go_to_widget_page() {
+    window.location.href = '/admin/widget';
+}
