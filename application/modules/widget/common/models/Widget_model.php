@@ -68,20 +68,42 @@ class Widget_model extends Base_model {
         $this->timestamps = FALSE;
         $this->table = $this->_db_prefix . $this->table;
         parent::__construct();
-        $this->load->model('common/widget_type_model');
+        $this->load->model('widget/common/widget_type_model');
     }
 
-    public function get_all_widget($limit, $offset)
+    public function get_all_widget($limit = null, $offset = null, $where = null)
+    {
+        $type_table = $this->widget_type_model->table;
+        $widget_table = $this->table;
+        $sql = "SELECT {$widget_table}.*, {$type_table}.type_title, {$type_table}.type_name
+                FROM {$widget_table}
+                LEFT JOIN {$type_table} ON {$widget_table}.type_id = {$type_table}.type_id";
+        if ($where) {
+            $sql .= " WHERE {$where}";
+        }
+        $sql .= " ORDER BY {$widget_table}.position";
+        if ($limit && $offset) {
+            $sql .= ' LIMIT ?, ?';
+        }
+        return $this->db->query($sql, array($offset, $limit))->result_array();
+    }
+
+    public function get_all_widget_frontend()
+    {
+        return $this->get_all_widget(null, null, "{$this->table}.is_active = 'y'");
+    }
+
+    public function get_details($widget_id)
     {
     	$type_table = $this->widget_type_model->table;
     	$widget_table = $this->table;
-    	$sql = "SELECT {$widget_table}.widget_id, {$widget_table}.position_name, {$widget_table}.layout, {$widget_table}.position_name, {$widget_table}.theme, {$widget_table}.is_active, {$widget_table}.widget_title, {$type_table}.type_title
+    	$sql = "SELECT {$widget_table}.*, {$type_table}.type_title, {$type_table}.type_name
     			FROM {$widget_table}
     			LEFT JOIN {$type_table} ON {$widget_table}.type_id = {$type_table}.type_id
-				ORDER BY {$widget_table}.position
-				LIMIT ?, ?
+                WHERE ?
+				LIMIT 1
 		";
-		return $this->db->query($sql, array($offset, $limit))->result_array();
+		return $this->db->query($sql, array($widget_id))->row_array();
     }
 
     public function delete_widget($id)
