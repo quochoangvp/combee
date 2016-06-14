@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2016 at 06:45 PM
+-- Generation Time: Jun 14, 2016 at 07:51 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -277,6 +277,36 @@ TRUNCATE TABLE `main_domain`;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `main_gallery`
+--
+
+DROP TABLE IF EXISTS `main_gallery`;
+CREATE TABLE `main_gallery` (
+  `gallery_id` int(10) UNSIGNED NOT NULL,
+  `gallery_title` varchar(255) NOT NULL,
+  `thumbnail` varchar(255) DEFAULT NULL,
+  `description` text,
+  `type` varchar(10) NOT NULL DEFAULT 'default',
+  `is_active` enum('y','n') NOT NULL DEFAULT 'n',
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_gallery`
+--
+
+TRUNCATE TABLE `main_gallery`;
+--
+-- Dumping data for table `main_gallery`
+--
+
+INSERT INTO `main_gallery` (`gallery_id`, `gallery_title`, `thumbnail`, `description`, `type`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Gallery 1', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', 'Gallery 1', 'default', 'y', '2016-06-15 00:30:11', '2016-06-15 00:46:11');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `main_language`
 --
 
@@ -358,11 +388,12 @@ CREATE TABLE `main_media` (
   `thumbnail` varchar(255) DEFAULT NULL,
   `media_link` varchar(255) NOT NULL,
   `description` text,
-  `position` int(10) UNSIGNED NOT NULL DEFAULT '1',
+  `position` int(10) UNSIGNED NOT NULL,
   `widget_id` int(10) UNSIGNED DEFAULT NULL,
-  `galary_id` int(10) UNSIGNED DEFAULT NULL,
+  `gallary_id` int(10) UNSIGNED NOT NULL,
+  `is_active` enum('y','n') NOT NULL DEFAULT 'n',
   `created_at` datetime NOT NULL,
-  `update_at` datetime NOT NULL
+  `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -370,32 +401,6 @@ CREATE TABLE `main_media` (
 --
 
 TRUNCATE TABLE `main_media`;
--- --------------------------------------------------------
-
---
--- Table structure for table `main_mediameta`
---
-
-DROP TABLE IF EXISTS `main_mediameta`;
-CREATE TABLE `main_mediameta` (
-  `meta_id` int(10) UNSIGNED NOT NULL,
-  `meta_title` varchar(100) NOT NULL,
-  `meta_thumbnail` varchar(255) DEFAULT NULL,
-  `meta_file` varchar(255) DEFAULT NULL,
-  `meta_url` varchar(500) DEFAULT NULL,
-  `meta_description` text,
-  `position` int(10) UNSIGNED NOT NULL DEFAULT '1',
-  `is_show` enum('y','n') NOT NULL DEFAULT 'y',
-  `media_id` int(10) UNSIGNED NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Truncate table before insert `main_mediameta`
---
-
-TRUNCATE TABLE `main_mediameta`;
 -- --------------------------------------------------------
 
 --
@@ -661,6 +666,12 @@ ALTER TABLE `main_domain`
   ADD PRIMARY KEY (`domain_id`);
 
 --
+-- Indexes for table `main_gallery`
+--
+ALTER TABLE `main_gallery`
+  ADD PRIMARY KEY (`gallery_id`);
+
+--
 -- Indexes for table `main_language`
 --
 ALTER TABLE `main_language`
@@ -685,14 +696,7 @@ ALTER TABLE `main_link`
 ALTER TABLE `main_media`
   ADD PRIMARY KEY (`media_id`),
   ADD KEY `widget_id` (`widget_id`),
-  ADD KEY `galary_id` (`galary_id`);
-
---
--- Indexes for table `main_mediameta`
---
-ALTER TABLE `main_mediameta`
-  ADD PRIMARY KEY (`meta_id`),
-  ADD KEY `slideshow_id` (`media_id`);
+  ADD KEY `gallary_id` (`gallary_id`);
 
 --
 -- Indexes for table `main_module`
@@ -780,6 +784,11 @@ ALTER TABLE `main_config`
 ALTER TABLE `main_domain`
   MODIFY `domain_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `main_gallery`
+--
+ALTER TABLE `main_gallery`
+  MODIFY `gallery_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `main_language`
 --
 ALTER TABLE `main_language`
@@ -799,11 +808,6 @@ ALTER TABLE `main_link`
 --
 ALTER TABLE `main_media`
   MODIFY `media_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `main_mediameta`
---
-ALTER TABLE `main_mediameta`
-  MODIFY `meta_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `main_module`
 --
