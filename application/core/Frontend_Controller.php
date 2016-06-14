@@ -4,11 +4,40 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Frontend_Controller extends Base_Controller
 {
 
+	public $theme;
+	public $layout;
+
     public function __construct()
     {
         parent::__construct();
+        $this->layout = 'home';
+        $this->theme = 'news';
+        $this->load->theme($this->theme);
+        $this->output->set_layout($this->layout);
+        $this->load->model('widget/common/widget_model', 'common_widget');
+        $widgets = $this->common_widget->get_all_widget_frontend();
+        foreach ($widgets as $widget) {
+        	$layouts = explode('|', $widget['layout']);
+        	$themes = explode('|', $widget['theme']);
+        	if (in_array($this->layout, $layouts) && in_array($this->theme, $themes)) {
+        		$_function = '_get_widget_data_' . $widget['type_name'];
+        		$this->$_function($widget);
+        	}
+        }
+    }
 
-        $this->load->theme('news');
+    private function _get_widget_data_nav($widget)
+    {
+    	$this->load->model('category/common/category_model', 'common_category');
+    	$widget_categories = json_decode($widget['config'])->categories;
+    	$categories = $this->common_category->get_category_nested_frontend($widget_categories);
+    	$this->load->section($widget['position_name'], ['data' => $categories]);
+    }
+
+    private function _get_widget_data_media($widget)
+    {
+    	$medias = [];
+    	$this->load->section($widget['position_name'], ['data' => $medias]);
     }
 
 }
