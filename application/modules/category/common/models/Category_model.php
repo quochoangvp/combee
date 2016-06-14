@@ -35,6 +35,16 @@ class Category_model extends Base_model {
 		return $this->_category_recursive($db_categories);
 	}
 
+	public function get_category_nested_frontend($categories = null)
+	{
+		$query = $this->where(['status' => 'publish']);
+		if ($categories) {
+			$this->where('category_id', $categories);
+		}
+		$db_categories = $query->as_array()->get_all();
+		return $this->_category_recursive($db_categories);
+	}
+
 	public function get_category_by_id($cate_id)
 	{
 		return $this->as_array()->get($cate_id);
