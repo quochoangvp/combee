@@ -71,7 +71,7 @@ function general_checkbox_nested($nested_array, $current_array = [], $id, $title
     $list = '';
     $sp = str_repeat($sp, $level);
     foreach ($nested_array as $nested) {
-        $list .= '<div><label>' . $sp . '<input type="checkbox" name="'.$input_name.'[]" value="' . $nested[$id] . '"';
+        $list .= '<div><label>' . $sp . '<input type="checkbox" data-parent="' . $nested['parent_id'] . '" name="'.$input_name.'[]" value="' . $nested[$id] . '"';
         if (in_array($nested[$id], $current_array)) {
             $list .= ' checked';
         }
