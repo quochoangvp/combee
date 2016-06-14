@@ -10,11 +10,6 @@ class Home extends Frontend_Controller
 
     public function index()
     {
-        $layout = $this->load->layout('home');
-        $this->output->set_layout($layout);
-
-        $this->load->section('slideshow');
-
         $this->load->view('home');
     }
 
