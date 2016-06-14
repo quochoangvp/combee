@@ -174,7 +174,6 @@ class Widget extends Api_Controller {
 				return $this->response([
 					'status' => REST_Controller::HTTP_OK,
 					'message' => 'Widget updated',
-					'id' => $result
 				], REST_Controller::HTTP_OK);
 			} else {
 				return $this->response([
@@ -213,6 +212,26 @@ class Widget extends Api_Controller {
 				'status' => REST_Controller::HTTP_NOT_FOUND,
 				'message' => 'Widget is not found'
 			], REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
+
+	public function save_config_put()
+	{
+		$data = $this->put();
+		$widget_id = intval($data['widget_id']);
+		$config = json_encode(['categories' => $data['category']]);
+		$result = $this->common_widget->update(['config' => $config], $widget_id);
+		if ($result) {
+			return $this->response([
+				'status' => REST_Controller::HTTP_OK,
+				'message' => 'Widget config updated',
+				'id' => $result
+			], REST_Controller::HTTP_OK);
+		} else {
+			return $this->response([
+				'status' => REST_Controller::HTTP_BAD_REQUEST,
+				'message' => 'Can\'t not update the widget config'
+			], REST_Controller::HTTP_BAD_REQUEST);
 		}
 	}
 
