@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2016 at 03:37 PM
+-- Generation Time: Jun 14, 2016 at 06:45 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -232,7 +232,8 @@ INSERT INTO `main_category` (`category_id`, `category_title`, `category_url`, `k
 (10, 'PouchDB', 'pouchdb', '', '', '', NULL, 8, '2016-05-30 16:36:07', '0000-00-00 00:00:00', 'publish'),
 (11, 'MongoDB', 'mongodb', '', '', '', NULL, 8, '2016-05-30 16:36:17', '0000-00-00 00:00:00', 'publish'),
 (12, 'SQL Server', 'sql-server', '', '', '', NULL, 8, '2016-05-30 16:36:27', '0000-00-00 00:00:00', 'publish'),
-(13, 'Laravel', 'laravel', 'Laravel', '', '', NULL, 4, '2016-05-31 23:13:34', '0000-00-00 00:00:00', 'publish');
+(13, 'Laravel', 'laravel', 'Laravel', '', '', NULL, 4, '2016-05-31 23:13:34', '0000-00-00 00:00:00', 'publish'),
+(14, 'HTML', 'html', 'html', 'HTML', '&lt;p&gt;HTML&lt;/p&gt;', NULL, 0, '2016-06-14 23:17:19', '0000-00-00 00:00:00', 'publish');
 
 -- --------------------------------------------------------
 
@@ -476,7 +477,8 @@ INSERT INTO `main_tag` (`tag_id`, `tag_title`, `tag_url`, `is_show`) VALUES
 (5, 'Đại Ca !@', 'dai-ca-', 'y'),
 (6, 'Lập Trình Viên   -!_', 'lap-trinh-vien', 'y'),
 (7, 'Học PHP', 'hoc-php', 'y'),
-(8, 'Laravel', 'laravel', 'y');
+(8, 'Laravel', 'laravel', 'y'),
+(9, 'html', 'html', 'y');
 
 -- --------------------------------------------------------
 
@@ -575,9 +577,8 @@ TRUNCATE TABLE `main_widget`;
 --
 
 INSERT INTO `main_widget` (`widget_id`, `widget_title`, `description`, `image`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout`, `theme`, `is_static_content`, `type_id`) VALUES
-(1, 'Main slideshow', 'Main slideshow', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '1|2|3|4', 1, 'y', '&lt;p&gt;&lt;img src=&quot;/assets/uploads/HaiDongVat.png?1465455200049&quot; alt=&quot;bicycle-art-hd-wallpaper-desktop-b57&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;&lt;/p&gt;', 'main_slideshow', '{"media_id":"1"}', 'home|blog', 'flatlab|news', 'n', 1),
-(2, 'Main navigation', '', NULL, '1|2|3|4|5', 1, 'y', '&lt;p&gt;&lt;iframe src=&quot;//www.youtube.com/embed/jXKrmQNx6NY&quot; width=&quot;560&quot; height=&quot;315&quot; frameborder=&quot;0&quot; allowfullscreen=&quot;allowfullscreen&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;', 'main_nav', NULL, 'home|blog', 'news', 'n', 1),
-(3, 'Demo 2', '', NULL, '1|2|3|4', 1, 'y', '', 'main_slideshow|sidebar', NULL, 'home|blog', 'flatlab|news', 'n', 4);
+(1, 'Main navigation', 'Main navigation', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '1|2|3|4', 1, 'y', '&lt;p&gt;&lt;img src=&quot;/assets/uploads/HaiDongVat.png?1465455200049&quot; alt=&quot;bicycle-art-hd-wallpaper-desktop-b57&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;&lt;/p&gt;', 'main_nav', '{"categories":["1","2","3","4","5","6","7","8","9","10","14"]}', 'home', 'news', 'n', 2),
+(4, 'Main slideshow', 'Main slideshow', '', '1|2|3|4', 1, 'y', '', 'main_slideshow', NULL, 'home', 'news', 'n', 7);
 
 -- --------------------------------------------------------
 
@@ -767,7 +768,7 @@ ALTER TABLE `main_article_tag`
 -- AUTO_INCREMENT for table `main_category`
 --
 ALTER TABLE `main_category`
-  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `main_config`
 --
@@ -817,7 +818,7 @@ ALTER TABLE `main_modulemeta`
 -- AUTO_INCREMENT for table `main_tag`
 --
 ALTER TABLE `main_tag`
-  MODIFY `tag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `tag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `main_user`
 --
@@ -832,7 +833,7 @@ ALTER TABLE `main_usergroup`
 -- AUTO_INCREMENT for table `main_widget`
 --
 ALTER TABLE `main_widget`
-  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `main_widgettype`
 --
