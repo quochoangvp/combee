@@ -78,7 +78,10 @@
                         <div class="col-lg-10">
                             <select name="type_id" class="form-control">
                                 <?php foreach ($types as $type): ?>
-                                    <option value="<?php echo $type['type_id'] ?>"><?php echo $type['type_name'] ?></option>
+                                    <option value="<?php echo $type['type_id'] ?>"
+                                        <?php echo (isset($widget) && ($widget['type_id']==$type['type_id']))?'selected="selected"':''?>>
+                                        <?php echo $type['type_name'] ?>
+                                    </option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -136,7 +139,7 @@
                                 <input type="hidden" name="widget_id" value="<?php echo $widget['widget_id'] ?>">
                             <?php endif?>
                             <button class="btn btn-primary" type="submit">Save</button>
-                            <button class="btn btn-default" type="button" onclick="go_to_category_page()">Back</button>
+                            <button class="btn btn-default" type="button" onclick="go_to_widget_page()">Back</button>
                         </div>
                     </div>
                 </div>
