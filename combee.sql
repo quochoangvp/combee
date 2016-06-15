@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2016 at 08:00 PM
+-- Generation Time: Jun 15, 2016 at 08:19 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -412,7 +412,12 @@ INSERT INTO `main_media` (`media_id`, `media_title`, `media_url`, `thumbnail`, `
 (4, 'Demo', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
 (5, 'Demo', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
 (6, 'Demo', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
-(7, 'Demo', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-15 00:00:00');
+(7, 'Demo', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
+(8, 'Demo 2', '/assets/uploads/H804cGR.jpg', '/assets/uploads/images/SIdSloth2.jpg', '', '', 1, NULL, 0, 'n', '2016-06-16 01:06:35', '2016-06-16 01:17:43'),
+(9, 'Bla bla bla', '/assets/uploads/145IpS1.jpg', '', '', '', 1, NULL, 1, 'n', '2016-06-16 01:08:08', '0000-00-00 00:00:00'),
+(10, 'Blu blu', '/assets/uploads/1cGTSUZ.jpg', '/assets/uploads/1cGTSUZ.jpg', '', '', 1, NULL, 1, 'n', '2016-06-16 01:09:20', '0000-00-00 00:00:00'),
+(11, 'Bla bla bla 2', '/assets/uploads/AXtx7Dk.jpg', '/assets/uploads/AXtx7Dk.jpg', '', '', 1, NULL, 1, 'n', '2016-06-16 01:15:28', '0000-00-00 00:00:00'),
+(12, 'Ble ble', '/assets/uploads/H804cGR.jpg', '/assets/uploads/H804cGR.jpg', '', '', 1, NULL, 0, 'y', '2016-06-16 01:17:10', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -820,7 +825,7 @@ ALTER TABLE `main_link`
 -- AUTO_INCREMENT for table `main_media`
 --
 ALTER TABLE `main_media`
-  MODIFY `media_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `media_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `main_module`
 --
