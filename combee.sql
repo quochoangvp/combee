@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 14, 2016 at 07:51 PM
+-- Generation Time: Jun 15, 2016 at 08:00 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -302,7 +302,7 @@ TRUNCATE TABLE `main_gallery`;
 --
 
 INSERT INTO `main_gallery` (`gallery_id`, `gallery_title`, `thumbnail`, `description`, `type`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Gallery 1', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', 'Gallery 1', 'default', 'y', '2016-06-15 00:30:11', '2016-06-15 00:46:11');
+(1, 'Gallery 1', '/assets/uploads/145IpS1.jpg', 'Gallery 1', 'default', 'y', '2016-06-15 00:30:11', '2016-06-16 00:59:32');
 
 -- --------------------------------------------------------
 
@@ -384,13 +384,13 @@ DROP TABLE IF EXISTS `main_media`;
 CREATE TABLE `main_media` (
   `media_id` int(10) UNSIGNED NOT NULL,
   `media_title` varchar(255) NOT NULL,
-  `media_url` varchar(255) NOT NULL,
+  `media_url` varchar(255) DEFAULT NULL,
   `thumbnail` varchar(255) DEFAULT NULL,
   `media_link` varchar(255) NOT NULL,
   `description` text,
-  `position` int(10) UNSIGNED NOT NULL,
+  `position` int(10) UNSIGNED NOT NULL DEFAULT '1',
   `widget_id` int(10) UNSIGNED DEFAULT NULL,
-  `gallary_id` int(10) UNSIGNED NOT NULL,
+  `gallery_id` int(10) UNSIGNED DEFAULT NULL,
   `is_active` enum('y','n') NOT NULL DEFAULT 'n',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
@@ -401,6 +401,19 @@ CREATE TABLE `main_media` (
 --
 
 TRUNCATE TABLE `main_media`;
+--
+-- Dumping data for table `main_media`
+--
+
+INSERT INTO `main_media` (`media_id`, `media_title`, `media_url`, `thumbnail`, `media_link`, `description`, `position`, `widget_id`, `gallery_id`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Demo', '/assets/uploads/rIP4wPf.jpg', '/assets/uploads/rIP4wPf.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-16 00:49:20'),
+(2, 'Demo', '/assets/uploads/Untitled-1.jpg', '/assets/uploads/Untitled-1.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'n', '2016-06-15 00:00:00', '2016-06-16 00:40:11'),
+(3, 'Demo', '/assets/uploads/bicycle-art-hd-wallpaper-desktop-b57.jpg', '/assets/uploads/bicycle-art-hd-wallpaper-desktop-b57.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-16 00:41:03'),
+(4, 'Demo', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
+(5, 'Demo', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
+(6, 'Demo', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
+(7, 'Demo', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-15 00:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -696,7 +709,7 @@ ALTER TABLE `main_link`
 ALTER TABLE `main_media`
   ADD PRIMARY KEY (`media_id`),
   ADD KEY `widget_id` (`widget_id`),
-  ADD KEY `gallary_id` (`gallary_id`);
+  ADD KEY `gallary_id` (`gallery_id`);
 
 --
 -- Indexes for table `main_module`
@@ -787,7 +800,7 @@ ALTER TABLE `main_domain`
 -- AUTO_INCREMENT for table `main_gallery`
 --
 ALTER TABLE `main_gallery`
-  MODIFY `gallery_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `gallery_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `main_language`
 --
@@ -807,7 +820,7 @@ ALTER TABLE `main_link`
 -- AUTO_INCREMENT for table `main_media`
 --
 ALTER TABLE `main_media`
-  MODIFY `media_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `media_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `main_module`
 --
