@@ -25,7 +25,11 @@
                     <?php foreach ($galleries as $index => $gallery): ?>
                         <tr>
                             <td><?php echo $index + 1 + $offset ?></td>
-                            <td><?php echo $gallery['gallery_title'] ?></td>
+                            <td>
+                                <a href="<?php echo admin_url('gallery/media/list/' . $gallery['gallery_id']) ?>">
+                                    <?php echo $gallery['gallery_title'] ?>
+                                </a>
+                            </td>
                             <td><?php echo (strlen($gallery['thumbnail'])>0)?'<img height="60px" src="' . site_url($gallery['thumbnail']) . '" alt="" />':'' ?></td>
                             <td><?php echo ucfirst($gallery['type']) ?></td>
                             <td class="center"><?php echo ($gallery['is_active'] == 'y') ? '<span class="label label-mini label-success">Show</span>' : '<span class="label label-mini label-default">Hide</span>' ?></td>

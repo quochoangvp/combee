@@ -21,7 +21,7 @@
                             <textarea class=" form-control" id="description" name="description" rows="8"><?php echo isset($gallery) ? $gallery['description'] : '' ?></textarea>
                         </div>
                     </div>
-                    <div class="form-group ">
+                    <div class="form-group thumbnail-group">
                         <label for="description" class="control-label col-lg-2">Image:</label>
                         <div class="col-lg-10">
                             <div class="fileupload fileupload-new" data-provides="fileupload">

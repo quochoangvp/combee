@@ -41,7 +41,7 @@
 }
 
 .grid figcaption span:before {
-	content: 'by ';
+	/* content: 'by '; */
 }
 
 .grid figcaption a {
@@ -51,6 +51,14 @@
 	display: inline-block;
 	background: #FF6C60;
 	color: #fff;
+}
+
+.grid figcaption a.green {
+    background-color: #78CD51;
+}
+
+.grid figcaption a.blue {
+    background-color: #428bca;
 }
 
 /* Individual Caption Styles */
@@ -122,6 +130,8 @@
 /* Caption Style 3 */
 .cs-style-3 figure {
 	overflow: hidden;
+	height: 260px;
+    background-color: rgba(90, 107, 131, 0.72);
 }
 
 .cs-style-3 figure img {
@@ -166,9 +176,8 @@
 }
 
 .cs-style-3 figcaption a {
-	position: absolute;
-	bottom: 20px;
-	right: 20px;
+	float: right;
+	margin-left: 3px;
 }
 
 /* Caption Style 4 */

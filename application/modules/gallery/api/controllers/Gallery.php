@@ -109,6 +109,85 @@ class Gallery extends Api_Controller {
 		}
 	}
 
+	public function media_post($gallery_id)
+	{
+		$this->load->model('common/media_model', 'common_media');
+		$data = $this->post();
+		$data['gallery_id'] = $gallery_id;
+		$rules = $this->common_media->rules;
+		$this->form_validation->set_data($data);
+		$this->form_validation->set_rules($rules);
+
+		if ($this->form_validation->run($rules)) {
+			$result = $this->common_media->insert(set_data($data));
+			if ($result) {
+				return $this->response([
+					'status' => REST_Controller::HTTP_OK,
+					'message' => 'Media created',
+					'data' => [
+						'media_id' => $result
+					]
+				], REST_Controller::HTTP_OK);
+			} else {
+				return $this->response([
+					'status' => REST_Controller::HTTP_BAD_REQUEST,
+					'message' => 'Can\'t not create media'
+				], REST_Controller::HTTP_BAD_REQUEST);
+			}
+		} else {
+			return $this->response([
+				'status' => REST_Controller::HTTP_BAD_REQUEST,
+				'message' => 'Please fill all the fields is required',
+				'errors' => form_errors($rules)
+			], REST_Controller::HTTP_BAD_REQUEST);
+		}
+	}
+
+	public function media_put($gallery_id)
+	{
+		$this->load->model('common/media_model', 'common_media');
+		$data = $this->put();
+		if (!isset($data['is_active'])) {
+			$data['is_active'] = 'n';
+		}
+		$data['gallery_id'] = $gallery_id;
+		$media_id = intval($data['media_id']);
+		unset($data['media_id']);
+
+		$media = $this->common_media->get($media_id);
+		if ($media) {
+			$rules = $this->common_media->rules;
+			$this->form_validation->set_data($data);
+			$this->form_validation->set_rules($rules);
+
+			if ($this->form_validation->run($rules)) {
+				$result = $this->common_media->update(set_data($data), $media_id);
+				if ($result) {
+					return $this->response([
+						'status' => REST_Controller::HTTP_OK,
+						'message' => 'Media updated',
+					], REST_Controller::HTTP_OK);
+				} else {
+					return $this->response([
+						'status' => REST_Controller::HTTP_BAD_REQUEST,
+						'message' => 'Can\'t not update media'
+					], REST_Controller::HTTP_BAD_REQUEST);
+				}
+			} else {
+				return $this->response([
+					'status' => REST_Controller::HTTP_BAD_REQUEST,
+					'message' => 'Please fill all the fields is required',
+					'errors' => form_errors($rules)
+				], REST_Controller::HTTP_BAD_REQUEST);
+			}
+		} else {
+			return $this->response([
+				'status' => REST_Controller::HTTP_NOT_FOUND,
+				'message' => 'Media is not found'
+			], REST_Controller::HTTP_NOT_FOUND);
+		}
+	}
+
 }
 
 /* End of file Gallery.php */
