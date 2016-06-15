@@ -121,3 +121,13 @@ function is_admin()
     }
     return false;
 }
+
+function limit_to_numwords($str, $numwords)
+{
+    $excerpt = explode(' ', $str, $numwords + 1);
+    if (count($excerpt) >= $numwords) {
+        array_pop($excerpt);
+    }
+    $excerpt = implode(' ', $excerpt);
+    return $excerpt;
+}
