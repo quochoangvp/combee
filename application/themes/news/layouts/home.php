@@ -43,14 +43,16 @@
                     <a class="navbar-brand" href="index.html">Flat<span>Lab</span></a>
                 </div>
                 <div class="navbar-collapse collapse ">
-                    <?php echo isset($main_nav)?$main_nav:''; ?>
+                    <?php echo isset($main_nav) ? $main_nav : ''; ?>
                 </div>
             </div>
         </div>
     </header>
     <!--header end-->
 
-    <?php echo isset($main_slideshow)?$main_slideshow:''; ?>
+    <?php echo isset($main_slideshow) ? $main_slideshow : ''; ?>
+
+    <?php echo isset($body) ? $body : '' ?>
 
     <!--container start-->
     <div class="container">

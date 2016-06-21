@@ -10,7 +10,7 @@
                     data-speed="400"
                     data-start="1500"
                     data-easing="easeOutBack">
-                    <img src="<?php echo base_url(); ?>assets/themes/news/img/banner/ban2.png" alt="Image 1">
+                    <img src="<?php echo site_url($data[0]['thumbnail']) ?>" alt="Image 1">
                 </div>
                 <div class="caption lfr slide_title"
                     data-x="670"
@@ -18,7 +18,7 @@
                     data-speed="400"
                     data-start="1000"
                     data-easing="easeOutExpo">
-                    Clean & Creative
+                    <?php echo $data[0]['media_title'] ?>
                 </div>
 
                 <div class="caption lfr slide_subtitle dark-text"
@@ -27,7 +27,7 @@
                     data-speed="400"
                     data-start="2000"
                     data-easing="easeOutExpo">
-                    A Responsive Frontend Template
+                    <?php echo $data[0]['media_config']['slide_subtitle'] ?>
                 </div>
                 <div class="caption lfr slide_desc"
                     data-x="670"
@@ -35,17 +35,15 @@
                     data-speed="400"
                     data-start="2500"
                     data-easing="easeOutExpo">
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem <br>
-                    accusantium doloremque laudantium, totam rem aperiam,<br>
-                    eaque ipsa quae ablic jiener.
+                    <?php echo html_entity_decode($data[0]['description']) ?>
                 </div>
-                <a class="caption lfr btn yellow slide_btn" href="http://thevectorlab.net/flatlab" target="_blank"
+                <a class="caption lfr btn yellow slide_btn" href="<?php echo $data[0]['media_link'] ?>" target="_blank"
                     data-x="670"
                     data-y="400"
                     data-speed="400"
                     data-start="3500"
                     data-easing="easeOutExpo">
-                    Watch Dashboard
+                    <?php echo $data[0]['media_config']['slide_btn'] ?>
                 </a>
 
             </li>
@@ -53,14 +51,14 @@
             <!-- 2nd slide  -->
             <li data-transition="fade" data-slotamount="8" data-masterspeed="700" data-delay="9400" data-thumb="">
                 <!-- THE MAIN IMAGE IN THE FIRST SLIDE -->
-                <img src="<?php echo base_url(); ?>assets/themes/news/img/banner/banner_bg.jpg" alt="">
+                <img src="<?php echo site_url($data[1]['thumbnail']) ?>" alt="">
                 <div class="caption lft slide_title"
                     data-x="10"
                     data-y="125"
                     data-speed="400"
                     data-start="1500"
                     data-easing="easeOutExpo">
-                    YAHOOOOO. TWO IN ONE
+                    <?php echo $data[1]['media_title'] ?>
                 </div>
                 <div class="caption lft slide_subtitle dark-text"
                     data-x="10"
@@ -68,7 +66,7 @@
                     data-speed="400"
                     data-start="2000"
                     data-easing="easeOutExpo">
-                    Admin & Fronend in a single bundle
+                    <?php echo $data[1]['media_config']['slide_subtitle'] ?>
                 </div>
                 <div class="caption lft slide_desc dark-text"
                     data-x="10"
@@ -76,25 +74,23 @@
                     data-speed="400"
                     data-start="2500"
                     data-easing="easeOutExpo">
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem <br>
-                    accusantium doloremque laudantium, totam rem aperiam,<br>
-                    eaque ipsa quae ablic jiener.
+                    <?php echo html_entity_decode($data[1]['description']) ?>
                 </div>
-                <a class="caption lft slide_btn btn red slide_item_left" href="#" target="_blank"
+                <a class="caption lft slide_btn btn red slide_item_left" href="<?php echo $data[1]['media_link'] ?>" target="_blank"
                     data-x="10"
                     data-y="360"
                     data-speed="400"
                     data-start="3000"
                     data-easing="easeOutExpo">
-                    Purchase Now
+                    <?php echo $data[1]['media_config']['slide_btn'] ?>
                 </a>
                 <div class="caption lft start"
                     data-x="640"
                     data-y="55"
                     data-speed="400"
                     data-start="2000"
-                    data-easing="easeOutBack"  >
-                    <img src="<?php echo base_url(); ?>assets/themes/news/img/banner/man.png" alt="man">
+                    data-easing="easeOutBack">
+                    <img src="<?php echo $data[1]['media_config']['caption_lft_start'] ?>" alt="man">
                 </div>
                 <div class="caption lft slide_item_right"
                     data-x="330"
@@ -102,21 +98,21 @@
                     data-speed="500"
                     data-start="5000"
                     data-easing="easeOutBack">
-                    <img src="<?php echo base_url(); ?>assets/themes/news/img/banner/test_man.png" id="rev-hint2" alt="txt img">
+                    <img src="<?php echo $data[1]['media_config']['slide_item_right'] ?>" id="rev-hint2" alt="txt img">
                 </div>
 
             </li>
 
             <!-- 3rd slide  -->
             <li data-transition="fade" data-slotamount="7" data-masterspeed="300" data-delay="9400" data-thumb="">
-                <img src="<?php echo base_url(); ?>assets/themes/news/img/banner/red-bg.jpg" alt="">
+                <img src="<?php echo $data[2]['thumbnail'] ?>" alt="">
                 <div class="caption lfl slide_item_right"
                     data-x="10"
                     data-y="105"
                     data-speed="1200"
                     data-start="1500"
                     data-easing="easeOutBack">
-                    <img src="<?php echo base_url(); ?>assets/themes/news/img/banner/imac.png" alt="Image 1">
+                    <img src="<?php echo $data[2]['media_config']['image_1'] ?>" alt="Image 1">
                 </div>
                 <div class="caption lfl slide_item_right"
                     data-x="25"
@@ -124,7 +120,7 @@
                     data-speed="1200"
                     data-start="2000"
                     data-easing="easeOutBack">
-                    <img src="<?php echo base_url(); ?>assets/themes/news/img/banner/tab.png" alt="Image 1">
+                    <img src="<?php echo $data[2]['media_config']['image_2'] ?>" alt="Image 1">
                 </div>
                 <div class="caption lfl slide_item_right"
                     data-x="200"
@@ -132,7 +128,7 @@
                     data-speed="1200"
                     data-start="2500"
                     data-easing="easeOutBack">
-                    <img src="<?php echo base_url(); ?>assets/themes/news/img/banner/mobile.png" alt="Image 1">
+                    <img src="<?php echo $data[2]['media_config']['image_3'] ?>" alt="Image 1">
                 </div>
                 <div class="caption lfl slide_item_right"
                     data-x="250"
@@ -140,7 +136,7 @@
                     data-speed="1200"
                     data-start="3000"
                     data-easing="easeOutBack">
-                    <img src="<?php echo base_url(); ?>assets/themes/news/img/banner/laptop.png" alt="Image 1">
+                    <img src="<?php echo $data[2]['media_config']['image_4'] ?>" alt="Image 1">
                 </div>
                 <div class="caption lfl slide_item_right"
                     data-x="165"
@@ -148,7 +144,7 @@
                     data-speed="500"
                     data-start="5000"
                     data-easing="easeOutBack">
-                    <img src="<?php echo base_url(); ?>assets/themes/news/img/banner/text_imac.png" id="rev-hint1" alt="Image 1">
+                    <img src="<?php echo $data[2]['media_config']['image_5'] ?>" id="rev-hint1" alt="Image 1">
                 </div>
 
                 <div class="caption lfr slide_title slide_item_left yellow-txt"
@@ -157,7 +153,7 @@
                     data-speed="400"
                     data-start="3500"
                     data-easing="easeOutExpo">
-                    Full Responsive
+                    <?php echo $data[2]['media_title'] ?>
                 </div>
                 <div class="caption lfr slide_subtitle slide_item_left"
                     data-x="670"
@@ -165,7 +161,7 @@
                     data-speed="400"
                     data-start="4000"
                     data-easing="easeOutExpo">
-                    And Awesome Flat Design
+                    <?php echo $data[2]['media_config']['slide_subtitle'] ?>
                 </div>
                 <div class="caption lfr slide_desc slide_item_left"
                     data-x="670"
@@ -173,9 +169,7 @@
                     data-speed="400"
                     data-start="4500"
                     data-easing="easeOutExpo">
-                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem <br>
-                    accusantium doloremque laudantium, totam rem aperiam,<br>
-                    eaque ipsa quae ablic jiener.
+                    <?php echo html_entity_decode($data[2]['description']) ?>
                 </div>
             </li>
         </ul>
