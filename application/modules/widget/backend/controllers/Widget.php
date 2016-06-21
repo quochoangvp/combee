@@ -1,24 +1,25 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Widget extends Backend_Controller {
+class Widget extends Backend_Controller
+{
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model('common/widget_model', 'common_widget');
-		$this->load->model('common/widget_type_model', 'common_widget_type');
-		$this->load->model('category/common/category_model', 'common_category');
-		$this->load->library('pagination');
-		$this->per_pager = 7;
-		$this->load->js('js/pages/widgets.js');
-		$this->load->css('assets/bootstrap-fileupload/bootstrap-fileupload.css');
-	}
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('common/widget_model', 'common_widget');
+        $this->load->model('common/widget_type_model', 'common_widget_type');
+        $this->load->model('category/common/category_model', 'common_category');
+        $this->load->library('pagination');
+        $this->per_pager = 7;
+        $this->load->js('js/pages/widgets.js');
+        $this->load->css('assets/bootstrap-fileupload/bootstrap-fileupload.css');
+    }
 
-	public function index($offset = 0)
-	{
-		$data['widgets'] = $this->common_widget->get_all_widget($this->per_pager, $offset);
-		$total_rows = $this->common_widget->count_rows();
+    public function index($offset = 0)
+    {
+        $data['widgets'] = $this->common_widget->get_all_widget($this->per_pager, $offset);
+        $total_rows = $this->common_widget->count_rows();
 
         $config['base_url'] = admin_url('widget');
         $config['total_rows'] = $total_rows;
@@ -28,73 +29,121 @@ class Widget extends Backend_Controller {
         $data['offset'] = $offset;
         $data['limit'] = $this->per_pager;
         $data['total_rows'] = $total_rows;
-		$this->load->view('list', $data);
-	}
+        $this->load->view('list', $data);
+    }
 
-	public function create()
-	{
-		$data = $this->_get_data_for_form();
+    public function create()
+    {
+        $data = $this->_get_data_for_form();
 
-		$this->load->view('form', $data);
-	}
+        $this->load->view('form', $data);
+    }
 
-	public function edit($id)
-	{
-		$data = $this->_get_data_for_form();
-		$id = intval($id);
-		$widget = $this->common_widget->get($id);
+    public function edit($id)
+    {
+        $data = $this->_get_data_for_form();
+        $id = intval($id);
+        $widget = $this->common_widget->get($id);
 
-		$widget['layout'] = explode('|', $widget['layout']);
-		$widget['user_group_ids'] = explode('|', $widget['user_group_ids']);
-		$widget['position_name'] = explode('|', $widget['position_name']);
-		$widget['theme'] = explode('|', $widget['theme']);
-		$data['widget'] = $widget;
+        $widget['layout'] = explode('|', $widget['layout']);
+        $widget['user_group_ids'] = explode('|', $widget['user_group_ids']);
+        $widget['position_name'] = explode('|', $widget['position_name']);
+        $widget['theme'] = explode('|', $widget['theme']);
+        $data['widget'] = $widget;
 
-		$this->load->view('form', $data);
-	}
+        $this->load->view('form', $data);
+    }
 
-	public function config($id)
-	{
-		$data = $this->_get_data_for_form();
-		$id = intval($id);
-		$widget = $this->common_widget->get_details($id);
-		$_function = '_parse_data_' . $widget['type_name'];
-		$widget = $this->{$_function}($widget);
+    public function config($id, $action = null, $action_id = null)
+    {
+        $data = $this->_get_data_for_form();
+        $id = intval($id);
+        $widget = $this->common_widget->get_details($id);
+        switch ($action) {
+            case 'create':
+                $this->_create_media($widget);
+                break;
+            case 'edit';
+                $this->_edit_media($widget, $action_id);
+                break;
+            default:
+                $_function = '_parse_data_' . $widget['type_name'];
+                $widget['offset'] = intval($action);
+                $widget = $this->{$_function}($widget);
 
-		$data['categories'] = $this->common_category->get_category_nested();
-		$data['widget'] = $widget;
-		$this->load->view($widget['type_name'], $data);
-	}
+                $data['categories'] = $this->common_category->get_category_nested();
+                $data['widget'] = $widget;
+                $this->load->view($widget['type_name'] . '/index', $data);
+                break;
+        }
+    }
 
-	private function _parse_data_nav($data)
-	{
-		$data['config'] = (array) json_decode($data['config']);
-		return $data;
-	}
+    private function _parse_data_nav($data)
+    {
+        $data['config'] = (array) json_decode($data['config']);
+        return $data;
+    }
 
-	private function _get_data_for_form()
-	{
-		// Get theme elements
-		$this->load->library('file');
-		$elements = $this->file->read(THEME_PATH . 'news/elements.json');
-		$data['layouts'] = json_decode($elements)->layouts;
-		$data['positions'] = array();
-		foreach ($data['layouts'] as $layout_name => $layout) {
-			$data['positions'] = array_merge($data['positions'], (array) $layout->positions);
-		}
+    private function _parse_data_media($data)
+    {
+        $this->load->model('gallery/common/media_model', 'common_media');
+        $per_pager = 6;
+        $data['medias'] = $this->common_media->get_all_media_by_widget($data['widget_id'], $per_pager, $data['offset']);
+        $total_rows = $this->common_media->count_rows(['widget_id' => $data['widget_id']]);
 
-		// Get themes list
-		$this->load->library('dir');
-		$data['themes'] = $this->dir->listDir(THEME_PATH);
+        $config['base_url'] = admin_url('widget/config/' . $data['widget_id']);
+        $config['total_rows'] = $total_rows;
+        $config['per_page'] = $per_pager;
+        $this->pagination->initialize($config);
 
-		// Get user groups
-		$this->load->model('user/common/user_group_model', 'common_group_model');
-		$data['user_groups'] = $this->common_group_model->get_all();
+        $data['limit'] = $per_pager;
+        $data['total_rows'] = $total_rows;
+        return $data;
+    }
 
-		// Get widget type
-		$data['types'] = $this->common_widget_type->get_all();
-		return $data;
-	}
+    private function _create_media($widget)
+    {
+        $this->load->js('js/pages/media.js');
+        $data['widget'] = $widget;
+        $this->load->view('media/form', $data);
+    }
+
+    private function _edit_media($widget, $media_id)
+    {
+        $this->load->model('gallery/common/media_model', 'common_media');
+        $this->load->js('js/pages/media.js');
+        $data['widget'] = $widget;
+        $data['media'] = $this->common_media->get($media_id);
+        if (!$data['media']) {
+            show_404();
+        }
+        $data['media']['media_config'] = (array) json_decode($data['media']['media_config']);
+        $this->load->view('media/form', $data);
+    }
+
+    private function _get_data_for_form()
+    {
+        // Get theme elements
+        $this->load->library('file');
+        $elements = $this->file->read(THEME_PATH . 'news/elements.json');
+        $data['layouts'] = json_decode($elements)->layouts;
+        $data['positions'] = array();
+        foreach ($data['layouts'] as $layout_name => $layout) {
+            $data['positions'] = array_merge($data['positions'], (array) $layout->positions);
+        }
+
+        // Get themes list
+        $this->load->library('dir');
+        $data['themes'] = $this->dir->listDir(THEME_PATH);
+
+        // Get user groups
+        $this->load->model('user/common/user_group_model', 'common_group_model');
+        $data['user_groups'] = $this->common_group_model->get_all();
+
+        // Get widget type
+        $data['types'] = $this->common_widget_type->get_all();
+        return $data;
+    }
 
 }
 
