@@ -105,7 +105,7 @@ function removeMediaUrl() {
 	$('#urlPreview').attr('src', $('#urlPreview').data('origin'));
 	$('.media-url-group .btn-group-file .fileupload-exists').hide();
     $('.media-url-group .btn-group-file .fileupload-new').show();
-    $('#thumbnail').val('');
+    $('#media_url').val('');
 }
 
 function delete_gallery(id) {
