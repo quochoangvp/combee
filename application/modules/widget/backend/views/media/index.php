@@ -28,7 +28,7 @@
                         <tr>
                             <td><?php echo $index + 1 + $widget['offset'] ?></td>
                             <td><?php echo $media['media_title'] ?></td>
-                            <td><img src="<?php echo site_url($media['thumbnail']) ?>" alt="" width="100px"></td>
+                            <td><?php echo $media['thumbnail'] ? '<img src="' . site_url($media['thumbnail']) . '" alt="" width="100px">' : '' ?></td>
                             <td><a href="<?php echo $media['media_url'] ?>"><?php echo $media['media_url'] ?></a></td>
                             <td><a href="<?php echo $media['media_link'] ?>"><?php echo $media['media_link'] ?></a></td>
                             <td><?php echo ($media['is_active'] == 'y') ? '<span class="label label-mini label-success">Show</span>' : '<span class="label label-mini label-default">Hide</span>' ?></td>
