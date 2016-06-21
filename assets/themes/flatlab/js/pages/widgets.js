@@ -97,3 +97,12 @@ function removeThumbnail() {
 function go_to_widget_page() {
     window.location.href = '/admin/widget';
 }
+
+function add_config() {
+    var template = $('#configTemplate').html();
+    $('#configForm').append(template);
+}
+
+function remove_config(el) {
+    $(el).parents('.form-group').remove();
+}

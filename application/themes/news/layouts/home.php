@@ -53,62 +53,6 @@
     <?php echo isset($main_slideshow) ? $main_slideshow : ''; ?>
 
     <?php echo isset($body) ? $body : '' ?>
-
-    <!--container start-->
-    <div class="container">
-        <div class="row">
-            <!--feature start-->
-            <div class="text-center feature-head">
-                <h1>welcome to flatlab</h1>
-                <p>Professional html Template Perfect for Admin Dashboard</p>
-            </div>
-            <div class="col-lg-4 col-sm-4">
-                <section>
-                    <div class="f-box">
-                        <i class=" icon-desktop"></i>
-                        <h2>responsive design</h2>
-                    </div>
-                    <p class="f-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener.</p>
-                </section>
-            </div>
-            <div class="col-lg-4 col-sm-4">
-                <section>
-                    <div class="f-box active">
-                        <i class=" icon-code"></i>
-                        <h2>friendly code</h2>
-                    </div>
-                    <p class="f-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener.</p>
-                </section>
-            </div>
-            <div class="col-lg-4 col-sm-4">
-                <section>
-                    <div class="f-box">
-                        <i class="icon-gears"></i>
-                        <h2>fully customizable</h2>
-                    </div>
-                    <p class="f-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener.</p>
-                </section>
-            </div>
-            <!--feature end-->
-        </div>
-        <div class="row">
-            <!--quote start-->
-            <div class="quote">
-                <div class="col-lg-9 col-sm-9">
-                    <div class="quote-info">
-                        <h1>developer friendly code</h1>
-                        <p>Bundled with awesome features, UI resource unlimited colors, advanced theme options & much more!</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-3">
-                    <a href="#" class="btn btn-danger purchase-btn">Purchase now</a>
-                </div>
-            </div>
-            <!--quote end-->
-        </div>
-    </div>
-
-
     <!--property start-->
     <div class="property gray-bg">
         <div class="container">
