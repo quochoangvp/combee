@@ -27,11 +27,11 @@
                             <?php foreach ($themes as $theme): ?>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="theme[]" value="<?php echo $theme ?>" <?php echo (isset($widget) && in_array($theme, $widget['theme']))?'checked':'' ?>>
+                                    <input type="checkbox" name="theme[]" value="<?php echo $theme ?>" <?php echo (isset($widget) && in_array($theme, $widget['theme'])) ? 'checked' : '' ?>>
                                     <?php echo $theme ?>
                                 </label>
                             </div>
-                            <?php endforeach ?>
+                            <?php endforeach?>
                         </div>
                     </div>
                     <div class="form-group ">
@@ -40,11 +40,11 @@
                             <?php foreach ($layouts as $layout_name => $layout): ?>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="layout[]" value="<?php echo $layout_name ?>" <?php echo (isset($widget) && in_array($layout_name, $widget['layout']))?'checked':'' ?>>
+                                    <input type="checkbox" name="layout[]" value="<?php echo $layout_name ?>" <?php echo (isset($widget) && in_array($layout_name, $widget['layout'])) ? 'checked' : '' ?>>
                                     <?php echo $layout->title ?>
                                 </label>
                             </div>
-                            <?php endforeach ?>
+                            <?php endforeach?>
                         </div>
                     </div>
                     <div class="form-group ">
@@ -53,11 +53,11 @@
                             <?php foreach ($positions as $position_name => $position_title): ?>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="position_name[]" value="<?php echo $position_name ?>" <?php echo (isset($widget) && in_array($position_name, $widget['position_name']))?'checked':'' ?>>
+                                    <input type="checkbox" name="position_name[]" value="<?php echo $position_name ?>" <?php echo (isset($widget) && in_array($position_name, $widget['position_name'])) ? 'checked' : '' ?>>
                                     <?php echo $position_title ?>
                                 </label>
                             </div>
-                            <?php endforeach ?>
+                            <?php endforeach?>
                         </div>
                     </div>
                     <div class="form-group ">
@@ -66,11 +66,11 @@
                             <?php foreach ($user_groups as $group): ?>
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="user_group_ids[]" value="<?php echo $group['group_id'] ?>" <?php echo (isset($widget) && in_array($group['group_id'], $widget['user_group_ids']))?'checked':'' ?>>
+                                    <input type="checkbox" name="user_group_ids[]" value="<?php echo $group['group_id'] ?>" <?php echo (isset($widget) && in_array($group['group_id'], $widget['user_group_ids'])) ? 'checked' : '' ?>>
                                     <?php echo $group['group_name'] ?>
                                 </label>
                             </div>
-                            <?php endforeach ?>
+                            <?php endforeach?>
                         </div>
                     </div>
                     <div class="form-group ">
@@ -79,10 +79,10 @@
                             <select name="type_id" class="form-control">
                                 <?php foreach ($types as $type): ?>
                                     <option value="<?php echo $type['type_id'] ?>"
-                                        <?php echo (isset($widget) && ($widget['type_id']==$type['type_id']))?'selected="selected"':''?>>
+                                        <?php echo (isset($widget) && ($widget['type_id'] == $type['type_id'])) ? 'selected="selected"' : '' ?>>
                                         <?php echo $type['type_name'] ?>
                                     </option>
-                                <?php endforeach ?>
+                                <?php endforeach?>
                             </select>
                         </div>
                     </div>
@@ -133,6 +133,44 @@
                             </div>
                         </div>
                     </div>
+                    <div id="configForm">
+                    <?php if (isset($widget['config']) && is_array($widget['config']) && count($widget['config']) > 0): ?>
+                        <?php $index = 0;?>
+                        <?php foreach ($widget['config'] as $key => $value): ?>
+                            <div class="form-group">
+                                <label for="config" class="control-label col-lg-2">Configuration</label>
+                                <div class="col-lg-3">
+                                    <input class=" form-control" name="config_key[]" type="text" value="<?php echo $key ?>" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class=" form-control" name="config_value[]" type="text" value="<?php echo $value ?>" />
+                                </div>
+                                <div class="col-lg-1">
+                                    <?php if ($index == 0): ?>
+                                        <a class="btn btn-sm btn-primary" onclick="add_config()"><i class="icon-plus"></i></a>
+                                    <?php else: ?>
+                                    <a class="btn btn-sm btn-danger" onclick="remove_config(this)"><i class="icon-minus"></i></a>
+                                <?php endif?>
+                                </div>
+                            </div>
+                        <?php $index++;?>
+                        <?php endforeach?>
+                    <?php else: ?>
+                        <div class="form-group">
+                            <label for="config" class="control-label col-lg-2">Configuration</label>
+                            <div class="col-lg-3">
+                                <input class=" form-control" name="config_key[]" type="text" />
+                            </div>
+                            <div class="col-lg-6">
+                                <input class=" form-control" name="config_value[]" type="text" />
+                            </div>
+                            <div class="col-lg-1">
+                                <a class="btn btn-sm btn-primary" onclick="add_config()"><i class="icon-plus"></i></a>
+                            </div>
+                        </div>
+                    <?php endif?>
+                    </div>
+                    <hr>
                     <div class="form-group">
                         <div class="col-lg-12">
                             <?php if (isset($widget)): ?>
@@ -157,6 +195,21 @@
             <div class="modal-body">
                 <iframe width="860" height="400" src="<?php echo base_url() ?>filemanager/dialog.php?type=2&amp;field_id=image&amp;fldr=" frameborder="0" style="overflow-x: hidden; overflow-y: scroll; "></iframe>
             </div>
+        </div>
+    </div>
+</div>
+
+<div id="configTemplate" style="display: none; visibility: hidden">
+    <div class="form-group">
+        <label for="config" class="control-label col-lg-2">Configuration</label>
+        <div class="col-lg-3">
+            <input class=" form-control" name="config_key[]" type="text" />
+        </div>
+        <div class="col-lg-6">
+            <input class=" form-control" name="config_value[]" type="text" />
+        </div>
+        <div class="col-lg-1">
+            <a class="btn btn-sm btn-danger" onclick="remove_config(this)"><i class="icon-minus"></i></a>
         </div>
     </div>
 </div>

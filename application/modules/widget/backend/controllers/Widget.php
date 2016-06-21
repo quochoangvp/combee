@@ -44,6 +44,7 @@ class Widget extends Backend_Controller
         $data = $this->_get_data_for_form();
         $id = intval($id);
         $widget = $this->common_widget->get($id);
+        $widget['config'] = (array) json_decode($widget['config']);
 
         $widget['layout'] = explode('|', $widget['layout']);
         $widget['user_group_ids'] = explode('|', $widget['user_group_ids']);

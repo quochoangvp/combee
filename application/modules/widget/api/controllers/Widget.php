@@ -67,6 +67,15 @@ class Widget extends Api_Controller
             $data['is_static_content'] = 'n';
         }
 
+        if (isset($data['config_key']) && count($data['config_key']) > 0) {
+            $data['config'] = [];
+            $config_length = count($data['config_key']);
+            for ($index = 0; $index < $config_length; $index++) {
+                $data['config'][$data['config_key'][$index]] = $data['config_value'][$index];
+            }
+            $data['config'] = json_encode($data['config']);
+        }
+
         $rules = $this->common_widget->rules;
 
         $this->form_validation->set_data($data);
@@ -161,6 +170,15 @@ class Widget extends Api_Controller
         }
         if (!isset($data['is_static_content'])) {
             $data['is_static_content'] = 'n';
+        }
+
+        if (isset($data['config_key']) && count($data['config_key']) > 0) {
+            $data['config'] = [];
+            $config_length = count($data['config_key']);
+            for ($index = 0; $index < $config_length; $index++) {
+                $data['config'][$data['config_key'][$index]] = $data['config_value'][$index];
+            }
+            $data['config'] = json_encode($data['config']);
         }
 
         $rules = $this->common_widget->rules;
