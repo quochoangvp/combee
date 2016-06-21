@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 15, 2016 at 08:19 PM
+-- Generation Time: Jun 21, 2016 at 07:39 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.6
 
@@ -392,6 +392,7 @@ CREATE TABLE `main_media` (
   `widget_id` int(10) UNSIGNED DEFAULT NULL,
   `gallery_id` int(10) UNSIGNED DEFAULT NULL,
   `is_active` enum('y','n') NOT NULL DEFAULT 'n',
+  `media_config` text,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -405,19 +406,26 @@ TRUNCATE TABLE `main_media`;
 -- Dumping data for table `main_media`
 --
 
-INSERT INTO `main_media` (`media_id`, `media_title`, `media_url`, `thumbnail`, `media_link`, `description`, `position`, `widget_id`, `gallery_id`, `is_active`, `created_at`, `updated_at`) VALUES
-(1, 'Demo', '/assets/uploads/rIP4wPf.jpg', '/assets/uploads/rIP4wPf.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-16 00:49:20'),
-(2, 'Demo', '/assets/uploads/Untitled-1.jpg', '/assets/uploads/Untitled-1.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'n', '2016-06-15 00:00:00', '2016-06-16 00:40:11'),
-(3, 'Demo', '/assets/uploads/bicycle-art-hd-wallpaper-desktop-b57.jpg', '/assets/uploads/bicycle-art-hd-wallpaper-desktop-b57.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-16 00:41:03'),
-(4, 'Demo', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
-(5, 'Demo', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
-(6, 'Demo', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
-(7, 'Demo', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
-(8, 'Demo 2', '/assets/uploads/H804cGR.jpg', '/assets/uploads/images/SIdSloth2.jpg', '', '', 1, NULL, 0, 'n', '2016-06-16 01:06:35', '2016-06-16 01:17:43'),
-(9, 'Bla bla bla', '/assets/uploads/145IpS1.jpg', '', '', '', 1, NULL, 1, 'n', '2016-06-16 01:08:08', '0000-00-00 00:00:00'),
-(10, 'Blu blu', '/assets/uploads/1cGTSUZ.jpg', '/assets/uploads/1cGTSUZ.jpg', '', '', 1, NULL, 1, 'n', '2016-06-16 01:09:20', '0000-00-00 00:00:00'),
-(11, 'Bla bla bla 2', '/assets/uploads/AXtx7Dk.jpg', '/assets/uploads/AXtx7Dk.jpg', '', '', 1, NULL, 1, 'n', '2016-06-16 01:15:28', '0000-00-00 00:00:00'),
-(12, 'Ble ble', '/assets/uploads/H804cGR.jpg', '/assets/uploads/H804cGR.jpg', '', '', 1, NULL, 0, 'y', '2016-06-16 01:17:10', '0000-00-00 00:00:00');
+INSERT INTO `main_media` (`media_id`, `media_title`, `media_url`, `thumbnail`, `media_link`, `description`, `position`, `widget_id`, `gallery_id`, `is_active`, `media_config`, `created_at`, `updated_at`) VALUES
+(1, 'Demo', '/assets/uploads/rIP4wPf.jpg', '/assets/uploads/rIP4wPf.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', NULL, '2016-06-15 00:00:00', '2016-06-16 00:49:20'),
+(2, 'Demo', '/assets/uploads/Untitled-1.jpg', '/assets/uploads/Untitled-1.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'n', NULL, '2016-06-15 00:00:00', '2016-06-16 00:40:11'),
+(3, 'Demo', '/assets/uploads/bicycle-art-hd-wallpaper-desktop-b57.jpg', '/assets/uploads/bicycle-art-hd-wallpaper-desktop-b57.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', NULL, '2016-06-15 00:00:00', '2016-06-16 00:41:03'),
+(4, 'Demo', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', NULL, '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
+(5, 'Demo', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', NULL, '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
+(6, 'Demo', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', NULL, '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
+(7, 'Demo', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '', 'Bla bla bla bla bla bla bla bla bla bla bla bla bla', 0, NULL, 1, 'y', NULL, '2016-06-15 00:00:00', '2016-06-15 00:00:00'),
+(8, 'Demo 2', '/assets/uploads/H804cGR.jpg', '/assets/uploads/images/SIdSloth2.jpg', '', '', 1, NULL, 0, 'n', NULL, '2016-06-16 01:06:35', '2016-06-16 01:17:43'),
+(9, 'Bla bla bla', '/assets/uploads/145IpS1.jpg', '', '', '', 1, NULL, 1, 'n', NULL, '2016-06-16 01:08:08', '0000-00-00 00:00:00'),
+(10, 'Blu blu', '/assets/uploads/1cGTSUZ.jpg', '/assets/uploads/1cGTSUZ.jpg', '', '', 1, NULL, 1, 'n', NULL, '2016-06-16 01:09:20', '0000-00-00 00:00:00'),
+(11, 'Bla bla bla 2', '/assets/uploads/AXtx7Dk.jpg', '/assets/uploads/AXtx7Dk.jpg', '', '', 1, NULL, 1, 'n', NULL, '2016-06-16 01:15:28', '0000-00-00 00:00:00'),
+(12, 'Ble ble', '/assets/uploads/H804cGR.jpg', '/assets/uploads/H804cGR.jpg', '', '', 1, NULL, 0, 'y', NULL, '2016-06-16 01:17:10', '0000-00-00 00:00:00'),
+(13, '12', '/assets/uploads/sT92TlS.jpg', '/assets/uploads/sT92TlS.jpg', 'http://localhost', 'wew', 1, NULL, NULL, 'y', NULL, '2016-06-20 07:27:40', '0000-00-00 00:00:00'),
+(14, 'Clean &amp; Creative', '', '/assets/uploads/images/slideshows/ban2.png', 'http://thevectorlab.net/flatlab', '&lt;p&gt;Sed ut perspiciatis unde omnis iste natus error sit&lt;/p&gt;\r\n&lt;p&gt;voluptatem accusantium doloremque laudantium,&lt;/p&gt;\r\n&lt;p&gt;totam rem aperiam, eaque ipsa quae ablic jiener.&lt;/p&gt;', 1, 4, NULL, 'y', '{"slide_subtitle":"A Responsive Frontend Template","slide_btn":"Watch Dashboard"}', '2016-06-20 07:31:07', '2016-06-21 10:39:52'),
+(15, 'YAHOOOOO. TWO IN ONE', '', '/assets/uploads/images/slideshows/banner_bg.jpg', 'javascript:;', '&lt;p&gt;Sed ut perspiciatis unde omnis iste natus error sit&lt;/p&gt;\r\n&lt;p&gt;voluptatem accusantium doloremque laudantium,&lt;/p&gt;\r\n&lt;p&gt;totam rem aperiam, eaque ipsa quae ablic jiener.&lt;/p&gt;', 1, 4, NULL, 'y', '{"slide_subtitle":"Admin & Fronend in a single bundle","slide_desc":"","slide_btn":"Purchase Now","caption_lft_start":"\\/assets\\/uploads\\/images\\/slideshows\\/man.png","slide_item_right":"\\/assets\\/uploads\\/images\\/slideshows\\/test_man.png"}', '2016-06-20 07:47:49', '2016-06-21 10:41:50'),
+(16, 'Full Responsive', '/assets/uploads/images/slideshows/ban2.png', '/assets/uploads/images/slideshows/red-bg.jpg', 'javascript:;', '', 1, 4, NULL, 'y', '{"image_1":"\\/assets\\/uploads\\/images\\/slideshows\\/imac.png","image_2":"\\/assets\\/uploads\\/images\\/slideshows\\/tab.png","image_3":"\\/assets\\/uploads\\/images\\/slideshows\\/mobile.png","image_4":"\\/assets\\/uploads\\/images\\/slideshows\\/laptop.png","image_5":"\\/assets\\/uploads\\/images\\/slideshows\\/text_imac.png","slide_subtitle":"And Awesome Flat Design"}', '2016-06-20 12:18:03', '2016-06-21 11:46:14'),
+(18, 'Responsive design', '', '', '', '&lt;p&gt;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener.&lt;/p&gt;', 1, 5, NULL, 'y', '{"icon":"icon-desktop"}', '2016-06-21 11:20:17', '0000-00-00 00:00:00'),
+(19, 'Friendly code', '', '', '', '&lt;p&gt;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener.&lt;/p&gt;', 1, 5, NULL, 'y', '{"icon":"icon-code"}', '2016-06-21 11:21:01', '0000-00-00 00:00:00'),
+(20, 'Fully customizable', '', '', '', '&lt;p&gt;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener.&lt;/p&gt;', 1, 5, NULL, 'y', '{"icon":"icon-gears"}', '2016-06-21 11:21:48', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -601,7 +609,8 @@ TRUNCATE TABLE `main_widget`;
 
 INSERT INTO `main_widget` (`widget_id`, `widget_title`, `description`, `image`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout`, `theme`, `is_static_content`, `type_id`) VALUES
 (1, 'Main navigation', 'Main navigation', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '1|2|3|4', 1, 'y', '&lt;p&gt;&lt;img src=&quot;/assets/uploads/HaiDongVat.png?1465455200049&quot; alt=&quot;bicycle-art-hd-wallpaper-desktop-b57&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;&lt;/p&gt;', 'main_nav', '{"categories":["1","2","3","4","5","6","7","8","9","10","14"]}', 'home', 'news', 'n', 2),
-(4, 'Main slideshow', 'Main slideshow', '', '1|2|3|4', 1, 'y', '', 'main_slideshow', NULL, 'home', 'news', 'n', 7);
+(4, 'Main slideshow', 'Main slideshow', '', '1|2|3|4', 1, 'y', '&lt;p&gt;Bla bla&lt;/p&gt;', 'main_slideshow', NULL, 'home', 'news', 'y', 7),
+(5, 'WELCOME TO FLATLAB', 'Professional html Template Perfect for Admin Dashboard', '', '1|2|3|4', 1, 'y', '', 'body', '{"quote_title":"Developer friendly code","quote_desc":"Bundled with awesome features, UI resource unlimited colors, advanced theme options & much more!","btn_text":"Purchase now","btn_link":"javascript:;"}', 'home', 'news', 'n', 7);
 
 -- --------------------------------------------------------
 
@@ -825,7 +834,7 @@ ALTER TABLE `main_link`
 -- AUTO_INCREMENT for table `main_media`
 --
 ALTER TABLE `main_media`
-  MODIFY `media_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `media_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `main_module`
 --
@@ -855,7 +864,7 @@ ALTER TABLE `main_usergroup`
 -- AUTO_INCREMENT for table `main_widget`
 --
 ALTER TABLE `main_widget`
-  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `main_widgettype`
 --
