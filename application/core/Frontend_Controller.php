@@ -42,7 +42,8 @@ class Frontend_Controller extends Base_Controller
         for ($i = 0; $i < $media_lenght; $i++) {
             $medias[$i]['media_config'] = (array) json_decode($medias[$i]['media_config']);
         }
-        $this->load->section($widget['position_name'], ['data' => $medias]);
+        $widget['config'] = (array) json_decode($widget['config']);
+        $this->load->section($widget['position_name'], ['data' => $medias, 'widget' => $widget]);
     }
 
 }
