@@ -41,7 +41,11 @@ function set_data($data)
 {
     $result = [];
     foreach ($data as $key => $value) {
-        $result[$key] = set_value($key);
+        if (is_string($value) && is_object(json_decode($value))) {
+            $result[$key] = $value;
+        } else {
+            $result[$key] = set_value($key);
+        }
     }
     return $result;
 }
@@ -71,7 +75,7 @@ function general_checkbox_nested($nested_array, $current_array = [], $id, $title
     $list = '';
     $sp = str_repeat($sp, $level);
     foreach ($nested_array as $nested) {
-        $list .= '<div><label>' . $sp . '<input type="checkbox" data-parent="' . $nested['parent_id'] . '" name="'.$input_name.'[]" value="' . $nested[$id] . '"';
+        $list .= '<div><label>' . $sp . '<input type="checkbox" data-parent="' . $nested['parent_id'] . '" name="' . $input_name . '[]" value="' . $nested[$id] . '"';
         if (in_array($nested[$id], $current_array)) {
             $list .= ' checked';
         }
@@ -110,7 +114,7 @@ function string_to_url($str)
 
 function is_admin()
 {
-    $CI =& get_instance();
+    $CI = &get_instance();
     $auth = $CI->session->userdata('auth');
     if (!isset($auth['permission'])) {
         return false;
