@@ -71,6 +71,9 @@ function general_option_nested($nested_array, $id, $title, $level = 0)
 
 function general_checkbox_nested($nested_array, $current_array = [], $id, $title, $input_name, $level = 0)
 {
+    if (!is_array($current_array)) {
+        $current_array = (array) $current_array;
+    }
     $sp = '---- ';
     $list = '';
     $sp = str_repeat($sp, $level);
