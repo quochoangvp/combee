@@ -74,6 +74,8 @@ class Widget extends Api_Controller
                 $data['config'][$data['config_key'][$index]] = $data['config_value'][$index];
             }
             $data['config'] = json_encode($data['config']);
+            unset($data['config_key']);
+            unset($data['config_value']);
         }
 
         $rules = $this->common_widget->rules;
@@ -82,7 +84,6 @@ class Widget extends Api_Controller
         $this->form_validation->set_rules($rules);
 
         if ($this->form_validation->run($rules)) {
-
             $result = $this->common_widget->insert(set_data($data));
             if ($result) {
                 return $this->response([
@@ -179,6 +180,9 @@ class Widget extends Api_Controller
                 $data['config'][$data['config_key'][$index]] = $data['config_value'][$index];
             }
             $data['config'] = json_encode($data['config']);
+
+            unset($data['config_key']);
+            unset($data['config_value']);
         }
 
         $rules = $this->common_widget->rules;
