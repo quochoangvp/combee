@@ -149,6 +149,15 @@ class Widget extends Backend_Controller
         return $data;
     }
 
+    private function _parse_data_article($data)
+    {
+        $this->load->js('js/pages/widget_config_article.js');
+        $this->load->model('category/common/category_model', 'common_category');
+        $data['config'] = json_decode($data['config'], true);
+        $data['categories'] = $this->common_category->get_category_nested('publish');
+        return $data;
+    }
+
 }
 
 /* End of file Widget.php */

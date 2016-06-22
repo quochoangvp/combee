@@ -362,6 +362,31 @@ class Widget extends Api_Controller
         }
     }
 
+    public function save_article_config_post()
+    {
+        $config = trim(strip_tags($this->post('config')));
+        $widget_id = intval($this->post('widget_id'));
+        $widget = $this->common_widget->get($widget_id);
+        if (!$widget) {
+            return $this->response([
+                'status' => REST_Controller::HTTP_NOT_FOUND,
+                'message' => 'Widget is not found',
+            ], REST_Controller::HTTP_NOT_FOUND);
+        }
+        $widget['config'] = $config;
+        if ($this->common_widget->update($widget, $widget_id)) {
+            return $this->response([
+                'status' => REST_Controller::HTTP_OK,
+                'message' => 'Save success',
+            ], REST_Controller::HTTP_OK);
+        } else {
+            return $this->response([
+                'status' => REST_Controller::HTTP_INTERNAL_SERVER_ERROR,
+                'message' => 'Server error',
+            ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
 
 /* End of file Widget.php */
