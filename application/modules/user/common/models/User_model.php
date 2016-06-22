@@ -22,6 +22,16 @@ class User_model extends Base_model {
             'rules' => 'trim|strip_tags|min_length[2]|max_length[30]'
             ),
         array(
+            'field' => 'avatar',
+            'label' => 'Avatar',
+            'rules' => 'trim|strip_tags|min_length[2]|max_length[300]'
+            ),
+        array(
+            'field' => 'bio',
+            'label' => 'Bio',
+            'rules' => 'trim|strip_tags'
+            ),
+        array(
         	'field' => 'group_id',
         	'label' => 'Group',
         	'rules' => 'integer|required'
