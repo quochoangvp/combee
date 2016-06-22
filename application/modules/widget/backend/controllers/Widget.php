@@ -60,6 +60,9 @@ class Widget extends Backend_Controller
         $data = $this->_get_data_for_form();
         $id = intval($id);
         $widget = $this->common_widget->get_details($id);
+        if (!$widget) {
+            show_404();
+        }
         switch ($action) {
             case 'create':
                 $this->_create_media($widget);
