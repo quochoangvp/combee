@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 22, 2016 at 05:03 PM
+-- Generation Time: Jun 22, 2016 at 05:42 PM
 -- Server version: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.0.4-7ubuntu2.1
 
@@ -527,9 +527,11 @@ CREATE TABLE `main_user` (
   `user_email` varchar(60) NOT NULL,
   `user_pass` varchar(32) NOT NULL,
   `full_name` varchar(30) DEFAULT NULL,
+  `avatar` varchar(300) DEFAULT NULL,
   `join_date` datetime NOT NULL,
   `last_active` datetime DEFAULT NULL,
   `token` varchar(32) NOT NULL,
+  `bio` text,
   `group_id` int(10) UNSIGNED NOT NULL,
   `status` tinyint(2) NOT NULL COMMENT '0:Inactived, 1:Actived, 2:Locked'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -543,10 +545,10 @@ TRUNCATE TABLE `main_user`;
 -- Dumping data for table `main_user`
 --
 
-INSERT INTO `main_user` (`user_id`, `user_email`, `user_pass`, `full_name`, `join_date`, `last_active`, `token`, `group_id`, `status`) VALUES
-(1, 'quochoangvp@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trịnh Quốc Hoàng', '2016-05-30 10:15:00', NULL, '8d6239c01e6e481b961046493ea51ff7', 1, 1),
-(2, 'admin@localhost.com', '123456', 'Admin', '2016-06-06 22:55:25', '2016-06-06 22:55:25', '', 1, 1),
-(3, 'admin@localhost.vm', 'd41d8cd98f00b204e9800998ecf8427e', 'Admin', '2016-06-06 22:55:58', '2016-06-06 22:55:58', '', 1, 1);
+INSERT INTO `main_user` (`user_id`, `user_email`, `user_pass`, `full_name`, `avatar`, `join_date`, `last_active`, `token`, `bio`, `group_id`, `status`) VALUES
+(1, 'quochoangvp@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trịnh Quốc Hoàng', '/assets/uploads/images/SIdSloth2.jpg', '2016-05-30 10:15:00', '0000-00-00 00:00:00', '8d6239c01e6e481b961046493ea51ff7', NULL, 1, 1),
+(2, 'admin@localhost.com', '123456', 'Admin', '/assets/uploads/images/6gedge.jpg', '2016-06-06 22:55:25', '2016-06-06 22:55:25', '', NULL, 1, 1),
+(3, 'admin@localhost.vm', 'd41d8cd98f00b204e9800998ecf8427e', 'Admin', '/assets/uploads/images/SIdSloth2.jpg', '2016-06-06 22:55:58', '2016-06-06 22:55:58', '', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -617,7 +619,8 @@ INSERT INTO `main_widget` (`widget_id`, `widget_name`, `widget_title`, `descript
 (4, 'main_slideshow', 'Main slideshow', 'Main slideshow', '', '1|2|3|4', 1, 'y', '&lt;p&gt;Bla bla&lt;/p&gt;', 'body', NULL, 'home', 'news', 'y', 7),
 (5, 'welcome', 'WELCOME TO FLATLAB', 'Professional html Template Perfect for Admin Dashboard', '', '1|2|3|4', 1, 'y', '', 'body', '{"quote_title":"Developer friendly code","quote_desc":"Bundled with awesome features, UI resource unlimited colors, advanced theme options & much more!","btn_text":"Purchase now","btn_link":"javascript:;"}', 'home', 'news', 'n', 7),
 (6, 'property', 'Flat &amp; modern trend design', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener. natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener. natus error sit voluptatem accusantiu.', '/assets/uploads/images/blocks/property-img.png', '1|2|3|4', 1, 'y', '', 'body', '{"btn_purchase_link":"\\/purchase_link.html","btn_purchase_text":"Purchase now"}', 'home', 'news', 'n', 7),
-(8, 'news', 'News block', '', '', '1|2|3|4', 1, 'y', '', 'position_1', '{"list":[{"title":"PHP","categories":"1|2|3|4|13"},{"title":"Javascript","categories":"5|6|7"},{"title":"HTML","categories":"5|6|7|14"}]}', 'home', 'news', 'n', 3);
+(8, 'news', 'News block', '', '', '1|2|3|4', 1, 'y', '', 'position_1', '{"list":[{"title":"PHP","categories":"1|2|3|4|13"},{"title":"Javascript","categories":"5|6|7"},{"title":"HTML","categories":"5|6|7|14"}]}', 'home', 'news', 'n', 3),
+(9, 'home_support', 'Home support info', '', '', '1|2|3|4', 1, 'y', '', 'position_2', '{"users":["1","2"]}', 'home', 'news', 'n', 1);
 
 -- --------------------------------------------------------
 
@@ -871,7 +874,7 @@ ALTER TABLE `main_usergroup`
 -- AUTO_INCREMENT for table `main_widget`
 --
 ALTER TABLE `main_widget`
-  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `main_widgettype`
 --
