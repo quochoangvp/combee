@@ -58,6 +58,23 @@ class Frontend_Controller extends Base_Controller
         }
     }
 
+    private function _get_widget_data_article($widget)
+    {
+        $this->load->model('article/frontend/article_model', 'frontend_article');
+        $widget['config'] = json_decode($widget['config'], true);
+        if (isset($widget['config']['list']) && count($widget['config']['list']) > 0) {
+            foreach ($widget['config']['list'] as $index => $list) {
+                $category_ids = explode('|', $list['categories']);
+                $widget['config']['list'][$index]['article'] = $this->frontend_article->get_in_categories($category_ids);
+            }
+        }
+        if (!isset($this->_widget_data[$widget['position_name']])) {
+            $this->_widget_data[$widget['position_name']] = $this->load->widget($widget['widget_name'], ['data' => $widget['config']['list'], 'widget' => $widget]);
+        } else {
+            $this->_widget_data[$widget['position_name']] .= $this->load->widget($widget['widget_name'], ['data' => $widget['config']['list'], 'widget' => $widget]);
+        }
+    }
+
 }
 
 /* End of file Frontend_Controller.php */
