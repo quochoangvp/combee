@@ -50,25 +50,7 @@
     </header>
     <!--header end-->
 
-    <?php echo isset($main_slideshow) ? $main_slideshow : ''; ?>
-
     <?php echo isset($body) ? $body : '' ?>
-    <!--property start-->
-    <div class="property gray-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-sm-6 text-center">
-                    <img src="<?php echo base_url(); ?>assets/themes/news/img/property-img.png" alt="">
-                </div>
-                <div class="col-lg-6 col-sm-6">
-                    <h1>flat & modern trend design</h1>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener. natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener. natus error sit voluptatem accusantiu.</p>
-                    <a href="javascript:;" class="btn btn-purchase">Purchase now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--property end-->
 
      <div class="container">
 
