@@ -4916,3 +4916,7 @@ tr.odd.gradeX td.sorting_1, tr.even.gradeX td.sorting_1, table.display tr.even.g
 #configForm .form-group {
     border-bottom: 0;
 }
+.block100 {
+    float: left;
+    width: 100%;
+}
