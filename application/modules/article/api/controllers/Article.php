@@ -101,7 +101,6 @@ class Article extends Api_Controller {
 				if (!isset($data['featured'])) {
 					$data['featured'] = 'n';
 				}
-
 				$result = $this->common_article->update($data, $article['article_id']);
 				if ($result) {
 
@@ -118,17 +117,21 @@ class Article extends Api_Controller {
 						}
 					}
 					$delete_tags_relationships_result = $this->common_article_tag->delete_relationships_by_article($article['article_id']);
-					$insert_tags_relationships_result = $this->common_article_tag->insert($atags);
+					if ($atags) {
+						$insert_tags_relationships_result = $this->common_article_tag->insert($atags);
+					}
 
 					// Insert article category relationships
 					$acate = [];
 					foreach ($categories_id_list as $cate) {
-						$_temp['article_id'] = $result;
+						$_temp['article_id'] = $article['article_id'];
 						$_temp['category_id'] = $cate;
 						$acate[] = $_temp;
 					}
 					$delete_cate_relationships_result = $this->common_article_category->delete_relationships_by_article($article['article_id']);
-					$insert_cate_relationships_result = $this->common_article_category->insert($acate);
+					if ($acate) {
+						$insert_cate_relationships_result = $this->common_article_category->insert($acate);
+					}
 
 					return $this->response([
 						'status' => REST_Controller::HTTP_OK,
