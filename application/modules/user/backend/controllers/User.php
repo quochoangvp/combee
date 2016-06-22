@@ -18,7 +18,7 @@ class User extends Backend_Controller {
 
 	public function all($offset = 0)
 	{
-		$data['users'] = $this->common_user->get_all($this->per_pager, $offset);
+		$data['users'] = $this->common_user->get_all_user($this->per_pager, $offset);
 		$total_rows = $this->common_user->count_rows();
 
         $config['base_url'] = admin_url('user/all');

@@ -63,7 +63,7 @@ class User_model extends Base_model {
         $this->load->model('user/common/user_group_model', 'common_user_group');
     }
 
-    public function get_all($limit = 10, $offset = 0)
+    public function get_all_user($limit = 10, $offset = 0)
     {
     	$user_table = $this->table;
     	$group_table = $this->common_user_group->table;
@@ -73,6 +73,14 @@ class User_model extends Base_model {
     			ORDER BY join_date DESC
     			LIMIT ?,?";
     	return $this->db->query($sql, array($offset, $limit))->result_array();
+    }
+
+    public function get_in($user_ids)
+    {
+        $ids = '(' . join(',', $user_ids) . ')';
+        $this->db->where_in($user_ids);
+        $sql = "SELECT * FROM {$this->table} WHERE {$this->primary_key} IN {$ids}";
+        return $this->db->query($sql)->result_array();
     }
 
     public function delete_user($id)

@@ -75,6 +75,15 @@ class Frontend_Controller extends Base_Controller
         }
     }
 
+    private function _get_widget_data_support($widget)
+    {
+        if (!isset($this->_widget_data[$widget['position_name']])) {
+            $this->_widget_data[$widget['position_name']] = $this->load->widget($widget['widget_name'], ['data' => [], 'widget' => $widget]);
+        } else {
+            $this->_widget_data[$widget['position_name']] .= $this->load->widget($widget['widget_name'], ['data' => [], 'widget' => $widget]);
+        }
+    }
+
 }
 
 /* End of file Frontend_Controller.php */
