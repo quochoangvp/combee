@@ -29,9 +29,13 @@ class Category_model extends Base_model {
 		parent::__construct();
 	}
 
-	public function get_category_nested()
+	public function get_category_nested($status = null)
 	{
-		$db_categories = $this->as_array()->get_all();
+		$where = null;
+		if ($status) {
+			$where['status'] = $status;
+		}
+		$db_categories = $this->as_array()->get_all($where);
 		return $this->_category_recursive($db_categories);
 	}
 
