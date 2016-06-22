@@ -14,6 +14,7 @@
                     <tr>
                         <th class="w5">No</th>
                         <th>Title</th>
+                        <th>Name</th>
                         <th class="w12">Type</th>
                         <th class="w12">Position</th>
                         <th class="w12">Theme</th>
@@ -27,6 +28,7 @@
                         <tr>
                             <td><?php echo $index + 1 + $offset ?></td>
                             <td><?php echo $widget['widget_title'] ?></td>
+                            <td><?php echo $widget['widget_name'] ?></td>
                             <td><?php echo $widget['type_title'] ?></td>
                             <td><?php echo $widget['position_name'] ?></td>
                             <td><?php echo $widget['theme'] ?></td>

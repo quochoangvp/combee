@@ -11,7 +11,7 @@
                     <div class="form-group ">
                         <label for="widget_title" class="control-label col-lg-2">Title</label>
                         <div class="col-lg-10">
-                            <input class=" form-control" id="widget_name" name="widget_title" type="text"
+                            <input class=" form-control" id="widget_title" name="widget_title" type="text"
                             value="<?php echo isset($widget) ? $widget['widget_title'] : '' ?>" />
                         </div>
                     </div>
@@ -19,6 +19,13 @@
                         <label for="description" class="control-label col-lg-2">Description</label>
                         <div class="col-lg-10">
                             <textarea class=" form-control" id="description" name="description" rows="8"><?php echo isset($widget) ? $widget['description'] : '' ?></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <label for="widget_name" class="control-label col-lg-2">Name (file name)</label>
+                        <div class="col-lg-10">
+                            <input class=" form-control" id="widget_name" name="widget_name" type="text"
+                            value="<?php echo isset($widget) ? $widget['widget_name'] : '' ?>" />
                         </div>
                     </div>
                     <div class="form-group ">

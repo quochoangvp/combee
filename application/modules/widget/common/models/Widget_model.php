@@ -7,6 +7,11 @@ class Widget_model extends Base_model {
 	public $primary_key = 'widget_id';
 	public $rules = array(
 		array(
+			'field' => 'widget_name',
+			'label' => 'Name',
+			'rules' => 'trim|required|min_length[2]|max_length[100]',
+		),
+		array(
 			'field' => 'widget_title',
 			'label' => 'Title',
 			'rules' => 'trim|required|min_length[2]|max_length[100]',
