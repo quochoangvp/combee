@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.4.1deb2ubuntu1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 21, 2016 at 07:39 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.6
+-- Host: localhost
+-- Generation Time: Jun 22, 2016 at 01:29 PM
+-- Server version: 10.0.25-MariaDB-0ubuntu0.16.04.1
+-- PHP Version: 7.0.4-7ubuntu2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -583,6 +583,7 @@ INSERT INTO `main_usergroup` (`group_id`, `group_name`, `permission`, `status`) 
 DROP TABLE IF EXISTS `main_widget`;
 CREATE TABLE `main_widget` (
   `widget_id` int(10) UNSIGNED NOT NULL,
+  `widget_name` varchar(100) NOT NULL,
   `widget_title` varchar(100) DEFAULT NULL,
   `description` text,
   `image` varchar(255) DEFAULT NULL,
@@ -607,10 +608,11 @@ TRUNCATE TABLE `main_widget`;
 -- Dumping data for table `main_widget`
 --
 
-INSERT INTO `main_widget` (`widget_id`, `widget_title`, `description`, `image`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout`, `theme`, `is_static_content`, `type_id`) VALUES
-(1, 'Main navigation', 'Main navigation', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '1|2|3|4', 1, 'y', '&lt;p&gt;&lt;img src=&quot;/assets/uploads/HaiDongVat.png?1465455200049&quot; alt=&quot;bicycle-art-hd-wallpaper-desktop-b57&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;&lt;/p&gt;', 'main_nav', '{"categories":["1","2","3","4","5","6","7","8","9","10","14"]}', 'home', 'news', 'n', 2),
-(4, 'Main slideshow', 'Main slideshow', '', '1|2|3|4', 1, 'y', '&lt;p&gt;Bla bla&lt;/p&gt;', 'main_slideshow', NULL, 'home', 'news', 'y', 7),
-(5, 'WELCOME TO FLATLAB', 'Professional html Template Perfect for Admin Dashboard', '', '1|2|3|4', 1, 'y', '', 'body', '{"quote_title":"Developer friendly code","quote_desc":"Bundled with awesome features, UI resource unlimited colors, advanced theme options & much more!","btn_text":"Purchase now","btn_link":"javascript:;"}', 'home', 'news', 'n', 7);
+INSERT INTO `main_widget` (`widget_id`, `widget_name`, `widget_title`, `description`, `image`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout`, `theme`, `is_static_content`, `type_id`) VALUES
+(1, 'main_nav', 'Main navigation', 'Main navigation', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '1|2|3|4', 1, 'y', '&lt;p&gt;&lt;img src=&quot;/assets/uploads/HaiDongVat.png?1465455200049&quot; alt=&quot;bicycle-art-hd-wallpaper-desktop-b57&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;&lt;/p&gt;', 'main_nav', '{"categories":["1","2","3","4","5","6","7","8","9","10","14"]}', 'home', 'news', 'n', 2),
+(4, 'main_slideshow', 'Main slideshow', 'Main slideshow', '', '1|2|3|4', 1, 'y', '&lt;p&gt;Bla bla&lt;/p&gt;', 'body', NULL, 'home', 'news', 'y', 7),
+(5, 'welcome', 'WELCOME TO FLATLAB', 'Professional html Template Perfect for Admin Dashboard', '', '1|2|3|4', 1, 'y', '', 'body', '{"quote_title":"Developer friendly code","quote_desc":"Bundled with awesome features, UI resource unlimited colors, advanced theme options & much more!","btn_text":"Purchase now","btn_link":"javascript:;"}', 'home', 'news', 'n', 7),
+(6, 'property', 'Flat &amp; modern trend design', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener. natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener. natus error sit voluptatem accusantiu.', '/assets/uploads/images/blocks/property-img.png', '1|2|3|4', 1, 'y', '', 'body', '{"btn_purchase_link":"\\/purchase_link.html","btn_purchase_text":"Purchase now"}', 'home', 'news', 'n', 7);
 
 -- --------------------------------------------------------
 
@@ -864,7 +866,7 @@ ALTER TABLE `main_usergroup`
 -- AUTO_INCREMENT for table `main_widget`
 --
 ALTER TABLE `main_widget`
-  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `main_widgettype`
 --
