@@ -30,6 +30,7 @@ class MY_Loader extends MX_Loader
     private $_theme_dir = "default/";
     private $_layout_dir = "layouts/";
     private $_section_dir = 'sections/';
+    private $_widget_dir = 'widgets/';
     public function __construct()
     {
         if (!defined('SPARKPATH')) {
@@ -158,6 +159,11 @@ class MY_Loader extends MX_Loader
         $this->_sections[$area][$checksum] = $content;
         $this->output->set_output_data($area, $content);
         return $checksum;
+    }
+    public function widget($area, $data = array())
+    {
+        $view = $this->_theme_dir . $this->_widget_dir . $area;
+        return $this->view($view, $data, true);
     }
     public function layout($layout, $data = array())
     {

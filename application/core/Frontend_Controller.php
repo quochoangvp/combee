@@ -4,8 +4,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Frontend_Controller extends Base_Controller
 {
 
-    public $theme;
-    public $layout;
+    public  $theme;
+    public  $layout;
+    private $_widget_data;
 
     public function __construct()
     {
@@ -22,6 +23,9 @@ class Frontend_Controller extends Base_Controller
             if (in_array($this->layout, $layouts) && in_array($this->theme, $themes)) {
                 $_function = '_get_widget_data_' . $widget['type_name'];
                 $this->$_function($widget);
+                foreach ($this->_widget_data as $position => $data) {
+                    $this->output->set_output_data($position, $data);
+                }
             }
         }
     }
@@ -31,7 +35,11 @@ class Frontend_Controller extends Base_Controller
         $this->load->model('category/common/category_model', 'common_category');
         $widget_categories = json_decode($widget['config'])->categories;
         $categories = $this->common_category->get_category_nested_frontend($widget_categories);
-        $this->load->section($widget['position_name'], ['data' => $categories]);
+        if (!isset($this->_widget_data[$widget['position_name']])) {
+            $this->_widget_data[$widget['position_name']] = $this->load->widget($widget['widget_name'], ['data' => $categories]);
+        } else {
+            $this->_widget_data[$widget['position_name']] .= $this->load->widget($widget['widget_name'], ['data' => $categories]);
+        }
     }
 
     private function _get_widget_data_media($widget)
@@ -43,7 +51,11 @@ class Frontend_Controller extends Base_Controller
             $medias[$i]['media_config'] = (array) json_decode($medias[$i]['media_config']);
         }
         $widget['config'] = (array) json_decode($widget['config']);
-        $this->load->section($widget['position_name'], ['data' => $medias, 'widget' => $widget]);
+        if (!isset($this->_widget_data[$widget['position_name']])) {
+            $this->_widget_data[$widget['position_name']] = $this->load->widget($widget['widget_name'], ['data' => $medias, 'widget' => $widget]);
+        } else {
+            $this->_widget_data[$widget['position_name']] .= $this->load->widget($widget['widget_name'], ['data' => $medias, 'widget' => $widget]);
+        }
     }
 
 }
