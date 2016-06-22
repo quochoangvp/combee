@@ -4,6 +4,7 @@
             All list article
             <span class="pull-right">
                 <a href="javascript:;" onclick="add_new_article_config()" class="btn btn-sm btn-primary">Add new</a>
+                <a href="<?php echo admin_url('widget') ?>" class="btn btn-sm btn-default">&lt; Back</a>
             </span>
             <input type="hidden" name="widget_id" value="<?php echo $widget['widget_id'] ?>">
         </h4>
