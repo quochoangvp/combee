@@ -140,43 +140,45 @@
                             </div>
                         </div>
                     </div>
-                    <div id="configForm">
-                    <?php if (isset($widget['config']) && is_array($widget['config']) && count($widget['config']) > 0): ?>
-                        <?php $index = 0;?>
-                        <?php foreach ($widget['config'] as $key => $value): ?>
+                    <?php if ($widget['type_name'] == 'media'): ?>
+                        <div id="configForm">
+                        <?php if (isset($widget['config']) && is_array($widget['config']) && count($widget['config']) > 0): ?>
+                            <?php $index = 0;?>
+                            <?php foreach ($widget['config'] as $key => $value): ?>
+                                <div class="form-group">
+                                    <label for="config" class="control-label col-lg-2">Configuration</label>
+                                    <div class="col-lg-3">
+                                        <input class=" form-control" name="config_key[]" type="text" value="<?php echo $key ?>" />
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input class=" form-control" name="config_value[]" type="text" value="<?php echo $value ?>" />
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <?php if ($index == 0): ?>
+                                            <a class="btn btn-sm btn-primary" onclick="add_config()"><i class="icon-plus"></i></a>
+                                        <?php else: ?>
+                                        <a class="btn btn-sm btn-danger" onclick="remove_config(this)"><i class="icon-minus"></i></a>
+                                    <?php endif?>
+                                    </div>
+                                </div>
+                            <?php $index++;?>
+                            <?php endforeach?>
+                        <?php else: ?>
                             <div class="form-group">
                                 <label for="config" class="control-label col-lg-2">Configuration</label>
                                 <div class="col-lg-3">
-                                    <input class=" form-control" name="config_key[]" type="text" value="<?php echo $key ?>" />
+                                    <input class=" form-control" name="config_key[]" type="text" />
                                 </div>
                                 <div class="col-lg-6">
-                                    <input class=" form-control" name="config_value[]" type="text" value="<?php echo $value ?>" />
+                                    <input class=" form-control" name="config_value[]" type="text" />
                                 </div>
                                 <div class="col-lg-1">
-                                    <?php if ($index == 0): ?>
-                                        <a class="btn btn-sm btn-primary" onclick="add_config()"><i class="icon-plus"></i></a>
-                                    <?php else: ?>
-                                    <a class="btn btn-sm btn-danger" onclick="remove_config(this)"><i class="icon-minus"></i></a>
-                                <?php endif?>
+                                    <a class="btn btn-sm btn-primary" onclick="add_config()"><i class="icon-plus"></i></a>
                                 </div>
                             </div>
-                        <?php $index++;?>
-                        <?php endforeach?>
-                    <?php else: ?>
-                        <div class="form-group">
-                            <label for="config" class="control-label col-lg-2">Configuration</label>
-                            <div class="col-lg-3">
-                                <input class=" form-control" name="config_key[]" type="text" />
-                            </div>
-                            <div class="col-lg-6">
-                                <input class=" form-control" name="config_value[]" type="text" />
-                            </div>
-                            <div class="col-lg-1">
-                                <a class="btn btn-sm btn-primary" onclick="add_config()"><i class="icon-plus"></i></a>
-                            </div>
+                        <?php endif?>
                         </div>
-                    <?php endif?>
-                    </div>
+                    <?php endif ?>
                     <hr>
                     <div class="form-group">
                         <div class="col-lg-12">
