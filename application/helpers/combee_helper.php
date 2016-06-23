@@ -138,3 +138,13 @@ function limit_to_numwords($str, $numwords)
     $excerpt = implode(' ', $excerpt);
     return $excerpt;
 }
+
+function is_email_address($string = null) {
+    if (!$string) {
+        return false;
+    }
+    if(filter_var($string, FILTER_VALIDATE_EMAIL)) {
+        return true;
+    }
+    return false;
+}
