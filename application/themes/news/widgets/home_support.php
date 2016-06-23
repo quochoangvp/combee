@@ -2,30 +2,20 @@
     <section class="slider">
         <div class="flexslider">
             <ul class="slides about-flex-slides">
+                <?php foreach ($data as $supporter): ?>
                 <li>
                     <div class="about-testimonial-image ">
-                        <img alt="" src="<?php echo base_url(); ?>assets/themes/news/img/testimonial-img-1.jpg">
+                        <img alt="" src="<?php echo site_url($supporter['avatar']) ?>">
                     </div>
-                    <a class="about-testimonial-author" href="#">Ericson Reagan</a>
-                    <span class="about-testimonial-company">ABC Realestate LLC</span>
+                    <a class="about-testimonial-author" href="javascript:;"><?php echo $supporter['full_name'] ?></a>
+                    <span class="about-testimonial-company"><?php echo $supporter['user_email'] ?></span>
                     <div class="about-testimonial-content">
                         <p class="about-testimonial-quote">
-                            Pellentesque et pulvinar enim. Quisque at tempor ligula. Maecenas augue ante, euismod vitae egestas sit amet, accumsan eu nulla. Nullam tempor lectus a ligula lobortis pretium. Donec ut purus sed tortor malesuada venenatis eget eget lorem.
+                            <?php echo limit_to_numwords($supporter['bio'], 120) ?>
                         </p>
                     </div>
                 </li>
-                <li>
-                    <div class="about-testimonial-image ">
-                        <img alt="" src="<?php echo base_url(); ?>assets/themes/news/img/avatar2.jpg">
-                    </div>
-                    <a class="about-testimonial-author" href="#">Jonathan Smith</a>
-                    <span class="about-testimonial-company">DEF LLC</span>
-                    <div class="about-testimonial-content">
-                        <p class="about-testimonial-quote">
-                            Pellentesque et pulvinar enim. Quisque at tempor ligula. Maecenas augue ante, euismod vitae egestas sit amet, accumsan eu nulla. Nullam tempor lectus a ligula lobortis pretium. Donec ut purus sed tortor malesuada venenatis eget eget lorem.
-                        </p>
-                    </div>
-                </li>
+                <?php endforeach ?>
             </ul>
         </div>
     </section>

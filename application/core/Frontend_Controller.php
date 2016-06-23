@@ -77,10 +77,16 @@ class Frontend_Controller extends Base_Controller
 
     private function _get_widget_data_support($widget)
     {
+        $this->load->model('user/common/user_model', 'common_user');
+        $config = json_decode($widget['config'], true);
+        $users = [];
+        if (is_array($config) && count($config['users']) > 0) {
+            $users = $this->common_user->get_in($config['users']);
+        }
         if (!isset($this->_widget_data[$widget['position_name']])) {
-            $this->_widget_data[$widget['position_name']] = $this->load->widget($widget['widget_name'], ['data' => [], 'widget' => $widget]);
+            $this->_widget_data[$widget['position_name']] = $this->load->widget($widget['widget_name'], ['data' => $users, 'widget' => $widget]);
         } else {
-            $this->_widget_data[$widget['position_name']] .= $this->load->widget($widget['widget_name'], ['data' => [], 'widget' => $widget]);
+            $this->_widget_data[$widget['position_name']] .= $this->load->widget($widget['widget_name'], ['data' => $users, 'widget' => $widget]);
         }
     }
 

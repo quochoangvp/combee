@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 23, 2016 at 03:56 PM
+-- Generation Time: Jun 23, 2016 at 04:08 PM
 -- Server version: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.0.4-7ubuntu2.1
 
@@ -546,9 +546,9 @@ TRUNCATE TABLE `main_user`;
 --
 
 INSERT INTO `main_user` (`user_id`, `user_email`, `user_pass`, `full_name`, `avatar`, `join_date`, `last_active`, `token`, `bio`, `group_id`, `status`) VALUES
-(1, 'quochoangvp@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trịnh Quốc Hoàng', '/assets/uploads/images/SIdSloth2.jpg', '2016-05-30 10:15:00', '0000-00-00 00:00:00', '8d6239c01e6e481b961046493ea51ff7', NULL, 1, 1),
-(2, 'admin@localhost.com', '123456', 'Admin 1', '/assets/uploads/images/6gedge.jpg', '2016-06-06 22:55:25', '2016-06-06 22:55:25', '', NULL, 1, 1),
-(3, 'admin@localhost.vm', 'd41d8cd98f00b204e9800998ecf8427e', 'Admin 2', '/assets/uploads/images/SIdSloth2.jpg', '2016-06-06 22:55:58', '2016-06-06 22:55:58', '', NULL, 1, 1);
+(1, 'quochoangvp@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trịnh Quốc Hoàng', '/assets/uploads/images/SIdSloth2.jpg', '2016-05-30 10:15:00', '0000-00-00 00:00:00', '8d6239c01e6e481b961046493ea51ff7', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1),
+(2, 'admin@localhost.com', '123456', 'Admin 1', '/assets/uploads/images/6gedge.jpg', '2016-06-06 22:55:25', '2016-06-06 22:55:25', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1),
+(3, 'admin@localhost.vm', 'd41d8cd98f00b204e9800998ecf8427e', 'Admin 2', '/assets/uploads/images/SIdSloth2.jpg', '2016-06-06 22:55:58', '2016-06-06 22:55:58', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1);
 
 -- --------------------------------------------------------
 
