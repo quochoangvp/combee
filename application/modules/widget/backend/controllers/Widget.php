@@ -160,11 +160,12 @@ class Widget extends Backend_Controller
 
     public function _parse_data_support($data)
     {
+        $this->load->js('js/pages/widget_config_support.js');
         $this->load->model('user/common/user_model', 'common_user');
         $data['config'] = json_decode($data['config'], true);
-        $data['users'] = [];
+        $data['users'] = $this->common_user->get_all();
         if (isset($data['config']['users'])) {
-            $data['users'] = $this->common_user->get_in($data['config']['users']);
+            $data['supporters'] = $this->common_user->get_in($data['config']['users']);
         }
         return $data;
     }

@@ -1,32 +1,35 @@
 <section class="panel">
     <header class="panel-heading">
-        All supporter
+        <h4>
+            All supporter
+            <span class="pull-right">
+                <a href="javascript:;" onclick="add_new_supporter()" class="btn btn-sm btn-primary">Change</a>
+                <a href="<?php echo admin_url('widget') ?>" class="btn btn-sm btn-default">&lt; Back</a>
+                <input type="hidden" name="widget_id" value="<?php echo $widget['widget_id'] ?>" />
+            </span>
+        </h4>
     </header>
     <div class="panel-body">
         <div class="adv-table">
-            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered"
+                   id="hidden-table-info">
                 <thead>
-                    <tr>
-                        <th class="w5">No</th>
-                        <th>Email</th>
-                        <th>Full name</th>
-                        <th class="w8">Action</th>
-                    </tr>
+                <tr>
+                    <th class="w5">No</th>
+                    <th>Email</th>
+                    <th>Full name</th>
+                </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($widget['users'] as $index => $user): ?>
-                        <tr>
-                            <td><?php echo $index + 1 ?></td>
-                            <td><?php echo $user['user_email'] ?></td>
-                            <td><?php echo $user['full_name'] ?></td>
-                            <td class="text-center">
-                                <a class="btn btn-primary btn-xs" href="<?php echo admin_url('user/edit/' . $user['user_id']) ?>">
-                                    <i class="icon-pencil"></i>
-                                </a>
-                                <button class="btn btn-danger btn-xs" onclick="delete_user(<?php echo $user['user_id'] ?>)"><i class="icon-trash "></i></button>
-                            </td>
-                        </tr>
-                    <?php endforeach?>
+                <?php $supporter_ids = []; ?>
+                <?php foreach ($widget['supporters'] as $index => $user): ?>
+                    <?php $supporter_ids[] = $user['user_id']; ?>
+                    <tr data-id="<?php echo $user['user_id'] ?>">
+                        <td><?php echo $index + 1 ?></td>
+                        <td><?php echo $user['user_email'] ?></td>
+                        <td><?php echo $user['full_name'] ?></td>
+                    </tr>
+                <?php endforeach ?>
                 </tbody>
             </table>
 
@@ -34,3 +37,30 @@
     </div>
 </section>
 <!-- page end-->
+
+<div class="modal fade" id="selectSupporter">
+    <div class="modal-dialog">
+        <form action="" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Choose some users</h4>
+                </div>
+                <div class="modal-body">
+                    <?php foreach ($widget['users'] AS $user): ?>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="users[]" value="<?php echo $user['user_id'] ?>">
+                                <?php echo $user['full_name'] ?>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </form>
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
