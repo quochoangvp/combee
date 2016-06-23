@@ -140,7 +140,7 @@
                             </div>
                         </div>
                     </div>
-                    <?php if ($widget['type_name'] == 'media'): ?>
+                    <?php if ((isset($widget) && $widget['type_name'] == 'media') || !isset($widget)): ?>
                         <div id="configForm">
                         <?php if (isset($widget['config']) && is_array($widget['config']) && count($widget['config']) > 0): ?>
                             <?php $index = 0;?>
