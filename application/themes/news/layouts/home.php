@@ -69,26 +69,6 @@
 
      <?php echo isset($position_4)?$position_4:'' ?>
 
-     <div class="container">
-         <!--clients start-->
-         <div class="clients">
-             <div class="container">
-                 <div class="row">
-                     <div class="col-lg-12 text-center">
-                         <ul class="list-unstyled">
-                             <li><a href="#"><img src="<?php echo base_url(); ?>assets/themes/news/img/clients/logo1.png" alt=""></a></li>
-                             <li><a href="#"><img src="<?php echo base_url(); ?>assets/themes/news/img/clients/logo2.png" alt=""></a></li>
-                             <li><a href="#"><img src="<?php echo base_url(); ?>assets/themes/news/img/clients/logo3.png" alt=""></a></li>
-                             <li><a href="#"><img src="<?php echo base_url(); ?>assets/themes/news/img/clients/logo4.png" alt=""></a></li>
-                             <li><a href="#"><img src="<?php echo base_url(); ?>assets/themes/news/img/clients/logo5.png" alt=""></a></li>
-                         </ul>
-                     </div>
-                 </div>
-             </div>
-         </div>
-         <!--clients end-->
-     </div>
-
      <!--container end-->
 
     <!--footer start-->
@@ -96,35 +76,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-sm-3">
-                    <h1>contact info</h1>
-                    <address>
-                        <p>Address: No.28-63877 street</p>
-                        <p>lorem ipsum city, Country</p>
-
-                        <p>Phone : (123) 456-7890</p>
-                        <p>Fax : (123) 456-7890</p>
-                        <p>Email : <a href="javascript:;">support@vectorlab.com</a></p>
-                    </address>
+                    <?php echo isset($footer_col_1)?$footer_col_1:'' ?>
                 </div>
                 <div class="col-lg-5 col-sm-5">
-                    <h1>latest tweet</h1>
-                    <div class="tweet-box">
-                        <i class="icon-twitter"></i>
-                        <em>Please follow <a href="javascript:;">@nettus</a> for all future updates of us! <a href="javascript:;">twitter.com/vectorlab</a></em>
-                    </div>
+                    <?php echo isset($footer_col_2)?$footer_col_2:'' ?>
                 </div>
                 <div class="col-lg-3 col-sm-3 col-lg-offset-1">
-                    <h1>stay connected</h1>
-                    <ul class="social-link-footer list-unstyled">
-                        <li><a href="#"><i class="icon-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon-google-plus"></i></a></li>
-                        <li><a href="#"><i class="icon-dribbble"></i></a></li>
-                        <li><a href="#"><i class="icon-linkedin"></i></a></li>
-                        <li><a href="#"><i class="icon-twitter"></i></a></li>
-                        <li><a href="#"><i class="icon-skype"></i></a></li>
-                        <li><a href="#"><i class="icon-github"></i></a></li>
-                        <li><a href="#"><i class="icon-youtube"></i></a></li>
-                    </ul>
+                    <?php echo isset($footer_col_3)?$footer_col_3:'' ?>
                 </div>
             </div>
         </div>

@@ -127,6 +127,7 @@ var Script = function() {
                     tinymce.triggerSave();
                 });
             },
+            verify_html : false,
             relative_urls: false,
             remove_script_host: true,
             convert_urls: true,
@@ -134,7 +135,7 @@ var Script = function() {
             plugins: [
                 "advlist autolink link image lists charmap print preview hr anchor pagebreak",
                 "searchreplace wordcount visualblocks visualchars insertdatetime media nonbreaking spellchecker",
-                "table contextmenu directionality emoticons paste textcolor responsivefilemanager "
+                "table contextmenu directionality emoticons paste textcolor responsivefilemanager code"
             ],
             toolbar1: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
             toolbar2: "| responsivefilemanager | image | media | link unlink anchor | print preview",
@@ -153,7 +154,7 @@ var Script = function() {
 
 }();
 
-function form_errors_append(form, error_arr, error_msg = '') {
+function form_errors_append(form, error_arr, error_msg) {
     $(form).find('.form-message').html(error_msg);
     $(form).find('.help-block').remove();
     $(form).find('[name]').each(function(index, el) {
