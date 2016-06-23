@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 22, 2016 at 05:42 PM
+-- Generation Time: Jun 23, 2016 at 03:56 PM
 -- Server version: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.0.4-7ubuntu2.1
 
@@ -547,8 +547,8 @@ TRUNCATE TABLE `main_user`;
 
 INSERT INTO `main_user` (`user_id`, `user_email`, `user_pass`, `full_name`, `avatar`, `join_date`, `last_active`, `token`, `bio`, `group_id`, `status`) VALUES
 (1, 'quochoangvp@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trịnh Quốc Hoàng', '/assets/uploads/images/SIdSloth2.jpg', '2016-05-30 10:15:00', '0000-00-00 00:00:00', '8d6239c01e6e481b961046493ea51ff7', NULL, 1, 1),
-(2, 'admin@localhost.com', '123456', 'Admin', '/assets/uploads/images/6gedge.jpg', '2016-06-06 22:55:25', '2016-06-06 22:55:25', '', NULL, 1, 1),
-(3, 'admin@localhost.vm', 'd41d8cd98f00b204e9800998ecf8427e', 'Admin', '/assets/uploads/images/SIdSloth2.jpg', '2016-06-06 22:55:58', '2016-06-06 22:55:58', '', NULL, 1, 1);
+(2, 'admin@localhost.com', '123456', 'Admin 1', '/assets/uploads/images/6gedge.jpg', '2016-06-06 22:55:25', '2016-06-06 22:55:25', '', NULL, 1, 1),
+(3, 'admin@localhost.vm', 'd41d8cd98f00b204e9800998ecf8427e', 'Admin 2', '/assets/uploads/images/SIdSloth2.jpg', '2016-06-06 22:55:58', '2016-06-06 22:55:58', '', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -620,7 +620,7 @@ INSERT INTO `main_widget` (`widget_id`, `widget_name`, `widget_title`, `descript
 (5, 'welcome', 'WELCOME TO FLATLAB', 'Professional html Template Perfect for Admin Dashboard', '', '1|2|3|4', 1, 'y', '', 'body', '{"quote_title":"Developer friendly code","quote_desc":"Bundled with awesome features, UI resource unlimited colors, advanced theme options & much more!","btn_text":"Purchase now","btn_link":"javascript:;"}', 'home', 'news', 'n', 7),
 (6, 'property', 'Flat &amp; modern trend design', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener. natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener. natus error sit voluptatem accusantiu.', '/assets/uploads/images/blocks/property-img.png', '1|2|3|4', 1, 'y', '', 'body', '{"btn_purchase_link":"\\/purchase_link.html","btn_purchase_text":"Purchase now"}', 'home', 'news', 'n', 7),
 (8, 'news', 'News block', '', '', '1|2|3|4', 1, 'y', '', 'position_1', '{"list":[{"title":"PHP","categories":"1|2|3|4|13"},{"title":"Javascript","categories":"5|6|7"},{"title":"HTML","categories":"5|6|7|14"}]}', 'home', 'news', 'n', 3),
-(9, 'home_support', 'Home support info', '', '', '1|2|3|4', 1, 'y', '', 'position_2', '{"users":["1","2"]}', 'home', 'news', 'n', 1);
+(9, 'home_support', 'Home support info', '', '', '1|2|3|4', 1, 'y', '', 'position_2', '{"users":["1","2","3"]}', 'home', 'news', 'n', 1);
 
 -- --------------------------------------------------------
 
