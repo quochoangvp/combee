@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 23, 2016 at 04:08 PM
+-- Generation Time: Jun 23, 2016 at 05:37 PM
 -- Server version: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.0.4-7ubuntu2.1
 
@@ -429,7 +429,22 @@ INSERT INTO `main_media` (`media_id`, `media_title`, `media_url`, `thumbnail`, `
 (16, 'Full Responsive', '/assets/uploads/images/slideshows/ban2.png', '/assets/uploads/images/slideshows/red-bg.jpg', 'javascript:;', '', 1, 4, NULL, 'y', '{"image_1":"\\/assets\\/uploads\\/images\\/slideshows\\/imac.png","image_2":"\\/assets\\/uploads\\/images\\/slideshows\\/tab.png","image_3":"\\/assets\\/uploads\\/images\\/slideshows\\/mobile.png","image_4":"\\/assets\\/uploads\\/images\\/slideshows\\/laptop.png","image_5":"\\/assets\\/uploads\\/images\\/slideshows\\/text_imac.png","slide_subtitle":"And Awesome Flat Design"}', '2016-06-20 12:18:03', '2016-06-21 11:46:14'),
 (18, 'Responsive design', '', '', '', '&lt;p&gt;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener.&lt;/p&gt;', 1, 5, NULL, 'y', '{"icon":"icon-desktop"}', '2016-06-21 11:20:17', '0000-00-00 00:00:00'),
 (19, 'Friendly code', '', '', '', '&lt;p&gt;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener.&lt;/p&gt;', 1, 5, NULL, 'y', '{"icon":"icon-code"}', '2016-06-21 11:21:01', '0000-00-00 00:00:00'),
-(20, 'Fully customizable', '', '', '', '&lt;p&gt;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener.&lt;/p&gt;', 1, 5, NULL, 'y', '{"icon":"icon-gears"}', '2016-06-21 11:21:48', '0000-00-00 00:00:00');
+(20, 'Fully customizable', '', '', '', '&lt;p&gt;Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener.&lt;/p&gt;', 1, 5, NULL, 'y', '{"icon":"icon-gears"}', '2016-06-21 11:21:48', '0000-00-00 00:00:00'),
+(21, 'Work 1', '/assets/uploads/images/blocks/img1.jpg', '/assets/uploads/images/blocks/img1.jpg', '/media/1', '', 1, 10, NULL, 'y', '{"":""}', '2016-06-23 16:16:25', '0000-00-00 00:00:00'),
+(22, 'Work 2', '/assets/uploads/images/blocks/img2.jpg', '/assets/uploads/images/blocks/img2.jpg', '/media/2', '', 1, 10, NULL, 'y', '{"":""}', '2016-06-23 16:16:44', '0000-00-00 00:00:00'),
+(23, 'Work 3', '/assets/uploads/images/blocks/img3.jpg', '/assets/uploads/images/blocks/img3.jpg', '/media/3', '', 1, 10, NULL, 'y', '{"":""}', '2016-06-23 16:16:44', '0000-00-00 00:00:00'),
+(24, 'Work 4', '/assets/uploads/images/blocks/img4.jpg', '/assets/uploads/images/blocks/img4.jpg', '/media/4', '', 1, 10, NULL, 'y', '{"":""}', '2016-06-23 16:16:44', '0000-00-00 00:00:00'),
+(25, 'Work 5', '/assets/uploads/images/blocks/img5.jpg', '/assets/uploads/images/blocks/img5.jpg', '/media/5', '', 1, 10, NULL, 'y', '{"":""}', '2016-06-23 16:16:44', '0000-00-00 00:00:00'),
+(26, 'Work 6', '/assets/uploads/images/blocks/img6.jpg', '/assets/uploads/images/blocks/img6.jpg', '/media/6', '', 1, 10, NULL, 'y', '{"":""}', '2016-06-23 16:17:44', '0000-00-00 00:00:00'),
+(27, 'Work 7', '/assets/uploads/images/blocks/img7.jpg', '/assets/uploads/images/blocks/img7.jpg', '/media/7', '', 1, 10, NULL, 'y', '{"":""}', '2016-06-23 16:19:44', '0000-00-00 00:00:00'),
+(28, 'Partner 1', '', '/assets/uploads/images/logos/logo1.png', 'http://partner1.dev', '', 1, 12, NULL, 'y', '{"":""}', '2016-06-23 16:31:38', '0000-00-00 00:00:00'),
+(29, 'Partner 2', '', '/assets/uploads/images/logos/logo5.png', 'http://partner2.dev', '', 1, 12, NULL, 'y', '{"":""}', '2016-06-23 16:31:59', '0000-00-00 00:00:00'),
+(30, 'Partner 3', '', '/assets/uploads/images/logos/logo4.png', 'http://partner3.dev', '', 1, 12, NULL, 'y', '{"":""}', '2016-06-23 16:32:14', '0000-00-00 00:00:00'),
+(31, 'Partner 4', '', '/assets/uploads/images/logos/logo3.png', 'http://partner4.dev', '', 1, 12, NULL, 'y', '{"":""}', '2016-06-23 16:32:30', '0000-00-00 00:00:00'),
+(32, 'Partner 5', '', '/assets/uploads/images/logos/logo2.png', 'http://partner5.dev', '', 1, 12, NULL, 'y', '{"":""}', '2016-06-23 16:32:45', '0000-00-00 00:00:00'),
+(33, 'Facebook', '', '', 'http://facebook.com/NKBQ.TV', '', 1, 15, NULL, 'y', '{"icon":"icon-facebook"}', '2016-06-23 17:29:27', '0000-00-00 00:00:00'),
+(34, 'Google Plus', '', '', 'https://plus.google.com/+VRapTopHitTV', '', 1, 15, NULL, 'y', '{"icon":"icon-google-plus"}', '2016-06-23 17:30:28', '0000-00-00 00:00:00'),
+(35, 'Twitter', '', '', 'https://twitter.com/@quochoangvp', '', 1, 15, NULL, 'y', '{"icon":"icon-twitter"}', '2016-06-23 17:32:58', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -513,7 +528,8 @@ INSERT INTO `main_tag` (`tag_id`, `tag_title`, `tag_url`, `is_show`) VALUES
 (6, 'Lập Trình Viên   -!_', 'lap-trinh-vien', 'y'),
 (7, 'Học PHP', 'hoc-php', 'y'),
 (8, 'Laravel', 'laravel', 'y'),
-(9, 'html', 'html', 'y');
+(9, 'html', 'html', 'y'),
+(10, 'Don&#039;t', 'dont', 'y');
 
 -- --------------------------------------------------------
 
@@ -620,7 +636,13 @@ INSERT INTO `main_widget` (`widget_id`, `widget_name`, `widget_title`, `descript
 (5, 'welcome', 'WELCOME TO FLATLAB', 'Professional html Template Perfect for Admin Dashboard', '', '1|2|3|4', 1, 'y', '', 'body', '{"quote_title":"Developer friendly code","quote_desc":"Bundled with awesome features, UI resource unlimited colors, advanced theme options & much more!","btn_text":"Purchase now","btn_link":"javascript:;"}', 'home', 'news', 'n', 7),
 (6, 'property', 'Flat &amp; modern trend design', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener. natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener. natus error sit voluptatem accusantiu.', '/assets/uploads/images/blocks/property-img.png', '1|2|3|4', 1, 'y', '', 'body', '{"btn_purchase_link":"\\/purchase_link.html","btn_purchase_text":"Purchase now"}', 'home', 'news', 'n', 7),
 (8, 'news', 'News block', '', '', '1|2|3|4', 1, 'y', '', 'position_1', '{"list":[{"title":"PHP","categories":"1|2|3|4|13"},{"title":"Javascript","categories":"5|6|7"},{"title":"HTML","categories":"5|6|7|14"}]}', 'home', 'news', 'n', 3),
-(9, 'home_support', 'Home support info', '', '', '1|2|3|4', 1, 'y', '', 'position_2', '{"users":["1","2","3"]}', 'home', 'news', 'n', 1);
+(9, 'home_support', 'Home support info', '', '', '1|2|3|4', 1, 'y', '', 'position_2', '{"users":["1","2","3"]}', 'home', 'news', 'n', 1),
+(10, 'recent_work', 'Recent work', '', '', '1|2|3|4', 1, 'y', '', 'position_3', '{"":""}', 'home', 'news', 'n', 7),
+(11, 'slogan', 'Slogan', '“And here i am using my own lungs like a sucker. How is education supposed to make \r\nme feel smarter?”', '/assets/uploads/images/flat_parallax.jpg', '1|2|3|4', 1, 'y', '', 'position_4', '{"_empty_":""}', 'home', 'news', 'n', 7),
+(12, 'partner', 'Partner', '', '', '1|2|3|4', 1, 'y', '', 'position_4', '{"":""}', 'home', 'news', 'n', 7),
+(13, 'contact_info', 'Contact info', '', '', '1|2|3|4', 1, 'y', '', 'footer_col_1', '{"Address":"No.28-63877 street  lorem ipsum city, Country","Phone":"(123) 456-7890","Fax":"(123) 456-7890","Email":"support@vectorlab.com"}', 'home', 'news', 'n', 7),
+(14, 'latest_tweet', 'Latest Tweet', '', '', '1|2|3|4', 1, 'y', '&lt;p&gt;&lt;i class=&quot;icon-twitter&quot;&gt;&lt;/i&gt;&lt;em&gt;Please follow &lt;a&gt;@nettus&lt;/a&gt; for all future updates of us! &lt;a&gt;twitter.com/vectorlab&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;', 'footer_col_2', '{"user_name":"@nettus","user_link":"https:\\/\\/twitter.com\\/@nettus","tweet_name":"twitter.com\\/vectorlab","tweet_link":"https:\\/\\/twitter.com\\/vectorlab"}', 'home', 'news', 'y', 7),
+(15, 'social', 'Stay connected', '', '', '1|2|3|4', 1, 'y', '', 'footer_col_3', '{"":""}', 'home', 'news', 'n', 7);
 
 -- --------------------------------------------------------
 
@@ -844,7 +866,7 @@ ALTER TABLE `main_link`
 -- AUTO_INCREMENT for table `main_media`
 --
 ALTER TABLE `main_media`
-  MODIFY `media_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `media_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `main_module`
 --
@@ -859,7 +881,7 @@ ALTER TABLE `main_modulemeta`
 -- AUTO_INCREMENT for table `main_tag`
 --
 ALTER TABLE `main_tag`
-  MODIFY `tag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `tag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `main_user`
 --
@@ -874,7 +896,7 @@ ALTER TABLE `main_usergroup`
 -- AUTO_INCREMENT for table `main_widget`
 --
 ALTER TABLE `main_widget`
-  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `main_widgettype`
 --
