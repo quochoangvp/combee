@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu1
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jun 29, 2016 at 04:48 PM
--- Server version: 10.0.25-MariaDB-0ubuntu0.16.04.1
--- PHP Version: 7.0.4-7ubuntu2.1
+-- Host: 127.0.0.1
+-- Generation Time: Jun 29, 2016 at 07:31 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -709,9 +709,9 @@ CREATE TABLE `main_product_supplier` (
   `supplier_id` int(11) UNSIGNED NOT NULL,
   `supplier_name` varchar(255) NOT NULL,
   `supplier_address` varchar(500) DEFAULT NULL,
-  `supplier_email` varchar(60) NOT NULL,
-  `supplier_phone` varchar(20) NOT NULL,
-  `supplier_logo` varchar(255) NOT NULL,
+  `supplier_email` varchar(60) DEFAULT NULL,
+  `supplier_phone` varchar(20) DEFAULT NULL,
+  `supplier_logo` varchar(255) DEFAULT NULL,
   `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -739,6 +739,15 @@ CREATE TABLE `main_product_tag` (
 --
 
 TRUNCATE TABLE `main_product_tag`;
+--
+-- Dumping data for table `main_product_tag`
+--
+
+INSERT INTO `main_product_tag` (`tag_id`, `tag_title`, `tag_url`, `is_show`) VALUES
+(1, 'laptop asus', 'laptop-asus', 'y'),
+(2, 'laptop acer', 'laptop-acer', 'n'),
+(3, 'laptop hp', 'laptop-hp', 'n');
+
 -- --------------------------------------------------------
 
 --
@@ -1230,6 +1239,11 @@ ALTER TABLE `main_product_manufacturer`
 --
 ALTER TABLE `main_product_supplier`
   MODIFY `supplier_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `main_product_tag`
+--
+ALTER TABLE `main_product_tag`
+  MODIFY `tag_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `main_tag`
 --
