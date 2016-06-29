@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 23, 2016 at 05:37 PM
+-- Generation Time: Jun 29, 2016 at 04:48 PM
 -- Server version: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.0.4-7ubuntu2.1
 
@@ -30,11 +30,11 @@ USE `combee`;
 
 DROP TABLE IF EXISTS `main_admin_menu`;
 CREATE TABLE `main_admin_menu` (
-  `amenu_id` int(10) UNSIGNED NOT NULL,
+  `amenu_id` int(11) UNSIGNED NOT NULL,
   `amenu_link` varchar(100) NOT NULL,
   `amenu_text` varchar(100) NOT NULL,
   `amenu_icon` varchar(50) DEFAULT NULL,
-  `parent_id` int(10) UNSIGNED NOT NULL,
+  `parent_id` int(11) UNSIGNED NOT NULL,
   `position` smallint(5) UNSIGNED NOT NULL,
   `is_show` enum('y','n') NOT NULL DEFAULT 'y',
   `user_group_id` varchar(100) NOT NULL
@@ -63,11 +63,19 @@ INSERT INTO `main_admin_menu` (`amenu_id`, `amenu_link`, `amenu_text`, `amenu_ic
 (11, 'gallery', 'Gallery', 'icon-camera', 0, 4, 'y', ''),
 (12, 'gallery/all', 'All gallery', NULL, 11, 1, 'y', ''),
 (13, 'gallery/create', 'Add new', NULL, 11, 2, 'y', ''),
-(14, 'setting', 'Setting', 'icon-cog', 0, 6, 'y', ''),
+(14, 'setting', 'Setting', 'icon-cog', 0, 7, 'y', ''),
 (15, 'widget', 'Widget', NULL, 14, 1, 'y', ''),
 (16, 'link', 'Links', 'icon-link', 0, 5, 'y', ''),
 (17, 'link/create', 'Add new', NULL, 16, 1, 'y', ''),
-(18, 'link/all', 'All links', NULL, 16, 2, 'y', '');
+(18, 'link/all', 'All links', NULL, 16, 2, 'y', ''),
+(19, 'product', 'Product', 'icon-inbox', 0, 6, 'y', ''),
+(20, 'product', 'All product', '', 19, 1, 'y', ''),
+(21, 'product/catalog', 'Catalogs', '', 19, 2, 'y', ''),
+(22, 'product/brand', 'Brands', '', 19, 3, 'y', ''),
+(23, 'product/manufacturer', 'Manufacturer', '', 19, 4, 'y', ''),
+(24, 'product/supplier', 'Supplier', '', 19, 5, 'y', ''),
+(25, 'product/tags', 'Tags', '', 19, 6, 'y', ''),
+(26, 'product/combo', 'Product combo', '', 19, 7, 'y', '');
 
 -- --------------------------------------------------------
 
@@ -77,15 +85,15 @@ INSERT INTO `main_admin_menu` (`amenu_id`, `amenu_link`, `amenu_text`, `amenu_ic
 
 DROP TABLE IF EXISTS `main_article`;
 CREATE TABLE `main_article` (
-  `article_id` int(10) UNSIGNED NOT NULL,
+  `article_id` int(11) UNSIGNED NOT NULL,
   `article_title` varchar(500) NOT NULL,
   `article_url` varchar(500) NOT NULL,
   `description` text,
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL,
   `content` longtext NOT NULL,
   `allow_comment` enum('y','n') NOT NULL DEFAULT 'y',
   `status` varchar(20) NOT NULL DEFAULT 'draft',
-  `view` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `view` int(11) UNSIGNED NOT NULL DEFAULT '0',
   `featured` enum('y','n') NOT NULL DEFAULT 'n',
   `publish_date` datetime DEFAULT NULL,
   `thumbnail` varchar(255) DEFAULT NULL,
@@ -134,9 +142,9 @@ INSERT INTO `main_article` (`article_id`, `article_title`, `article_url`, `descr
 DROP TABLE IF EXISTS `main_article_category`;
 CREATE TABLE `main_article_category` (
   `acate_id` int(11) NOT NULL,
-  `article_id` int(10) UNSIGNED NOT NULL,
-  `category_id` int(10) UNSIGNED NOT NULL,
-  `position` int(10) UNSIGNED NOT NULL
+  `article_id` int(11) UNSIGNED NOT NULL,
+  `category_id` int(11) UNSIGNED NOT NULL,
+  `position` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -168,10 +176,10 @@ INSERT INTO `main_article_category` (`acate_id`, `article_id`, `category_id`, `p
 
 DROP TABLE IF EXISTS `main_article_tag`;
 CREATE TABLE `main_article_tag` (
-  `atag_id` int(10) UNSIGNED NOT NULL,
-  `article_id` int(10) UNSIGNED NOT NULL,
-  `tag_id` int(10) UNSIGNED NOT NULL,
-  `position` int(10) UNSIGNED DEFAULT NULL
+  `atag_id` int(11) UNSIGNED NOT NULL,
+  `article_id` int(11) UNSIGNED NOT NULL,
+  `tag_id` int(11) UNSIGNED NOT NULL,
+  `position` int(11) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -201,14 +209,14 @@ INSERT INTO `main_article_tag` (`atag_id`, `article_id`, `tag_id`, `position`) V
 
 DROP TABLE IF EXISTS `main_category`;
 CREATE TABLE `main_category` (
-  `category_id` int(10) UNSIGNED NOT NULL,
+  `category_id` int(11) UNSIGNED NOT NULL,
   `category_title` varchar(300) NOT NULL,
   `category_url` varchar(300) NOT NULL,
   `keyword` varchar(500) DEFAULT NULL,
   `description` varchar(500) DEFAULT NULL,
   `content` text,
-  `position` int(10) UNSIGNED DEFAULT NULL,
-  `parent_id` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `position` int(11) UNSIGNED DEFAULT NULL,
+  `parent_id` int(11) UNSIGNED NOT NULL DEFAULT '0',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   `status` varchar(20) NOT NULL DEFAULT 'draft'
@@ -251,7 +259,8 @@ CREATE TABLE `main_config` (
   `config_name` varchar(100) NOT NULL,
   `config_value` text NOT NULL,
   `config_description` text NOT NULL,
-  `language_id` int(10) UNSIGNED NOT NULL
+  `language_id` int(11) UNSIGNED NOT NULL,
+  `domain_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -267,7 +276,7 @@ TRUNCATE TABLE `main_config`;
 
 DROP TABLE IF EXISTS `main_domain`;
 CREATE TABLE `main_domain` (
-  `domain_id` int(10) UNSIGNED NOT NULL,
+  `domain_id` int(11) UNSIGNED NOT NULL,
   `domain_name` varchar(60) NOT NULL,
   `domain_alias` varchar(40) NOT NULL,
   `domain_is_active` enum('y','n') NOT NULL DEFAULT 'n'
@@ -286,7 +295,7 @@ TRUNCATE TABLE `main_domain`;
 
 DROP TABLE IF EXISTS `main_gallery`;
 CREATE TABLE `main_gallery` (
-  `gallery_id` int(10) UNSIGNED NOT NULL,
+  `gallery_id` int(11) UNSIGNED NOT NULL,
   `gallery_title` varchar(255) NOT NULL,
   `thumbnail` varchar(255) DEFAULT NULL,
   `description` text,
@@ -331,35 +340,17 @@ TRUNCATE TABLE `main_language`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `main_layout`
---
-
-DROP TABLE IF EXISTS `main_layout`;
-CREATE TABLE `main_layout` (
-  `layout_id` int(11) UNSIGNED NOT NULL,
-  `layout_name` varchar(100) NOT NULL,
-  `layout_title` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Truncate table before insert `main_layout`
---
-
-TRUNCATE TABLE `main_layout`;
--- --------------------------------------------------------
-
---
 -- Table structure for table `main_link`
 --
 
 DROP TABLE IF EXISTS `main_link`;
 CREATE TABLE `main_link` (
-  `link_id` int(10) UNSIGNED NOT NULL,
+  `link_id` int(11) UNSIGNED NOT NULL,
   `link_title` varchar(255) NOT NULL,
   `link_url` varchar(255) NOT NULL,
-  `position` int(10) UNSIGNED NOT NULL DEFAULT '1',
+  `position` int(11) UNSIGNED NOT NULL DEFAULT '1',
   `is_show` enum('y','n') NOT NULL DEFAULT 'n',
-  `parent_id` int(10) UNSIGNED NOT NULL
+  `parent_id` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -373,10 +364,10 @@ TRUNCATE TABLE `main_link`;
 
 INSERT INTO `main_link` (`link_id`, `link_title`, `link_url`, `position`, `is_show`, `parent_id`) VALUES
 (1, 'Home', '/', 1, 'y', 0),
-(2, 'Contact', '/contact', 2, 'y', 0),
-(3, 'About', '/about', 3, 'n', 0),
-(4, 'Administrator', '/about/administrator', 5, 'n', 3),
-(5, 'Trinh Quoc Hoang', '/about/trinh-quoc-hoang', 4, 'y', 4);
+(2, 'Contact', '/contact', 4, 'y', 0),
+(3, 'About', '/about', 5, 'n', 0),
+(4, 'Administrator', '/about/administrator', 2, 'n', 3),
+(5, 'Trinh Quoc Hoang', '/about/trinh-quoc-hoang', 3, 'y', 4);
 
 -- --------------------------------------------------------
 
@@ -386,15 +377,15 @@ INSERT INTO `main_link` (`link_id`, `link_title`, `link_url`, `position`, `is_sh
 
 DROP TABLE IF EXISTS `main_media`;
 CREATE TABLE `main_media` (
-  `media_id` int(10) UNSIGNED NOT NULL,
+  `media_id` int(11) UNSIGNED NOT NULL,
   `media_title` varchar(255) NOT NULL,
   `media_url` varchar(255) DEFAULT NULL,
   `thumbnail` varchar(255) DEFAULT NULL,
   `media_link` varchar(255) NOT NULL,
   `description` text,
-  `position` int(10) UNSIGNED NOT NULL DEFAULT '1',
-  `widget_id` int(10) UNSIGNED DEFAULT NULL,
-  `gallery_id` int(10) UNSIGNED DEFAULT NULL,
+  `position` int(11) UNSIGNED NOT NULL DEFAULT '1',
+  `widget_id` int(11) UNSIGNED DEFAULT NULL,
+  `gallery_id` int(11) UNSIGNED DEFAULT NULL,
   `is_active` enum('y','n') NOT NULL DEFAULT 'n',
   `media_config` text,
   `created_at` datetime NOT NULL,
@@ -459,8 +450,7 @@ CREATE TABLE `main_module` (
   `module_path` varchar(100) NOT NULL,
   `module_version` varchar(20) NOT NULL,
   `module_is_active` enum('y','n') NOT NULL DEFAULT 'n',
-  `module_is_readonly` enum('y','n') NOT NULL DEFAULT 'n',
-  `user_id` int(11) UNSIGNED NOT NULL
+  `module_is_readonly` enum('y','n') NOT NULL DEFAULT 'n'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -472,10 +462,10 @@ TRUNCATE TABLE `main_module`;
 -- Dumping data for table `main_module`
 --
 
-INSERT INTO `main_module` (`module_id`, `module_package`, `module_path`, `module_version`, `module_is_active`, `module_is_readonly`, `user_id`) VALUES
-(1, 'system.dashboard', 'dashboard', '1.0', 'y', 'y', 1),
-(2, 'system.article', 'article', '1.0', 'y', 'n', 1),
-(3, 'system.product', 'product', '1.0', 'n', 'n', 1);
+INSERT INTO `main_module` (`module_id`, `module_package`, `module_path`, `module_version`, `module_is_active`, `module_is_readonly`) VALUES
+(1, 'system.dashboard', 'dashboard', '1.0', 'y', 'y'),
+(2, 'system.article', 'article', '1.0', 'y', 'n'),
+(3, 'system.product', 'product', '1.0', 'n', 'n');
 
 -- --------------------------------------------------------
 
@@ -485,10 +475,10 @@ INSERT INTO `main_module` (`module_id`, `module_package`, `module_path`, `module
 
 DROP TABLE IF EXISTS `main_modulemeta`;
 CREATE TABLE `main_modulemeta` (
-  `mdmeta_id` int(10) UNSIGNED NOT NULL,
+  `mdmeta_id` int(11) UNSIGNED NOT NULL,
   `mdmeta_key` varchar(40) NOT NULL,
   `mdmeta_value` longtext NOT NULL,
-  `module_id` int(10) UNSIGNED NOT NULL
+  `module_id` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -496,6 +486,259 @@ CREATE TABLE `main_modulemeta` (
 --
 
 TRUNCATE TABLE `main_modulemeta`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_product`
+--
+
+DROP TABLE IF EXISTS `main_product`;
+CREATE TABLE `main_product` (
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `product_name` varchar(255) NOT NULL,
+  `product_thumb` varchar(255) DEFAULT NULL,
+  `product_image` text,
+  `product_summary` text,
+  `product_content` longtext,
+  `product_code` varchar(50) DEFAULT NULL,
+  `product_barcode` varchar(20) DEFAULT NULL,
+  `price` decimal(12,2) NOT NULL,
+  `reduction_price` decimal(12,2) DEFAULT NULL,
+  `reduction_percent` smallint(3) DEFAULT NULL,
+  `reduction_from` date DEFAULT NULL,
+  `reduction_to` date DEFAULT NULL,
+  `wholesale_price` decimal(12,2) DEFAULT NULL,
+  `brand_id` int(11) UNSIGNED NOT NULL,
+  `manufacturer_id` int(11) UNSIGNED NOT NULL,
+  `supplier_id` int(11) UNSIGNED NOT NULL,
+  `is_instock` enum('y','n') NOT NULL DEFAULT 'y',
+  `is_new` enum('y','n') NOT NULL DEFAULT 'n',
+  `is_hot` enum('y','n') NOT NULL DEFAULT 'n',
+  `meta_keywords` varchar(255) DEFAULT NULL,
+  `meta_description` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_product`
+--
+
+TRUNCATE TABLE `main_product`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_product_attribute`
+--
+
+DROP TABLE IF EXISTS `main_product_attribute`;
+CREATE TABLE `main_product_attribute` (
+  `attr_id` int(11) UNSIGNED NOT NULL,
+  `attr_name` varchar(100) NOT NULL,
+  `group_id` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_product_attribute`
+--
+
+TRUNCATE TABLE `main_product_attribute`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_product_attribute_group`
+--
+
+DROP TABLE IF EXISTS `main_product_attribute_group`;
+CREATE TABLE `main_product_attribute_group` (
+  `group_id` int(11) UNSIGNED NOT NULL,
+  `group_name` varchar(120) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_product_attribute_group`
+--
+
+TRUNCATE TABLE `main_product_attribute_group`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_product_attribute_relation`
+--
+
+DROP TABLE IF EXISTS `main_product_attribute_relation`;
+CREATE TABLE `main_product_attribute_relation` (
+  `parealation_id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `attr_id` int(11) UNSIGNED NOT NULL,
+  `price` decimal(12,2) DEFAULT NULL,
+  `wholesale_price` decimal(12,2) DEFAULT NULL,
+  `quantity` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_product_attribute_relation`
+--
+
+TRUNCATE TABLE `main_product_attribute_relation`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_product_brand`
+--
+
+DROP TABLE IF EXISTS `main_product_brand`;
+CREATE TABLE `main_product_brand` (
+  `brand_id` int(11) UNSIGNED NOT NULL,
+  `brand_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_product_brand`
+--
+
+TRUNCATE TABLE `main_product_brand`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_product_catalog`
+--
+
+DROP TABLE IF EXISTS `main_product_catalog`;
+CREATE TABLE `main_product_catalog` (
+  `catalog_id` int(11) UNSIGNED NOT NULL,
+  `catalog_name` varchar(120) NOT NULL,
+  `catalog_image` varchar(120) DEFAULT NULL,
+  `catalog_description` text,
+  `sort_order` int(11) UNSIGNED DEFAULT NULL,
+  `parent_id` int(11) UNSIGNED NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_product_catalog`
+--
+
+TRUNCATE TABLE `main_product_catalog`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_product_catalog_relation`
+--
+
+DROP TABLE IF EXISTS `main_product_catalog_relation`;
+CREATE TABLE `main_product_catalog_relation` (
+  `pcrelation_id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `catalog_id` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_product_catalog_relation`
+--
+
+TRUNCATE TABLE `main_product_catalog_relation`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_product_combo`
+--
+
+DROP TABLE IF EXISTS `main_product_combo`;
+CREATE TABLE `main_product_combo` (
+  `combo_id` int(11) UNSIGNED NOT NULL,
+  `combo_name` varchar(255) NOT NULL,
+  `combo_thumb` varchar(255) DEFAULT NULL,
+  `combo_image` text,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_product_combo`
+--
+
+TRUNCATE TABLE `main_product_combo`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_product_combo_relation`
+--
+
+DROP TABLE IF EXISTS `main_product_combo_relation`;
+CREATE TABLE `main_product_combo_relation` (
+  `pcorelation_id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `product_quantity` int(11) UNSIGNED NOT NULL,
+  `is_main` enum('y','n') NOT NULL DEFAULT 'n'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_product_combo_relation`
+--
+
+TRUNCATE TABLE `main_product_combo_relation`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_product_manufacturer`
+--
+
+DROP TABLE IF EXISTS `main_product_manufacturer`;
+CREATE TABLE `main_product_manufacturer` (
+  `manufacturer_id` int(10) UNSIGNED NOT NULL,
+  `manufacturer_name` varchar(255) NOT NULL,
+  `manufacturer_logo` varchar(255) DEFAULT NULL,
+  `description` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_product_manufacturer`
+--
+
+TRUNCATE TABLE `main_product_manufacturer`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_product_supplier`
+--
+
+DROP TABLE IF EXISTS `main_product_supplier`;
+CREATE TABLE `main_product_supplier` (
+  `supplier_id` int(11) UNSIGNED NOT NULL,
+  `supplier_name` varchar(255) NOT NULL,
+  `supplier_address` varchar(500) DEFAULT NULL,
+  `supplier_email` varchar(60) NOT NULL,
+  `supplier_phone` varchar(20) NOT NULL,
+  `supplier_logo` varchar(255) NOT NULL,
+  `description` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_product_supplier`
+--
+
+TRUNCATE TABLE `main_product_supplier`;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `main_product_tag`
+--
+
+DROP TABLE IF EXISTS `main_product_tag`;
+CREATE TABLE `main_product_tag` (
+  `tag_id` int(11) NOT NULL,
+  `tag_title` varchar(100) NOT NULL,
+  `tag_url` varchar(100) NOT NULL,
+  `is_show` enum('y','n') NOT NULL DEFAULT 'y'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Truncate table before insert `main_product_tag`
+--
+
+TRUNCATE TABLE `main_product_tag`;
 -- --------------------------------------------------------
 
 --
@@ -539,7 +782,7 @@ INSERT INTO `main_tag` (`tag_id`, `tag_title`, `tag_url`, `is_show`) VALUES
 
 DROP TABLE IF EXISTS `main_user`;
 CREATE TABLE `main_user` (
-  `user_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL,
   `user_email` varchar(60) NOT NULL,
   `user_pass` varchar(32) NOT NULL,
   `full_name` varchar(30) DEFAULT NULL,
@@ -548,7 +791,7 @@ CREATE TABLE `main_user` (
   `last_active` datetime DEFAULT NULL,
   `token` varchar(32) NOT NULL,
   `bio` text,
-  `group_id` int(10) UNSIGNED NOT NULL,
+  `group_id` int(11) UNSIGNED NOT NULL,
   `status` tinyint(2) NOT NULL COMMENT '0:Inactived, 1:Actived, 2:Locked'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -562,7 +805,7 @@ TRUNCATE TABLE `main_user`;
 --
 
 INSERT INTO `main_user` (`user_id`, `user_email`, `user_pass`, `full_name`, `avatar`, `join_date`, `last_active`, `token`, `bio`, `group_id`, `status`) VALUES
-(1, 'quochoangvp@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trịnh Quốc Hoàng', '/assets/uploads/images/SIdSloth2.jpg', '2016-05-30 10:15:00', '0000-00-00 00:00:00', '8d6239c01e6e481b961046493ea51ff7', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1),
+(1, 'quochoangvp@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Trịnh Quốc Hoàng', '/assets/uploads/sT92TlS.jpg', '2016-05-30 10:15:00', '2016-03-03 14:25:00', '8d6239c01e6e481b961046493ea51ff7', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1),
 (2, 'admin@localhost.com', '123456', 'Admin 1', '/assets/uploads/images/6gedge.jpg', '2016-06-06 22:55:25', '2016-06-06 22:55:25', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1),
 (3, 'admin@localhost.vm', 'd41d8cd98f00b204e9800998ecf8427e', 'Admin 2', '/assets/uploads/images/SIdSloth2.jpg', '2016-06-06 22:55:58', '2016-06-06 22:55:58', '', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\ntempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\nquis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\nconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\ncillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\nproident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 1, 1);
 
@@ -574,7 +817,7 @@ INSERT INTO `main_user` (`user_id`, `user_email`, `user_pass`, `full_name`, `ava
 
 DROP TABLE IF EXISTS `main_usergroup`;
 CREATE TABLE `main_usergroup` (
-  `group_id` int(10) UNSIGNED NOT NULL,
+  `group_id` int(11) UNSIGNED NOT NULL,
   `group_name` varchar(100) NOT NULL,
   `permission` text NOT NULL,
   `status` tinyint(2) UNSIGNED NOT NULL COMMENT '0: Inactived, 1: Actived'
@@ -604,12 +847,11 @@ INSERT INTO `main_usergroup` (`group_id`, `group_name`, `permission`, `status`) 
 
 DROP TABLE IF EXISTS `main_widget`;
 CREATE TABLE `main_widget` (
-  `widget_id` int(10) UNSIGNED NOT NULL,
+  `widget_id` int(11) UNSIGNED NOT NULL,
   `widget_name` varchar(100) NOT NULL,
   `widget_title` varchar(100) DEFAULT NULL,
   `description` text,
   `image` varchar(255) DEFAULT NULL,
-  `user_group_ids` varchar(255) NOT NULL,
   `position` int(5) UNSIGNED NOT NULL DEFAULT '1',
   `is_active` enum('y','n') NOT NULL DEFAULT 'n',
   `content` text,
@@ -618,7 +860,7 @@ CREATE TABLE `main_widget` (
   `layout` varchar(30) NOT NULL,
   `theme` varchar(30) NOT NULL,
   `is_static_content` enum('y','n') NOT NULL DEFAULT 'n',
-  `type_id` int(10) UNSIGNED NOT NULL
+  `type_id` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -626,24 +868,6 @@ CREATE TABLE `main_widget` (
 --
 
 TRUNCATE TABLE `main_widget`;
---
--- Dumping data for table `main_widget`
---
-
-INSERT INTO `main_widget` (`widget_id`, `widget_name`, `widget_title`, `description`, `image`, `user_group_ids`, `position`, `is_active`, `content`, `position_name`, `config`, `layout`, `theme`, `is_static_content`, `type_id`) VALUES
-(1, 'main_nav', 'Main navigation', 'Main navigation', '/assets/uploads/Ice-Age-Continental-Drift-Sid-On-The-Ocean-1920x1200-Wallpaper-ToonsWallpapers.com-.jpg', '1|2|3|4', 1, 'y', '&lt;p&gt;&lt;img src=&quot;/assets/uploads/HaiDongVat.png?1465455200049&quot; alt=&quot;bicycle-art-hd-wallpaper-desktop-b57&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;&lt;/p&gt;', 'main_nav', '{"categories":["1","2","3","4","5","6","7","8","9","10","14"]}', 'home', 'news', 'n', 2),
-(4, 'main_slideshow', 'Main slideshow', 'Main slideshow', '', '1|2|3|4', 1, 'y', '&lt;p&gt;Bla bla&lt;/p&gt;', 'body', NULL, 'home', 'news', 'y', 7),
-(5, 'welcome', 'WELCOME TO FLATLAB', 'Professional html Template Perfect for Admin Dashboard', '', '1|2|3|4', 1, 'y', '', 'body', '{"quote_title":"Developer friendly code","quote_desc":"Bundled with awesome features, UI resource unlimited colors, advanced theme options & much more!","btn_text":"Purchase now","btn_link":"javascript:;"}', 'home', 'news', 'n', 7),
-(6, 'property', 'Flat &amp; modern trend design', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener. natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ablic jiener. natus error sit voluptatem accusantiu.', '/assets/uploads/images/blocks/property-img.png', '1|2|3|4', 1, 'y', '', 'body', '{"btn_purchase_link":"\\/purchase_link.html","btn_purchase_text":"Purchase now"}', 'home', 'news', 'n', 7),
-(8, 'news', 'News block', '', '', '1|2|3|4', 1, 'y', '', 'position_1', '{"list":[{"title":"PHP","categories":"1|2|3|4|13"},{"title":"Javascript","categories":"5|6|7"},{"title":"HTML","categories":"5|6|7|14"}]}', 'home', 'news', 'n', 3),
-(9, 'home_support', 'Home support info', '', '', '1|2|3|4', 1, 'y', '', 'position_2', '{"users":["1","2","3"]}', 'home', 'news', 'n', 1),
-(10, 'recent_work', 'Recent work', '', '', '1|2|3|4', 1, 'y', '', 'position_3', '{"":""}', 'home', 'news', 'n', 7),
-(11, 'slogan', 'Slogan', '“And here i am using my own lungs like a sucker. How is education supposed to make \r\nme feel smarter?”', '/assets/uploads/images/flat_parallax.jpg', '1|2|3|4', 1, 'y', '', 'position_4', '{"_empty_":""}', 'home', 'news', 'n', 7),
-(12, 'partner', 'Partner', '', '', '1|2|3|4', 1, 'y', '', 'position_4', '{"":""}', 'home', 'news', 'n', 7),
-(13, 'contact_info', 'Contact info', '', '', '1|2|3|4', 1, 'y', '', 'footer_col_1', '{"Address":"No.28-63877 street  lorem ipsum city, Country","Phone":"(123) 456-7890","Fax":"(123) 456-7890","Email":"support@vectorlab.com"}', 'home', 'news', 'n', 7),
-(14, 'latest_tweet', 'Latest Tweet', '', '', '1|2|3|4', 1, 'y', '&lt;p&gt;&lt;i class=&quot;icon-twitter&quot;&gt;&lt;/i&gt;&lt;em&gt;Please follow &lt;a&gt;@nettus&lt;/a&gt; for all future updates of us! &lt;a&gt;twitter.com/vectorlab&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;', 'footer_col_2', '{"user_name":"@nettus","user_link":"https:\\/\\/twitter.com\\/@nettus","tweet_name":"twitter.com\\/vectorlab","tweet_link":"https:\\/\\/twitter.com\\/vectorlab"}', 'home', 'news', 'y', 7),
-(15, 'social', 'Stay connected', '', '', '1|2|3|4', 1, 'y', '', 'footer_col_3', '{"":""}', 'home', 'news', 'n', 7);
-
 -- --------------------------------------------------------
 
 --
@@ -652,7 +876,7 @@ INSERT INTO `main_widget` (`widget_id`, `widget_name`, `widget_title`, `descript
 
 DROP TABLE IF EXISTS `main_widgettype`;
 CREATE TABLE `main_widgettype` (
-  `type_id` int(10) UNSIGNED NOT NULL,
+  `type_id` int(11) UNSIGNED NOT NULL,
   `type_name` varchar(60) NOT NULL,
   `type_title` varchar(125) NOT NULL,
   `config` text,
@@ -686,37 +910,46 @@ INSERT INTO `main_widgettype` (`type_id`, `type_name`, `type_title`, `config`, `
 -- Indexes for table `main_admin_menu`
 --
 ALTER TABLE `main_admin_menu`
-  ADD PRIMARY KEY (`amenu_id`);
+  ADD PRIMARY KEY (`amenu_id`),
+  ADD KEY `parent_id` (`parent_id`);
 
 --
 -- Indexes for table `main_article`
 --
 ALTER TABLE `main_article`
-  ADD PRIMARY KEY (`article_id`);
+  ADD PRIMARY KEY (`article_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `main_article_category`
 --
 ALTER TABLE `main_article_category`
-  ADD PRIMARY KEY (`acate_id`);
+  ADD PRIMARY KEY (`acate_id`),
+  ADD KEY `article_id` (`article_id`),
+  ADD KEY `category_id` (`category_id`);
 
 --
 -- Indexes for table `main_article_tag`
 --
 ALTER TABLE `main_article_tag`
-  ADD PRIMARY KEY (`atag_id`);
+  ADD PRIMARY KEY (`atag_id`),
+  ADD KEY `article_id` (`article_id`),
+  ADD KEY `tag_id` (`tag_id`);
 
 --
 -- Indexes for table `main_category`
 --
 ALTER TABLE `main_category`
-  ADD PRIMARY KEY (`category_id`);
+  ADD PRIMARY KEY (`category_id`),
+  ADD KEY `parent_id` (`parent_id`);
 
 --
 -- Indexes for table `main_config`
 --
 ALTER TABLE `main_config`
-  ADD PRIMARY KEY (`config_id`);
+  ADD PRIMARY KEY (`config_id`),
+  ADD KEY `language_id` (`language_id`),
+  ADD KEY `domain_id` (`domain_id`);
 
 --
 -- Indexes for table `main_domain`
@@ -735,12 +968,6 @@ ALTER TABLE `main_gallery`
 --
 ALTER TABLE `main_language`
   ADD PRIMARY KEY (`language_id`);
-
---
--- Indexes for table `main_layout`
---
-ALTER TABLE `main_layout`
-  ADD PRIMARY KEY (`layout_id`);
 
 --
 -- Indexes for table `main_link`
@@ -767,7 +994,90 @@ ALTER TABLE `main_module`
 -- Indexes for table `main_modulemeta`
 --
 ALTER TABLE `main_modulemeta`
-  ADD PRIMARY KEY (`mdmeta_id`);
+  ADD PRIMARY KEY (`mdmeta_id`),
+  ADD KEY `module_id` (`module_id`);
+
+--
+-- Indexes for table `main_product`
+--
+ALTER TABLE `main_product`
+  ADD PRIMARY KEY (`product_id`),
+  ADD KEY `brand_id` (`brand_id`),
+  ADD KEY `manufacturer_id` (`manufacturer_id`),
+  ADD KEY `supplier_id` (`supplier_id`);
+
+--
+-- Indexes for table `main_product_attribute`
+--
+ALTER TABLE `main_product_attribute`
+  ADD PRIMARY KEY (`attr_id`),
+  ADD KEY `attr_id` (`group_id`);
+
+--
+-- Indexes for table `main_product_attribute_group`
+--
+ALTER TABLE `main_product_attribute_group`
+  ADD PRIMARY KEY (`group_id`);
+
+--
+-- Indexes for table `main_product_attribute_relation`
+--
+ALTER TABLE `main_product_attribute_relation`
+  ADD PRIMARY KEY (`parealation_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `value_id` (`attr_id`);
+
+--
+-- Indexes for table `main_product_brand`
+--
+ALTER TABLE `main_product_brand`
+  ADD PRIMARY KEY (`brand_id`);
+
+--
+-- Indexes for table `main_product_catalog`
+--
+ALTER TABLE `main_product_catalog`
+  ADD PRIMARY KEY (`catalog_id`),
+  ADD KEY `parent_id` (`parent_id`);
+
+--
+-- Indexes for table `main_product_catalog_relation`
+--
+ALTER TABLE `main_product_catalog_relation`
+  ADD PRIMARY KEY (`pcrelation_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `catalog_id` (`catalog_id`);
+
+--
+-- Indexes for table `main_product_combo`
+--
+ALTER TABLE `main_product_combo`
+  ADD PRIMARY KEY (`combo_id`);
+
+--
+-- Indexes for table `main_product_combo_relation`
+--
+ALTER TABLE `main_product_combo_relation`
+  ADD PRIMARY KEY (`pcorelation_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
+-- Indexes for table `main_product_manufacturer`
+--
+ALTER TABLE `main_product_manufacturer`
+  ADD PRIMARY KEY (`manufacturer_id`);
+
+--
+-- Indexes for table `main_product_supplier`
+--
+ALTER TABLE `main_product_supplier`
+  ADD PRIMARY KEY (`supplier_id`);
+
+--
+-- Indexes for table `main_product_tag`
+--
+ALTER TABLE `main_product_tag`
+  ADD PRIMARY KEY (`tag_id`);
 
 --
 -- Indexes for table `main_tag`
@@ -793,8 +1103,6 @@ ALTER TABLE `main_usergroup`
 --
 ALTER TABLE `main_widget`
   ADD PRIMARY KEY (`widget_id`),
-  ADD KEY `user_group_id` (`user_group_ids`),
-  ADD KEY `layout_id` (`layout`),
   ADD KEY `type_id` (`type_id`);
 
 --
@@ -811,12 +1119,12 @@ ALTER TABLE `main_widgettype`
 -- AUTO_INCREMENT for table `main_admin_menu`
 --
 ALTER TABLE `main_admin_menu`
-  MODIFY `amenu_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `amenu_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `main_article`
 --
 ALTER TABLE `main_article`
-  MODIFY `article_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `article_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `main_article_category`
 --
@@ -826,12 +1134,12 @@ ALTER TABLE `main_article_category`
 -- AUTO_INCREMENT for table `main_article_tag`
 --
 ALTER TABLE `main_article_tag`
-  MODIFY `atag_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `atag_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `main_category`
 --
 ALTER TABLE `main_category`
-  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `category_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `main_config`
 --
@@ -841,32 +1149,27 @@ ALTER TABLE `main_config`
 -- AUTO_INCREMENT for table `main_domain`
 --
 ALTER TABLE `main_domain`
-  MODIFY `domain_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `domain_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `main_gallery`
 --
 ALTER TABLE `main_gallery`
-  MODIFY `gallery_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `gallery_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `main_language`
 --
 ALTER TABLE `main_language`
   MODIFY `language_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `main_layout`
---
-ALTER TABLE `main_layout`
-  MODIFY `layout_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `main_link`
 --
 ALTER TABLE `main_link`
-  MODIFY `link_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `link_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `main_media`
 --
 ALTER TABLE `main_media`
-  MODIFY `media_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `media_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `main_module`
 --
@@ -876,7 +1179,57 @@ ALTER TABLE `main_module`
 -- AUTO_INCREMENT for table `main_modulemeta`
 --
 ALTER TABLE `main_modulemeta`
-  MODIFY `mdmeta_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `mdmeta_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `main_product`
+--
+ALTER TABLE `main_product`
+  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `main_product_attribute_group`
+--
+ALTER TABLE `main_product_attribute_group`
+  MODIFY `group_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `main_product_attribute_relation`
+--
+ALTER TABLE `main_product_attribute_relation`
+  MODIFY `parealation_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `main_product_brand`
+--
+ALTER TABLE `main_product_brand`
+  MODIFY `brand_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `main_product_catalog`
+--
+ALTER TABLE `main_product_catalog`
+  MODIFY `catalog_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `main_product_catalog_relation`
+--
+ALTER TABLE `main_product_catalog_relation`
+  MODIFY `pcrelation_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `main_product_combo`
+--
+ALTER TABLE `main_product_combo`
+  MODIFY `combo_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `main_product_combo_relation`
+--
+ALTER TABLE `main_product_combo_relation`
+  MODIFY `pcorelation_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `main_product_manufacturer`
+--
+ALTER TABLE `main_product_manufacturer`
+  MODIFY `manufacturer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `main_product_supplier`
+--
+ALTER TABLE `main_product_supplier`
+  MODIFY `supplier_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `main_tag`
 --
@@ -886,22 +1239,22 @@ ALTER TABLE `main_tag`
 -- AUTO_INCREMENT for table `main_user`
 --
 ALTER TABLE `main_user`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `main_usergroup`
 --
 ALTER TABLE `main_usergroup`
-  MODIFY `group_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `group_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `main_widget`
 --
 ALTER TABLE `main_widget`
-  MODIFY `widget_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `widget_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `main_widgettype`
 --
 ALTER TABLE `main_widgettype`
-  MODIFY `type_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `type_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
