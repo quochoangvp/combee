@@ -11,7 +11,7 @@ class Tags extends Backend_Controller {
 
 	public function index() {
 		$data['tags'] = $this->common_product_tag->get_all_tags();
-		$this->load->view('list', $data);
+		$this->load->view('tags/list', $data);
 	}
 
 }
