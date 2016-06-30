@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.4.1deb2ubuntu1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 29, 2016 at 07:31 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.6
+-- Host: localhost
+-- Generation Time: Jun 30, 2016 at 03:02 PM
+-- Server version: 10.0.25-MariaDB-0ubuntu0.16.04.1
+-- PHP Version: 7.0.4-7ubuntu2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -364,10 +364,10 @@ TRUNCATE TABLE `main_link`;
 
 INSERT INTO `main_link` (`link_id`, `link_title`, `link_url`, `position`, `is_show`, `parent_id`) VALUES
 (1, 'Home', '/', 1, 'y', 0),
-(2, 'Contact', '/contact', 4, 'y', 0),
-(3, 'About', '/about', 5, 'n', 0),
-(4, 'Administrator', '/about/administrator', 2, 'n', 3),
-(5, 'Trinh Quoc Hoang', '/about/trinh-quoc-hoang', 3, 'y', 4);
+(2, 'Contact', '/contact', 5, 'y', 0),
+(3, 'About', '/about', 2, 'n', 0),
+(4, 'Administrator', '/about/administrator', 3, 'n', 3),
+(5, 'Trinh Quoc Hoang', '/about/trinh-quoc-hoang', 4, 'y', 4);
 
 -- --------------------------------------------------------
 
@@ -590,7 +590,9 @@ TRUNCATE TABLE `main_product_attribute_relation`;
 DROP TABLE IF EXISTS `main_product_brand`;
 CREATE TABLE `main_product_brand` (
   `brand_id` int(11) UNSIGNED NOT NULL,
-  `brand_name` varchar(100) NOT NULL
+  `brand_name` varchar(100) NOT NULL,
+  `brand_logo` varchar(255) DEFAULT NULL,
+  `description` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -598,6 +600,13 @@ CREATE TABLE `main_product_brand` (
 --
 
 TRUNCATE TABLE `main_product_brand`;
+--
+-- Dumping data for table `main_product_brand`
+--
+
+INSERT INTO `main_product_brand` (`brand_id`, `brand_name`, `brand_logo`, `description`) VALUES
+(2, 'Samsung', '/assets/uploads/rIP4wPf.jpg', 'About samsung');
+
 -- --------------------------------------------------------
 
 --
@@ -608,8 +617,9 @@ DROP TABLE IF EXISTS `main_product_catalog`;
 CREATE TABLE `main_product_catalog` (
   `catalog_id` int(11) UNSIGNED NOT NULL,
   `catalog_name` varchar(120) NOT NULL,
+  `catalog_url` varchar(120) DEFAULT NULL,
   `catalog_image` varchar(120) DEFAULT NULL,
-  `catalog_description` text,
+  `description` text,
   `sort_order` int(11) UNSIGNED DEFAULT NULL,
   `parent_id` int(11) UNSIGNED NOT NULL,
   `created_at` datetime NOT NULL,
@@ -621,6 +631,15 @@ CREATE TABLE `main_product_catalog` (
 --
 
 TRUNCATE TABLE `main_product_catalog`;
+--
+-- Dumping data for table `main_product_catalog`
+--
+
+INSERT INTO `main_product_catalog` (`catalog_id`, `catalog_name`, `catalog_url`, `catalog_image`, `description`, `sort_order`, `parent_id`, `created_at`, `updated_at`) VALUES
+(1, 'Electronics', 'electronics', '/assets/uploads/rIP4wPf.jpg', '&lt;p&gt;Electronics&lt;/p&gt;', 1, 0, '2016-06-30 14:41:53', '0000-00-00 00:00:00'),
+(2, 'Mobile', 'mobile', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '&lt;p&gt;Mobile&lt;/p&gt;', 2, 1, '2016-06-30 14:50:41', '0000-00-00 00:00:00'),
+(3, 'Cameras &amp; Photo', 'cameras-and-photo', '/assets/uploads/145IpS1.jpg', '&lt;p&gt;&lt;span&gt;Cameras &amp;amp; Photo&lt;/span&gt;&lt;/p&gt;', 3, 1, '2016-06-30 14:51:23', '2016-06-30 15:00:24');
+
 -- --------------------------------------------------------
 
 --
@@ -698,6 +717,13 @@ CREATE TABLE `main_product_manufacturer` (
 --
 
 TRUNCATE TABLE `main_product_manufacturer`;
+--
+-- Dumping data for table `main_product_manufacturer`
+--
+
+INSERT INTO `main_product_manufacturer` (`manufacturer_id`, `manufacturer_name`, `manufacturer_logo`, `description`) VALUES
+(3, 'Sid', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', 'Ice Age 3');
+
 -- --------------------------------------------------------
 
 --
@@ -720,6 +746,13 @@ CREATE TABLE `main_product_supplier` (
 --
 
 TRUNCATE TABLE `main_product_supplier`;
+--
+-- Dumping data for table `main_product_supplier`
+--
+
+INSERT INTO `main_product_supplier` (`supplier_id`, `supplier_name`, `supplier_address`, `supplier_email`, `supplier_phone`, `supplier_logo`, `description`) VALUES
+(1, 'John Carret', 'USA', 'johncarret@gmail.com', '0987654321', '/assets/uploads/145IpS1.jpg', 'About me');
+
 -- --------------------------------------------------------
 
 --
@@ -1208,12 +1241,12 @@ ALTER TABLE `main_product_attribute_relation`
 -- AUTO_INCREMENT for table `main_product_brand`
 --
 ALTER TABLE `main_product_brand`
-  MODIFY `brand_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `brand_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `main_product_catalog`
 --
 ALTER TABLE `main_product_catalog`
-  MODIFY `catalog_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `catalog_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `main_product_catalog_relation`
 --
@@ -1233,12 +1266,12 @@ ALTER TABLE `main_product_combo_relation`
 -- AUTO_INCREMENT for table `main_product_manufacturer`
 --
 ALTER TABLE `main_product_manufacturer`
-  MODIFY `manufacturer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `manufacturer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `main_product_supplier`
 --
 ALTER TABLE `main_product_supplier`
-  MODIFY `supplier_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `supplier_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `main_product_tag`
 --
