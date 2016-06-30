@@ -7,12 +7,29 @@ class Supplier extends Backend_Controller {
     {
         parent::__construct();
         $this->load->model('common/supplier_model', 'common_supplier');
+        $this->load->js('js/pages/product/supplier.js');
+        $this->load->css('assets/bootstrap-fileupload/bootstrap-fileupload.css');
     }
 
     public function index()
     {
         $data['suppliers'] = $this->common_supplier->get_all();
         $this->load->view('supplier/list', $data);
+    }
+
+    public function create()
+    {
+        $this->load->view('supplier/form');
+    }
+
+    public function edit($id = null)
+    {
+        $id = (int) $id;
+        $data['supplier'] = $this->common_supplier->get($id);
+        if (!$data['supplier']) {
+            show_404();
+        }
+        $this->load->view('supplier/form', $data);
     }
 
 }

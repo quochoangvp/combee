@@ -31,7 +31,7 @@
                         <td><?php echo $supplier['supplier_address']; ?></td>
                         <td>
                             <a class="btn btn-primary btn-xs" href="<?php echo admin_url('product/supplier/edit/' . $supplier['supplier_id']) ?>"><i class="icon-pencil"></i></a>
-                            <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                            <button class="btn btn-danger btn-xs" onclick="confirm_delete_supplier(<?php echo $supplier['supplier_id'] ?>)"><i class="icon-trash "></i></button>
                         </td>
                     </tr>
                     <?php endforeach;?>

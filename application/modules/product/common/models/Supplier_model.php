@@ -24,7 +24,7 @@ class Supplier_model extends Base_model {
         array(
             'field' => 'supplier_phone',
             'label' => 'Phone number',
-            'rules' => 'trim|number|max_length[20]',
+            'rules' => 'trim|integer|max_length[20]',
         ),
         array(
             'field' => 'supplier_logo',
