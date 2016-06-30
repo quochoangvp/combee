@@ -98,7 +98,6 @@ class Supplier extends Api_Controller {
 			if ($this->common_supplier->delete($id)) {
 				return $this->response([
 					'status' => REST_Controller::HTTP_OK,
-					'message' => 'Supplier deleted',
 				], REST_Controller::HTTP_OK);
 			} else {
 				return $this->response([
