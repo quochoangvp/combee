@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 30, 2016 at 03:02 PM
+-- Generation Time: Jun 30, 2016 at 06:13 PM
 -- Server version: 10.0.25-MariaDB-0ubuntu0.16.04.1
 -- PHP Version: 7.0.4-7ubuntu2.1
 
@@ -75,7 +75,8 @@ INSERT INTO `main_admin_menu` (`amenu_id`, `amenu_link`, `amenu_text`, `amenu_ic
 (23, 'product/manufacturer', 'Manufacturer', '', 19, 4, 'y', ''),
 (24, 'product/supplier', 'Supplier', '', 19, 5, 'y', ''),
 (25, 'product/tags', 'Tags', '', 19, 6, 'y', ''),
-(26, 'product/combo', 'Product combo', '', 19, 7, 'y', '');
+(26, 'product/combo', 'Product combo', '', 19, 7, 'y', ''),
+(27, 'product/attribute', 'Product attribute', '', 19, 8, 'y', '');
 
 -- --------------------------------------------------------
 
@@ -543,6 +544,18 @@ CREATE TABLE `main_product_attribute` (
 --
 
 TRUNCATE TABLE `main_product_attribute`;
+--
+-- Dumping data for table `main_product_attribute`
+--
+
+INSERT INTO `main_product_attribute` (`attr_id`, `attr_name`, `group_id`) VALUES
+(1, 'Red', 1),
+(2, 'Blue', 1),
+(3, 'Yellow', 1),
+(4, 'Black', 1),
+(5, 'Wood', 2),
+(6, 'Leather', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -560,6 +573,15 @@ CREATE TABLE `main_product_attribute_group` (
 --
 
 TRUNCATE TABLE `main_product_attribute_group`;
+--
+-- Dumping data for table `main_product_attribute_group`
+--
+
+INSERT INTO `main_product_attribute_group` (`group_id`, `group_name`) VALUES
+(1, 'Color'),
+(2, 'Material'),
+(3, 'Size');
+
 -- --------------------------------------------------------
 
 --
@@ -638,7 +660,8 @@ TRUNCATE TABLE `main_product_catalog`;
 INSERT INTO `main_product_catalog` (`catalog_id`, `catalog_name`, `catalog_url`, `catalog_image`, `description`, `sort_order`, `parent_id`, `created_at`, `updated_at`) VALUES
 (1, 'Electronics', 'electronics', '/assets/uploads/rIP4wPf.jpg', '&lt;p&gt;Electronics&lt;/p&gt;', 1, 0, '2016-06-30 14:41:53', '0000-00-00 00:00:00'),
 (2, 'Mobile', 'mobile', '/assets/uploads/sid-the-sloth_160031-1920x1080.jpg', '&lt;p&gt;Mobile&lt;/p&gt;', 2, 1, '2016-06-30 14:50:41', '0000-00-00 00:00:00'),
-(3, 'Cameras &amp; Photo', 'cameras-and-photo', '/assets/uploads/145IpS1.jpg', '&lt;p&gt;&lt;span&gt;Cameras &amp;amp; Photo&lt;/span&gt;&lt;/p&gt;', 3, 1, '2016-06-30 14:51:23', '2016-06-30 15:00:24');
+(3, 'Cameras &amp; Photo', 'cameras-and-photo', '/assets/uploads/145IpS1.jpg', '&lt;p&gt;&lt;span&gt;Cameras &amp;amp; Photo&lt;/span&gt;&lt;/p&gt;', 3, 1, '2016-06-30 14:51:23', '2016-06-30 15:00:24'),
+(5, 'Test', 'test', '/assets/uploads/Untitled-1.jpg', '&lt;p&gt;Test&lt;/p&gt;', NULL, 0, '2016-06-30 16:17:30', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -1161,7 +1184,7 @@ ALTER TABLE `main_widgettype`
 -- AUTO_INCREMENT for table `main_admin_menu`
 --
 ALTER TABLE `main_admin_menu`
-  MODIFY `amenu_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `amenu_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `main_article`
 --
@@ -1228,10 +1251,15 @@ ALTER TABLE `main_modulemeta`
 ALTER TABLE `main_product`
   MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT for table `main_product_attribute`
+--
+ALTER TABLE `main_product_attribute`
+  MODIFY `attr_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
 -- AUTO_INCREMENT for table `main_product_attribute_group`
 --
 ALTER TABLE `main_product_attribute_group`
-  MODIFY `group_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `group_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `main_product_attribute_relation`
 --
@@ -1246,7 +1274,7 @@ ALTER TABLE `main_product_brand`
 -- AUTO_INCREMENT for table `main_product_catalog`
 --
 ALTER TABLE `main_product_catalog`
-  MODIFY `catalog_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `catalog_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `main_product_catalog_relation`
 --
@@ -1271,7 +1299,7 @@ ALTER TABLE `main_product_manufacturer`
 -- AUTO_INCREMENT for table `main_product_supplier`
 --
 ALTER TABLE `main_product_supplier`
-  MODIFY `supplier_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `supplier_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `main_product_tag`
 --
