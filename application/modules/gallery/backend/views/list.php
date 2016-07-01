@@ -1,5 +1,5 @@
-<section class="panel">
-    <header class="panel-heading">
+<section class="x_panel">
+    <header class="x_title">
         <h4>
             All galleries
             <span class="pull-right">
@@ -7,7 +7,7 @@
             </span>
         </h4>
     </header>
-    <div class="panel-body">
+    <div class="x_content">
         <div class="adv-table">
         <?php if (is_array($galleries)): ?>
             <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">

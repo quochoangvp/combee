@@ -3,18 +3,21 @@
         <div class="task-title">
             <span class="task-title-sp">{{title}}</span>
             <div class="pull-right hidden-phone">
-                <button class="btn btn-{{is_show}} btn-xs icon-ok cursor-default"></button>
-                <button class="btn btn-primary btn-xs icon-pencil" onclick="go_to_link_edit_page({{id}})"></button>
-                <button class="btn btn-danger btn-xs icon-trash" onclick="delete_link({{id}})"></button>
+                <button class="btn btn-{{is_show}} btn-xs fa fa-check cursor-default"></button>
+                <button class="btn btn-primary btn-xs fa fa-pencil" onclick="go_to_link_edit_page({{id}})"></button>
+                <button class="btn btn-danger btn-xs fa fa-trash" onclick="delete_link({{id}})"></button>
             </div>
         </div>
     </li>
 </script>
-<section class="panel tasks-widget">
-    <header class="panel-heading">
-        All links
+<section class="x_panel tasks-widget">
+    <header class="x_title">
+        <h2>
+            All links
+        </h2>
+        <div class="clearfix"></div>
     </header>
-    <div class="panel-body">
+    <div class="x_content">
         <div class="task-content">
             <ul id="linkList" class="sortable">
                 <!--  -->

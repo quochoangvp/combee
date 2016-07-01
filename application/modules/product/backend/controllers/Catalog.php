@@ -7,8 +7,7 @@ class Catalog extends Backend_Controller {
 	{
 		parent::__construct();
 		$this->load->model('common/catalog_model', 'common_catalog');
-		$this->load->js('js/pages/product/catalog.js');
-		$this->load->css('assets/bootstrap-fileupload/bootstrap-fileupload.css');
+		$this->load->js('assets/js/pages/product/catalog.js');
 	}
 
 	public function index()

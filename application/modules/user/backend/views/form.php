@@ -1,10 +1,10 @@
 <form id="userForm" method="post" action="<?php echo site_url('api/user/' . (isset($user) ? 'update' : 'create')) ?>">
     <div class="cmxform form-horizontal tasi-form">
-        <section class="panel">
-            <header class="panel-heading">
+        <section class="x_panel">
+            <header class="x_title">
                 <?php echo isset($user) ? 'Edit user' : 'Add new user' ?>
             </header>
-            <div class="panel-body">
+            <div class="x_content">
                 <div class="form">
                     <?php echo $this->input->post('message') ? $this->input->post('message') : '' ?>
                     <div class="form-group ">

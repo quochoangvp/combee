@@ -1,8 +1,9 @@
-<section class="panel">
-    <header class="panel-heading">
-        <?php echo isset($link) ? 'Edit link <b>' . $link['link_title'] . '</b>' : 'Add new link' ?>
+<section class="x_panel">
+    <header class="x_title">
+        <h2><?php echo isset($link) ? 'Edit link <b>' . $link['link_title'] . '</b>' : 'Add new link' ?></h2>
+        <div class="clearfix"></div>
     </header>
-    <div class="panel-body">
+    <div class="x_content">
         <div class="form">
             <form class="cmxform form-horizontal tasi-form" id="createlink" method="post"
                 action="<?php echo site_url('api/link/' . (isset($link) ? 'update' : 'create')) ?>">
@@ -34,9 +35,8 @@
                     <label for="status" class="control-label col-lg-2">Status</label>
                     <div class="col-lg-10">
                         <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="y" name="is_show" <?php echo (isset($link['is_show']) && $link['is_show'] == 'y') ? 'checked' : '' ?>>
-                                Yes
+                            <label class="label_check" for="is_show">
+                                <input type="checkbox" value="y" name="is_show" <?php echo (isset($link['is_show']) && $link['is_show'] == 'y') ? 'checked' : '' ?>> Yes
                             </label>
                         </div>
                     </div>

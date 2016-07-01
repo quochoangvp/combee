@@ -7,8 +7,7 @@ class Brand extends Backend_Controller {
     {
         parent::__construct();
         $this->load->model('common/brand_model', 'common_brand');
-        $this->load->js('js/pages/product/brand.js');
-        $this->load->css('assets/bootstrap-fileupload/bootstrap-fileupload.css');
+        $this->load->js('assets/js/pages/product/brand.js');
     }
 
     public function index()

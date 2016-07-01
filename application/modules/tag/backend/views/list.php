@@ -1,23 +1,24 @@
-<section class="panel">
-    <header class="panel-heading">
-        <h4>
+<section class="x_panel">
+    <header class="x_title">
+        <h2>
             All tags
             <div class="pull-right">
                 <a class="btn btn-sm btn-primary open-create-form" data-toggle="modal" href="#tag_form">Add new</a>
             </div>
-        </h4>
+        </h2>
+        <div class="clearfix"></div>
     </header>
-    <div class="panel-body">
+    <div class="x_content">
         <?php if ($tags && is_array($tags) && count($tags) > 0): ?>
         <div class="adv-table">
-            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-hover" id="hidden-table-info">
                 <thead>
                     <tr>
                         <th class="w5">No</th>
                         <th>Title</th>
                         <th>Url</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th class="w5">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,9 +30,9 @@
                         <td class="center"><?php echo ($tag['is_show'] == 'y') ? '<span class="label label-mini label-success">Show</span>' : '<span class="label label-mini label-default">Hide</span>' ?></td>
                         <td>
                             <button class="btn btn-primary btn-xs" onclick="open_popup_edit(this)" data-url="<?php echo site_url('api/tag/get_by_id/' . $tag['tag_id']) ?>">
-                                <i class="icon-pencil"></i>
+                                <i class="fa fa-pencil"></i>
                             </button>
-                            <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash "></i></button>
                         </td>
                     </tr>
                     <?php endforeach ?>

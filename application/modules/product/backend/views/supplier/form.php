@@ -1,8 +1,8 @@
-<section class="panel">
-    <header class="panel-heading">
+<section class="x_panel">
+    <header class="x_title">
         <?php echo isset($supplier) ? 'Edit supplier <b>' . $supplier['supplier_name'] . '</b>' : 'Add new supplier' ?>
     </header>
-    <div class="panel-body">
+    <div class="x_content">
         <div class="form">
             <form class="cmxform form-horizontal tasi-form" id="createsupplier" method="post"
                 action="<?php echo site_url('api/product/supplier') ?>">

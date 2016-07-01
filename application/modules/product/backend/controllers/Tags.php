@@ -6,7 +6,7 @@ class Tags extends Backend_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('common/product_tag_model', 'common_product_tag');
-		$this->load->js('js/pages/product/tag.js');
+		$this->load->js('assets/js/pages/product/tag.js');
 	}
 
 	public function index() {

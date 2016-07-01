@@ -7,7 +7,7 @@ class Attribute extends Backend_Controller {
 	{
 		parent::__construct();
 		$this->load->model('common/attribute_model', 'common_attribute');
-		$this->load->js('js/pages/product/attribute.js');
+		$this->load->js('assets/js/pages/product/attribute.js');
 	}
 
 	public function index()

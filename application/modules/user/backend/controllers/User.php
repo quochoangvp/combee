@@ -8,10 +8,7 @@ class User extends Backend_Controller {
 		parent::__construct();
 		$this->load->model('common/user_model', 'common_user');
 		$this->load->model('common/user_group_model', 'common_user_group');
-		$this->load->js('assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js');
-        $this->load->css('assets/bootstrap-datetimepicker/css/datetimepicker.css');
-        $this->load->css('assets/bootstrap-fileupload/bootstrap-fileupload.css');
-		$this->load->js('js/pages/user.js');
+		$this->load->js('assets/js/pages/user.js');
 		$this->load->library('pagination');
 		$this->per_pager = 7;
 	}

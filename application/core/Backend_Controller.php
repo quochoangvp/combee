@@ -9,7 +9,7 @@ class Backend_Controller extends Base_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->theme('flatlab');
+        $this->load->theme('admin');
         $this->load->layout('main');
 
         $this->load->model('admin_menu_model');

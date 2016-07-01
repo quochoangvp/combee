@@ -7,7 +7,7 @@ class Category extends Backend_Controller {
 	{
 		parent::__construct();
 		$this->load->model('common/category_model', 'common_category');
-		$this->load->js('js/pages/category.js');
+		$this->load->js('assets/js/pages/category.js');
 	}
 
 	public function all()

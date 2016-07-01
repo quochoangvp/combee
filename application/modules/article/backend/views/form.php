@@ -2,11 +2,12 @@
     action="<?php echo site_url('api/article/' . (isset($article) ? 'update' : 'create')) ?>">
     <div class="row">
         <div class="col-lg-8 cmxform form-horizontal tasi-form">
-            <section class="panel">
-                <header class="panel-heading">
-                    <?php echo isset($article) ? 'Edit article' : 'Add new article' ?>
+            <section class="x_panel">
+                <header class="x_title">
+                    <h2><?php echo isset($article) ? 'Edit article' : 'Add new article' ?></h2>
+                    <div class="clearfix"></div>
                 </header>
-                <div class="panel-body">
+                <div class="x_content">
                     <div class="form">
                         <?php echo $this->input->post('message') ? $this->input->post('message') : '' ?>
                         <div class="form-group ">
@@ -49,11 +50,11 @@
             </section>
         </div>
         <div class="col-lg-4">
-            <section class="panel">
-                <header class="panel-heading">
+            <section class="x_panel">
+                <header class="x_title">
                     Additional Options
                 </header>
-                <div class="panel-body">
+                <div class="x_content">
                     <div class="form">
                         <div class="form-group">
                             <label for="category_id" class="control-label">Category</label>

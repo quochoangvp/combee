@@ -241,6 +241,7 @@ class MY_Output extends CI_Output
             $data["inline_scripting"] = $inline['unstripped'];
             $data["canonical"] = $this->_canonical;
             $data["ci"] = &get_instance();
+            $data["theme_url"] = base_url() . 'assets/themes/' . $this->_theme_dir;
 
             $data = array_merge($data, $this->_output_data);
 

@@ -1,11 +1,11 @@
 <form id="creategallery" method="post"
     action="<?php echo site_url('api/gallery/' . (isset($gallery) ? 'update' : 'create')) ?>">
     <div class="cmxform form-horizontal tasi-form">
-        <section class="panel">
-            <header class="panel-heading">
+        <section class="x_panel">
+            <header class="x_title">
                 <?php echo isset($gallery) ? 'Edit gallery' : 'Add new gallery' ?>
             </header>
-            <div class="panel-body">
+            <div class="x_content">
                 <div class="form">
                     <?php echo $this->input->post('message') ? $this->input->post('message') : '' ?>
                     <div class="form-group ">

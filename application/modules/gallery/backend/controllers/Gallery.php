@@ -8,8 +8,7 @@ class Gallery extends Backend_Controller
     {
         parent::__construct();
         $this->load->model('common/gallery_model', 'common_gallery');
-        $this->load->js('js/pages/gallery.js');
-        $this->load->css('assets/bootstrap-fileupload/bootstrap-fileupload.css');
+        $this->load->js('assets/js/pages/gallery.js');
         $this->load->library('pagination');
         $this->per_pager = 7;
     }
@@ -72,7 +71,7 @@ class Gallery extends Backend_Controller
     private function _media_list($gallery, $offset)
     {
         $this->load->css('assets/fancybox/source/jquery.fancybox.css');
-        $this->load->css('css/gallery.css');
+        $this->load->css('assets/css/gallery.css');
         $this->load->js('assets/fancybox/source/jquery.fancybox.js');
 
         $per_pager = 6;

@@ -1,8 +1,8 @@
 <section class="panel tasks-widget">
-    <header class="panel-heading">
+    <header class="x_title">
         All categories
     </header>
-    <div class="panel-body">
+    <div class="x_content">
         <div class="task-content">
             <ul id="attributeList" class="ui-sortable">
                 <?php foreach ($attributes as $group): ?>

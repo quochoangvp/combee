@@ -1,5 +1,5 @@
-<section class="panel">
-    <header class="panel-heading">
+<section class="x_panel">
+    <header class="x_title">
         <h4>
             All list article
             <span class="pull-right">
@@ -9,7 +9,7 @@
             <input type="hidden" name="widget_id" value="<?php echo $widget['widget_id'] ?>">
         </h4>
     </header>
-    <div class="panel-body">
+    <div class="x_content">
         <div class="adv-table">
             <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="table_article_config">
                 <thead>

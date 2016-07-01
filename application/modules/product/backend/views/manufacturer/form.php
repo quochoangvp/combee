@@ -1,8 +1,8 @@
-<section class="panel">
-    <header class="panel-heading">
+<section class="x_panel">
+    <header class="x_title">
         <?php echo isset($manufacturer) ? 'Edit manufacturer <b>' . $manufacturer['manufacturer_name'] . '</b>' : 'Add new manufacturer' ?>
     </header>
-    <div class="panel-body">
+    <div class="x_content">
         <div class="form">
             <form class="cmxform form-horizontal tasi-form" id="createmanufacturer" method="post"
                 action="<?php echo site_url('api/product/manufacturer') ?>">

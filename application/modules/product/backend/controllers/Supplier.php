@@ -7,8 +7,7 @@ class Supplier extends Backend_Controller {
     {
         parent::__construct();
         $this->load->model('common/supplier_model', 'common_supplier');
-        $this->load->js('js/pages/product/supplier.js');
-        $this->load->css('assets/bootstrap-fileupload/bootstrap-fileupload.css');
+        $this->load->js('assets/js/pages/product/supplier.js');
     }
 
     public function index()

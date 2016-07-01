@@ -1,5 +1,5 @@
 <section class="panel no-touch">
-  <header class="panel-heading">
+  <header class="x_title">
     <h4>
       Image Galley: <strong><?php echo $gallery['gallery_title'] ?></strong>
       <span class="pull-right">
@@ -7,7 +7,7 @@
       </span>
     </h4>
   </header>
-  <div class="panel-body">
+  <div class="x_content">
     <?php if (isset($media_list) && count($media_list)>0): ?>
     <ul class="grid cs-style-3">
       <?php foreach ($media_list as $media): ?>

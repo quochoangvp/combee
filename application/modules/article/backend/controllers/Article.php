@@ -15,10 +15,7 @@ class Article extends Backend_Controller
         $this->load->model('category/common/category_model', 'common_category');
         $this->load->model('tag/common/tag_model', 'common_tag');
 
-        $this->load->js('assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js');
-        $this->load->js('js/pages/article.js');
-        $this->load->css('assets/bootstrap-datetimepicker/css/datetimepicker.css');
-        $this->load->css('assets/bootstrap-fileupload/bootstrap-fileupload.css');
+        $this->load->js('assets/js/pages/article.js');
 
         $this->per_pager = 7;
     }

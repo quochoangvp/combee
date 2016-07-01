@@ -7,7 +7,7 @@ class Tag extends Backend_Controller {
 	{
 		parent::__construct();
 		$this->load->model('common/tag_model', 'common_tag');
-		$this->load->js('js/pages/tag.js');
+		$this->load->js('assets/js/pages/tag.js');
 	}
 
 	public function all()

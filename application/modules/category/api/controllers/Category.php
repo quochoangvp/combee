@@ -11,11 +11,6 @@ class Category extends Api_Controller {
 		$this->form_validation->set_error_delimiters('<p class="help-block">', '</p>');
 	}
 
-	public function index()
-	{
-		
-	}
-
 	public function create_post()
 	{
 		$data = $this->post();
@@ -38,7 +33,6 @@ class Category extends Api_Controller {
 					'message' => 'Can\'t not create category'
 				], REST_Controller::HTTP_BAD_REQUEST);
 			}
-			
 		} else {
 			return $this->response([
 				'status' => REST_Controller::HTTP_BAD_REQUEST,
@@ -82,7 +76,7 @@ class Category extends Api_Controller {
 					'message' => 'Can\'t not update category'
 				], REST_Controller::HTTP_BAD_REQUEST);
 			}
-			
+
 		} else {
 			return $this->response([
 				'status' => REST_Controller::HTTP_BAD_REQUEST,

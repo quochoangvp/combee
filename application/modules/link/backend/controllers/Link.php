@@ -7,7 +7,7 @@ class Link extends Backend_Controller {
 	{
 		parent::__construct();
 		$this->load->model('common/link_model', 'common_link');
-		$this->load->js('js/pages/link.js');
+		$this->load->js('assets/js/pages/link.js');
 	}
 
 	public function all()

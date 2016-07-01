@@ -1,10 +1,11 @@
-<section class="panel">
-    <header class="panel-heading">
-        All articles
+<section class="x_panel">
+    <header class="x_title">
+        <h2>All articles</h2>
+        <div class="clearfix"></div>
     </header>
-    <div class="panel-body">
+    <div class="x_content">
         <div class="adv-table">
-            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-hover" id="hidden-table-info">
                 <thead>
                     <tr>
                         <th class="w5">No</th>
@@ -29,9 +30,9 @@
                             <td><?php echo ucfirst($article['status']) ?></td>
                             <td class="text-center">
                                 <a class="btn btn-primary btn-xs" href="<?php echo admin_url('article/edit/' . $article['article_id']) ?>">
-                                    <i class="icon-pencil"></i>
+                                    <i class="fa fa-pencil"></i>
                                 </a>
-                                <button class="btn btn-danger btn-xs"><i class="icon-trash "></i></button>
+                                <button class="btn btn-danger btn-xs"><i class="fa fa-trash "></i></button>
                             </td>
                         </tr>
                     <?php endforeach?>

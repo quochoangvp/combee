@@ -1,8 +1,8 @@
-<section class="panel">
-    <header class="panel-heading">
+<section class="x_panel">
+    <header class="x_title">
         <?php echo isset($category) ? 'Edit category <b>' . $category['category_title'] . '</b>' : 'Add new category' ?>
     </header>
-    <div class="panel-body">
+    <div class="x_content">
         <div class="form">
             <form class="cmxform form-horizontal tasi-form" id="createCategory" method="post"
                 action="<?php echo site_url('api/category/' . (isset($category) ? 'update' : 'create')) ?>">
