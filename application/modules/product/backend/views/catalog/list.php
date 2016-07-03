@@ -3,15 +3,18 @@
         <div class="task-title">
             <span class="task-title-sp">{{name}}</span>
             <div class="pull-right hidden-phone">
-                <button class="btn btn-primary btn-xs icon-pencil" onclick="go_to_catalog_edit_page({{id}})"></button>
-                <button class="btn btn-danger btn-xs icon-trash" onclick="delete_catalog({{id}})"></button>
+                <button class="btn btn-primary btn-xs fa fa-pencil" onclick="go_to_catalog_edit_page({{id}})"></button>
+                <button class="btn btn-danger btn-xs fa fa-trash" onclick="delete_catalog({{id}})"></button>
             </div>
         </div>
     </li>
 </script>
-<section class="panel tasks-widget">
+<section class="x_panel tasks-widget">
     <header class="x_title">
-        All categories
+        <h2>
+            All categories
+        </h2>
+        <div class="clearfix"></div>
     </header>
     <div class="x_content">
         <div class="task-content">

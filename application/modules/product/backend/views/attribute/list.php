@@ -1,17 +1,20 @@
-<section class="panel tasks-widget">
+<section class="x_panel tasks-widget">
     <header class="x_title">
-        All categories
+        <h2>
+            All categories
+        </h2>
+        <div class="clearfix"></div>
     </header>
     <div class="x_content">
         <div class="task-content">
-            <ul id="attributeList" class="ui-sortable">
+            <ul id="attributeList" class="sortable">
                 <?php foreach ($attributes as $group): ?>
                     <li class="list-inverse">
                         <div class="task-title">
                             <span class="task-title-sp"><strong><?php echo $group['group_name'] ?></strong></span>
                             <div class="pull-right hidden-phone">
-                                <button class="btn btn-primary btn-xs icon-pencil" onclick="open_edit_group_popup(<?php echo $group['group_id'] ?>)"></button>
-                                <button class="btn btn-danger btn-xs icon-trash" onclick="confirm_delete_group(<?php echo $group['group_id'] ?>)"></button>
+                                <button class="btn btn-primary btn-xs fa fa-pencil" onclick="open_edit_group_popup(<?php echo $group['group_id'] ?>)"></button>
+                                <button class="btn btn-danger btn-xs fa fa-trash" onclick="confirm_delete_group(<?php echo $group['group_id'] ?>)"></button>
                             </div>
                         </div>
                     </li>
@@ -21,8 +24,8 @@
                                 <div class="task-title">
                                     <span class="task-title-sp"> ---- <?php echo $attr['attr_name'] ?></span>
                                     <div class="pull-right hidden-phone">
-                                        <button class="btn btn-primary btn-xs icon-pencil" onclick="open_edit_attr_popup(<?php echo $attr['attr_id'] ?>)"></button>
-                                        <button class="btn btn-danger btn-xs icon-trash" onclick="confirm_delete_attr(<?php echo $attr['attr_id'] ?>)"></button>
+                                        <button class="btn btn-primary btn-xs fa fa-pencil" onclick="open_edit_attr_popup(<?php echo $attr['attr_id'] ?>)"></button>
+                                        <button class="btn btn-danger btn-xs fa fa-trash" onclick="confirm_delete_attr(<?php echo $attr['attr_id'] ?>)"></button>
                                     </div>
                                 </div>
                             </li>

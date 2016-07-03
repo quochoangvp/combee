@@ -18,7 +18,7 @@
                         <th>Title</th>
                         <th>Url</th>
                         <th>Status</th>
-                        <th class="w5">Action</th>
+                        <th class="w10">Action</th>
                     </tr>
                 </thead>
                 <tbody>

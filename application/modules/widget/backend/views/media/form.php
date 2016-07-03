@@ -3,7 +3,8 @@
     <div class="cmxform form-horizontal tasi-form">
         <section class="x_panel">
             <header class="x_title">
-                <?php echo isset($media) ? 'Edit media' : 'Add new media' ?>
+                <h2><?php echo isset($media) ? 'Edit media' : 'Add new media' ?></h2>
+                <div class="clearfix"></div>
             </header>
             <div class="x_content">
                 <div class="form">
@@ -26,10 +27,10 @@
                                 <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                 <div class="btn-group-file">
                                     <span class="btn btn-white btn-file">
-                                        <a data-toggle="modal" href="javascript:;" data-target="#thumbnailModal" class="fileupload-new"><i class="icon-paper-clip"></i> Select image</a>
-                                        <a data-toggle="modal" href="javascript:;" data-target="#thumbnailModal" class="fileupload-exists"><i class="icon-undo"></i> Change</a>
+                                        <a data-toggle="modal" href="javascript:;" data-target="#thumbnailModal" class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</a>
+                                        <a data-toggle="modal" href="javascript:;" data-target="#thumbnailModal" class="fileupload-exists"><i class="fa fa-undo"></i> Change</a>
                                     </span>
-                                    <a href="javascript:;" class="btn btn-danger fileupload-exists" onclick="removeThumbnail()"><i class="icon-trash"></i> Remove</a>
+                                    <a href="javascript:;" class="btn btn-danger fileupload-exists" onclick="removeThumbnail()"><i class="fa fa-trash"></i> Remove</a>
                                 </div>
                             </div>
                         </div>
@@ -45,10 +46,10 @@
                                 <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                 <div class="btn-group-file">
                                     <span class="btn btn-white btn-file">
-                                        <a data-toggle="modal" href="javascript:;" data-target="#mediaUrlModal" class="fileupload-new"><i class="icon-paper-clip"></i> Select image</a>
-                                        <a data-toggle="modal" href="javascript:;" data-target="#mediaUrlModal" class="fileupload-exists"><i class="icon-undo"></i> Change</a>
+                                        <a data-toggle="modal" href="javascript:;" data-target="#mediaUrlModal" class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</a>
+                                        <a data-toggle="modal" href="javascript:;" data-target="#mediaUrlModal" class="fileupload-exists"><i class="fa fa-undo"></i> Change</a>
                                     </span>
-                                    <a href="javascript:;" class="btn btn-danger fileupload-exists" onclick="removeMediaUrl()"><i class="icon-trash"></i> Remove</a>
+                                    <a href="javascript:;" class="btn btn-danger fileupload-exists" onclick="removeMediaUrl()"><i class="fa fa-trash"></i> Remove</a>
                                 </div>
                             </div>
                         </div>
@@ -89,9 +90,9 @@
                                 </div>
                                 <div class="col-lg-1">
                                     <?php if ($index == 0): ?>
-                                        <a class="btn btn-sm btn-primary" onclick="add_config()"><i class="icon-plus"></i></a>
+                                        <a class="btn btn-sm btn-primary" onclick="add_config()"><i class="fa fa-plus"></i></a>
                                     <?php else: ?>
-                                    <a class="btn btn-sm btn-danger" onclick="remove_config(this)"><i class="icon-minus"></i></a>
+                                    <a class="btn btn-sm btn-danger" onclick="remove_config(this)"><i class="fa fa-minus"></i></a>
                                 <?php endif?>
                                 </div>
                             </div>
@@ -107,7 +108,7 @@
                                 <input class=" form-control" name="media_config_value[]" type="text" />
                             </div>
                             <div class="col-lg-1">
-                                <a class="btn btn-sm btn-primary" onclick="add_config()"><i class="icon-plus"></i></a>
+                                <a class="btn btn-sm btn-primary" onclick="add_config()"><i class="fa fa-plus"></i></a>
                             </div>
                         </div>
                     <?php endif?>
@@ -164,7 +165,7 @@
             <input class=" form-control" name="media_config_value[]" type="text" />
         </div>
         <div class="col-lg-1">
-            <a class="btn btn-sm btn-danger" onclick="remove_config(this)"><i class="icon-minus"></i></a>
+            <a class="btn btn-sm btn-danger" onclick="remove_config(this)"><i class="fa fa-minus"></i></a>
         </div>
     </div>
 </div>

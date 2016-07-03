@@ -1,11 +1,12 @@
-<section class="panel no-touch">
+<section class="x_panel no-touch">
   <header class="x_title">
-    <h4>
+    <h2>
       Image Galley: <strong><?php echo $gallery['gallery_title'] ?></strong>
       <span class="pull-right">
         <a class="btn btn-sm btn-primary" href="<?php echo admin_url('gallery/media/'.'create/'.$gallery['gallery_id']) ?>">Add new</a>
       </span>
-    </h4>
+    </h2>
+    <div class="clearfix"></div>
   </header>
   <div class="x_content">
     <?php if (isset($media_list) && count($media_list)>0): ?>
@@ -17,16 +18,16 @@
           <figcaption>
             <h3><?php echo $media['media_title'] ?></h3>
             <a href="javascript:;" onclick="delete_media(<?php echo $media['media_id'] ?>)">
-              <i class="icon-trash"></i>
+              <i class="fa fa-trash"></i>
             </a>
             <a class="blue" href="<?php echo admin_url('gallery/media/edit/'.$gallery['gallery_id'].'/'.$media['media_id']) ?>">
-              <i class="icon-edit"></i>
+              <i class="fa fa-edit"></i>
             </a>
             <a class="green fancybox" rel="group" href="<?php echo $media['media_url'] ?>">
               <?php if ($media['is_active'] == 'y'): ?>
-                <i class="icon-eye-open"></i>
+                <i class="fa fa-eye-open"></i>
               <?php else: ?>
-                <i class="icon-eye-close"></i>
+                <i class="fa fa-eye-close"></i>
               <?php endif ?>
             </a>
           </figcaption>

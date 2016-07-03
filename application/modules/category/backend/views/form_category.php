@@ -1,6 +1,9 @@
 <section class="x_panel">
     <header class="x_title">
-        <?php echo isset($category) ? 'Edit category <b>' . $category['category_title'] . '</b>' : 'Add new category' ?>
+        <h2>
+            <?php echo isset($category) ? 'Edit category <b>' . $category['category_title'] . '</b>' : 'Add new category' ?>
+        </h2>
+        <div class="clearfix"></div>
     </header>
     <div class="x_content">
         <div class="form">

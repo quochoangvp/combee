@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu1
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Jun 30, 2016 at 06:13 PM
--- Server version: 10.0.25-MariaDB-0ubuntu0.16.04.1
--- PHP Version: 7.0.4-7ubuntu2.1
+-- Host: 127.0.0.1
+-- Generation Time: Jul 03, 2016 at 04:08 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 7.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -50,25 +50,25 @@ TRUNCATE TABLE `main_admin_menu`;
 --
 
 INSERT INTO `main_admin_menu` (`amenu_id`, `amenu_link`, `amenu_text`, `amenu_icon`, `parent_id`, `position`, `is_show`, `user_group_id`) VALUES
-(1, 'dashboard', 'Dashboard', 'icon-dashboard', 0, 1, 'y', ''),
-(2, 'article', 'Article', 'icon-book', 0, 2, 'y', ''),
+(1, 'dashboard', 'Dashboard', 'fa fa-dashboard', 0, 1, 'y', ''),
+(2, 'article', 'Article', 'fa fa-book', 0, 2, 'y', ''),
 (3, 'article/create', 'Add new', '', 2, 1, 'y', ''),
 (4, 'article/all', 'All article', '', 2, 2, 'y', ''),
 (5, 'category/all', 'Category', '', 2, 3, 'y', ''),
 (6, 'tag/all', 'Tags', '', 2, 4, 'y', ''),
-(7, 'user', 'Users', 'icon-user', 0, 2, 'y', ''),
+(7, 'user', 'Users', 'fa fa-user', 0, 2, 'y', ''),
 (8, 'user/all', 'All users', NULL, 7, 1, 'y', ''),
 (9, 'user/create', 'Add new', NULL, 7, 2, 'y', ''),
 (10, 'user/group', 'Groups', NULL, 7, 3, 'y', ''),
-(11, 'gallery', 'Gallery', 'icon-camera', 0, 4, 'y', ''),
+(11, 'gallery', 'Gallery', 'fa fa-camera', 0, 4, 'y', ''),
 (12, 'gallery/all', 'All gallery', NULL, 11, 1, 'y', ''),
 (13, 'gallery/create', 'Add new', NULL, 11, 2, 'y', ''),
-(14, 'setting', 'Setting', 'icon-cog', 0, 7, 'y', ''),
+(14, 'setting', 'Setting', 'fa fa-cog', 0, 7, 'y', ''),
 (15, 'widget', 'Widget', NULL, 14, 1, 'y', ''),
-(16, 'link', 'Links', 'icon-link', 0, 5, 'y', ''),
+(16, 'link', 'Links', 'fa fa-link', 0, 5, 'y', ''),
 (17, 'link/create', 'Add new', NULL, 16, 1, 'y', ''),
 (18, 'link/all', 'All links', NULL, 16, 2, 'y', ''),
-(19, 'product', 'Product', 'icon-inbox', 0, 6, 'y', ''),
+(19, 'product', 'Product', 'fa fa-inbox', 0, 6, 'y', ''),
 (20, 'product', 'All product', '', 19, 1, 'y', ''),
 (21, 'product/catalog', 'Catalogs', '', 19, 2, 'y', ''),
 (22, 'product/brand', 'Brands', '', 19, 3, 'y', ''),
@@ -526,6 +526,13 @@ CREATE TABLE `main_product` (
 --
 
 TRUNCATE TABLE `main_product`;
+--
+-- Dumping data for table `main_product`
+--
+
+INSERT INTO `main_product` (`product_id`, `product_name`, `product_thumb`, `product_image`, `product_summary`, `product_content`, `product_code`, `product_barcode`, `price`, `reduction_price`, `reduction_percent`, `reduction_from`, `reduction_to`, `wholesale_price`, `brand_id`, `manufacturer_id`, `supplier_id`, `is_instock`, `is_new`, `is_hot`, `meta_keywords`, `meta_description`, `created_at`, `updated_at`) VALUES
+(1, 'Product name', '/assets/uploads/izYKaqV.jpg', '["/assets/uploads/izYKaqV.jpg","/assets/uploads/rIP4wPf.jpg"]', 'Bla bla bla bla bla bla', 'Bla bla bla bla bla bla', 'code', '1223344656', '120000.00', '20000.00', 10, '2016-07-03', '2016-07-28', '100000.00', 1, 1, 1, 'y', 'y', 'y', NULL, NULL, '2016-07-03 04:11:11', '2016-07-03 04:11:11');
+
 -- --------------------------------------------------------
 
 --
@@ -1249,7 +1256,7 @@ ALTER TABLE `main_modulemeta`
 -- AUTO_INCREMENT for table `main_product`
 --
 ALTER TABLE `main_product`
-  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `main_product_attribute`
 --
@@ -1259,7 +1266,7 @@ ALTER TABLE `main_product_attribute`
 -- AUTO_INCREMENT for table `main_product_attribute_group`
 --
 ALTER TABLE `main_product_attribute_group`
-  MODIFY `group_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `group_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `main_product_attribute_relation`
 --

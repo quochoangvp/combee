@@ -29,7 +29,7 @@ $(document).ready(function() {
 			data: form.serialize(),
 		})
 		.done(function(rs) {
-            var message = '<div class="alert alert-success fade in"><button data-dismiss="alert" class="close close-sm" type="button"><i class="icon-remove"></i></button><strong>Success!</strong> ' + rs.message + '</div>';
+            var message = '<div class="alert alert-success fade in"><button data-dismiss="alert" class="close close-sm" type="button"><i class="fa fa-remove"></i></button><strong>Success!</strong> ' + rs.message + '</div>';
             var _form = $('<form action="' + window.location.href + '" method="post">' +
                 '<input type="hidden" name="message" value="' + message.toHtmlEntities() + '" />' +
                 '</form>');
@@ -41,7 +41,7 @@ $(document).ready(function() {
             if (!rs.message) {
                 rs.message = 'An error occurred';
             }
-            form.prepend('<div class="alert alert-block alert-danger fade in"><button data-dismiss="alert" class="close close-sm" type="button"><i class="icon-remove"></i></button><strong>Oh snap!</strong> ' + rs.message + '</div>');
+            form.prepend('<div class="alert alert-block alert-danger fade in"><button data-dismiss="alert" class="close close-sm" type="button"><i class="fa fa-remove"></i></button><strong>Oh snap!</strong> ' + rs.message + '</div>');
             if (rs.errors) {
                 form_errors_append(form, rs.errors);
             }

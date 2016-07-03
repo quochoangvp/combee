@@ -1,15 +1,16 @@
 <section class="x_panel">
     <header class="x_title">
-        <h4>
+        <h2>
             All widgets
             <span class="pull-right">
                 <a href="<?php echo admin_url('widget/create') ?>" class="btn btn-sm btn-primary">Add new</a>
             </span>
-        </h4>
+        </h2>
+        <div class="clearfix"></div>
     </header>
     <div class="x_content">
         <div class="adv-table">
-            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-hover" id="hidden-table-info">
                 <thead>
                     <tr>
                         <th class="w5">No</th>
@@ -36,12 +37,12 @@
                             <td><?php echo ($widget['is_active'] == 'y')?'<span class="label label-mini label-success">Show</span>':'<span class="label label-mini label-default">Hide</span>' ?></td>
                             <td class="text-center">
                                 <a class="btn btn-info btn-xs" href="<?php echo admin_url('widget/config/' . $widget['widget_id']) ?>">
-                                    <i class="icon-cog"></i>
+                                    <i class="fa fa-cog"></i>
                                 </a>
                                 <a class="btn btn-primary btn-xs" href="<?php echo admin_url('widget/edit/' . $widget['widget_id']) ?>">
-                                    <i class="icon-pencil"></i>
+                                    <i class="fa fa-pencil"></i>
                                 </a>
-                                <button class="btn btn-danger btn-xs" onclick="delete_widget(<?php echo $widget['widget_id'] ?>)"><i class="icon-trash "></i></button>
+                                <button class="btn btn-danger btn-xs" onclick="delete_widget(<?php echo $widget['widget_id'] ?>)"><i class="fa fa-trash "></i></button>
                             </td>
                         </tr>
                     <?php endforeach?>

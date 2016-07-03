@@ -1,10 +1,13 @@
 <section class="x_panel">
     <header class="x_title">
-        All users
+        <h2>
+            All users
+        </h2>
+        <div class="clearfix"></div>
     </header>
     <div class="x_content">
         <div class="adv-table">
-            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-hover" id="hidden-table-info">
                 <thead>
                     <tr>
                         <th class="w5">No</th>
@@ -29,9 +32,9 @@
                             <td><?php echo ($user['status']==0)?'Deactived':($user['status']==1)?'Actived':'Locked' ?></td>
                             <td class="text-center">
                                 <a class="btn btn-primary btn-xs" href="<?php echo admin_url('user/edit/' . $user['user_id']) ?>">
-                                    <i class="icon-pencil"></i>
+                                    <i class="fa fa-pencil"></i>
                                 </a>
-                                <button class="btn btn-danger btn-xs" onclick="delete_user(<?php echo $user['user_id'] ?>)"><i class="icon-trash "></i></button>
+                                <button class="btn btn-danger btn-xs" onclick="delete_user(<?php echo $user['user_id'] ?>)"><i class="fa fa-trash "></i></button>
                             </td>
                         </tr>
                     <?php endforeach?>

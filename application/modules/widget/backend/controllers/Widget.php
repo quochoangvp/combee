@@ -17,10 +17,11 @@ class Widget extends Backend_Controller
 
     public function index($offset = 0)
     {
+        $offset = (int) $offset;
         $data['widgets'] = $this->common_widget->get_all_widget($this->per_pager, $offset);
         $total_rows = $this->common_widget->count_rows();
 
-        $config['base_url'] = admin_url('widget');
+        $config['base_url'] = admin_url('widget/index');
         $config['total_rows'] = $total_rows;
         $config['per_page'] = $this->per_pager;
         $this->pagination->initialize($config);
@@ -106,7 +107,7 @@ class Widget extends Backend_Controller
 
     private function _create_media($widget)
     {
-        $this->load->js('js/pages/media.js');
+        $this->load->js('assets/js/pages/media.js');
         $data['widget'] = $widget;
         $this->load->view('media/form', $data);
     }
@@ -114,7 +115,7 @@ class Widget extends Backend_Controller
     private function _edit_media($widget, $media_id)
     {
         $this->load->model('gallery/common/media_model', 'common_media');
-        $this->load->js('js/pages/media.js');
+        $this->load->js('assets/js/pages/media.js');
         $data['widget'] = $widget;
         $data['media'] = $this->common_media->get($media_id);
         if (!$data['media']) {
@@ -150,7 +151,7 @@ class Widget extends Backend_Controller
 
     private function _parse_data_article($data)
     {
-        $this->load->js('js/pages/widget_config_article.js');
+        $this->load->js('assets/js/pages/widget_config_article.js');
         $this->load->model('category/common/category_model', 'common_category');
         $data['config'] = json_decode($data['config'], true);
         $data['categories'] = $this->common_category->get_category_nested('publish');
@@ -159,7 +160,7 @@ class Widget extends Backend_Controller
 
     public function _parse_data_support($data)
     {
-        $this->load->js('js/pages/widget_config_support.js');
+        $this->load->js('assets/js/pages/widget_config_support.js');
         $this->load->model('user/common/user_model', 'common_user');
         $data['config'] = json_decode($data['config'], true);
         $data['users'] = $this->common_user->get_all();

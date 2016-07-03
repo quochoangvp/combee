@@ -3,7 +3,8 @@
     <div class="cmxform form-horizontal tasi-form">
         <section class="x_panel">
             <header class="x_title">
-                Widget config
+                <h2>Widget config</h2>
+                <div class="clearfix"></div>
             </header>
             <div class="x_content">
                 <div class="form">

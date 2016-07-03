@@ -1,16 +1,17 @@
 <section class="x_panel">
     <header class="x_title">
-        <h4>
+        <h2>
             All suppliers
             <div class="pull-right">
                 <a class="btn btn-sm btn-primary" href="<?php echo admin_url('product/supplier/create') ?>">Add new</a>
             </div>
-        </h4>
+        </h2>
+        <div class="clearfix"></div>
     </header>
     <div class="x_content">
         <?php if ($suppliers && is_array($suppliers) && count($suppliers) > 0): ?>
         <div class="adv-table">
-            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-hover" id="hidden-table-info">
                 <thead>
                     <tr>
                         <th class="w5">No</th>
@@ -30,8 +31,8 @@
                         <td><?php echo $supplier['supplier_phone']; ?></td>
                         <td><?php echo $supplier['supplier_address']; ?></td>
                         <td>
-                            <a class="btn btn-primary btn-xs" href="<?php echo admin_url('product/supplier/edit/' . $supplier['supplier_id']) ?>"><i class="icon-pencil"></i></a>
-                            <button class="btn btn-danger btn-xs" onclick="confirm_delete_supplier(<?php echo $supplier['supplier_id'] ?>)"><i class="icon-trash "></i></button>
+                            <a class="btn btn-primary btn-xs" href="<?php echo admin_url('product/supplier/edit/' . $supplier['supplier_id']) ?>"><i class="fa fa-pencil"></i></a>
+                            <button class="btn btn-danger btn-xs" onclick="confirm_delete_supplier(<?php echo $supplier['supplier_id'] ?>)"><i class="fa fa-trash "></i></button>
                         </td>
                     </tr>
                     <?php endforeach;?>

@@ -1,17 +1,18 @@
 <section class="x_panel">
     <header class="x_title">
-        <h4>
+        <h2>
             All supporter
             <span class="pull-right">
                 <a href="javascript:;" onclick="add_new_supporter()" class="btn btn-sm btn-primary">Change</a>
-                <a href="<?php echo admin_url('widget') ?>" class="btn btn-sm btn-default">&lt; Back</a>
+                <a href="<?php echo admin_url('widget') ?>" class="btn btn-sm btn-default"><i class="fa fa-angle-left"></i> Back</a>
                 <input type="hidden" name="widget_id" value="<?php echo $widget['widget_id'] ?>" />
             </span>
-        </h4>
+        </h2>
+        <div class="clearfix"></div>
     </header>
     <div class="x_content">
         <div class="adv-table">
-            <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered"
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-hover"
                    id="hidden-table-info">
                 <thead>
                 <tr>
