@@ -28,9 +28,10 @@
                     <tr>
                         <td><?php echo $index + 1; ?></td>
                         <td><?php echo $product['product_name']; ?></td>
-                        <td><?php echo $product['catalog']; ?></td>
-                        <td><?php echo $product['price']; ?></td>
-                        <td><?php echo $product['quantity']; ?></td>
+                        <td><?php echo $product['catalog_name']; ?></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                         <td>
                             <a class="btn btn-primary btn-xs" href="<?php echo admin_url('product/edit/' . $product['product_id']) ?>"><i class="fa fa-pencil"></i></a>
                             <button class="btn btn-danger btn-xs" onclick="confirm_delete_product(<?php echo $product['product_id'] ?>)"><i class="fa fa-trash "></i></button>

@@ -23,7 +23,7 @@
                                     <li>
                                         <a href="javascript:;">
                                         Duplicate </a>
-                                    </li>
+                                     </li>
                                     <li>
                                         <a href="javascript:;">
                                         Delete </a>

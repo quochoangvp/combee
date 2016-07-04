@@ -87,11 +87,6 @@ class Product_model extends Base_model {
 			'rules' => 'trim|integer',
 		),
 		array(
-			'field' => 'is_instock',
-			'label' => 'Instock',
-			'rules' => 'trim|integer',
-		),
-		array(
 			'field' => 'New product',
 			'label' => 'is_new',
 			'rules' => 'trim|integer',
@@ -116,21 +111,52 @@ class Product_model extends Base_model {
 	public function __construct() {
 		$this->table = $this->_db_prefix . $this->table;
         $this->load->model('common/attribute_group_model', 'common_attritube_group');
-        $this->load->model('common/attribute_model', 'common_attritube');
+        $this->load->model('common/attribute_model', 'common_attribute');
         $this->load->model('common/brand_model', 'common_brand');
         $this->load->model('common/manufacturer_model', 'common_manufacturer');
         $this->load->model('common/catalog_model', 'common_catalog');
         $this->load->model('common/product_tag_model', 'common_product_tag');
         $this->load->model('common/supplier_model', 'common_supplier');
+        $this->load->model('common/product_attribute_relation_model', 'common_product_attribute_relation');
+        $this->load->model('common/product_catalog_relation_model', 'common_product_catalog_relation');
 		parent::__construct();
 	}
 
 	public function get_all_product($where = null) {
-		$sql = "SELECT * FROM {$this->table}";
+		$sql_product = "SELECT
+					{$this->table}.product_id,
+					{$this->table}.product_name,
+					{$this->common_catalog->table}.catalog_id,
+					{$this->common_catalog->table}.catalog_name
+			FROM {$this->table}
+			LEFT JOIN {$this->common_product_catalog_relation->table} ON {$this->table}.product_id = {$this->common_product_catalog_relation->table}.product_id
+			LEFT JOIN {$this->common_catalog->table} ON {$this->common_product_catalog_relation->table}.catalog_id = {$this->common_catalog->table}.catalog_id";
         if ($where) {
-            $sql .= " WHERE {$where}";
+            $sql_product .= " WHERE {$where}";
         }
-        return $this->db->query($sql)->result_array();
+        $products = $this->db->query($sql_product)->result_array();
+        $sql_product_attribute = "SELECT
+					{$this->table}.product_id,
+					{$this->common_product_attribute_relation->table}.price,
+					{$this->common_product_attribute_relation->table}.quantity,
+					{$this->common_product_attribute_relation->table}.is_instock,
+					{$this->common_attribute->table}.attr_name
+			FROM {$this->table}
+			LEFT JOIN {$this->common_product_attribute_relation->table} ON {$this->table}.product_id = {$this->common_product_attribute_relation->table}.product_id
+			LEFT JOIN {$this->common_attribute->table} ON {$this->common_product_attribute_relation->table}.attr_id = {$this->common_attribute->table}.attr_id";
+        if ($where) {
+            $sql_product_attribute .= " WHERE {$where}";
+        }
+        $attributes = $this->db->query($sql_product_attribute)->result_array();
+        for ($i=0; $i < count($products); $i++) {
+        	foreach ($attributes as $attribute) {
+        		if ($attribute['product_id'] == $products[$i]['product_id']) {
+        			$products[$i]['attributes'][] = $attribute;
+        		}
+        	}
+        }
+        print_r($products);die;
+        return $products;
 	}
 
 }
