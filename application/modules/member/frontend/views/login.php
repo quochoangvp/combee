@@ -6,20 +6,20 @@
 
     <title><?php echo $title ?></title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="<?php echo base_url(); ?>assets/themes/flatlab/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/themes/flatlab/css/bootstrap-reset.css" rel="stylesheet">
-    <!--external css-->
-    <link href="<?php echo base_url(); ?>assets/themes/flatlab/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <!-- Custom styles for this template -->
-    <link href="<?php echo base_url(); ?>assets/themes/flatlab/css/style.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>assets/themes/flatlab/css/style-responsive.css" rel="stylesheet" />
+    <!-- Bootstrap -->
+    <link href="<?php echo base_url() ?>assets/themes/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="<?php echo base_url() ?>assets/themes/admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="<?php echo base_url() ?>assets/themes/admin/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- jQuery tagsinput -->
+    <link href="<?php echo base_url() ?>assets/themes/admin/vendors/jquery.tagsinput/src/jquery.tagsinput.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/themes/admin/assets/css/bootstrap-fileupload.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/themes/admin/vendors/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/themes/admin/vendors/jquery-ui/themes/smoothness/jquery-ui.min.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
-<!--[if lt IE 9]>
-<script src="<?php echo base_url(); ?>assets/themes/flatlab/js/html5shiv.js"></script>
-<script src="<?php echo base_url(); ?>assets/themes/flatlab/js/respond.min.js"></script>
-<![endif]-->
+    <!-- Login Theme Style -->
+    <link href="<?php echo base_url() ?>assets/themes/admin/assets/css/login.css" rel="stylesheet">
 </head>
 
 <body class="login-body">
@@ -77,10 +77,11 @@
     <!-- modal -->
 
     <!-- js placed at the end of the document so the pages load faster -->
-    <script src="<?php echo base_url(); ?>assets/themes/flatlab/js/jquery.js"></script>
-    <script src="<?php echo base_url(); ?>assets/themes/flatlab/js/bootstrap.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/themes/flatlab/js/common-scripts.js"></script>
-    <script src="<?php echo base_url(); ?>assets/themes/flatlab/js/pages/login.js"></script>
+    <script src="<?php echo base_url() ?>assets/themes/admin/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="<?php echo base_url() ?>assets/themes/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="<?php echo $theme_url ?>assets/js/helper.js"></script>
+    <script src="<?php echo base_url() ?>assets/themes/admin/assets/js/custom.js"></script>
+    <script src="<?php echo base_url() ?>assets/themes/admin/assets/js/pages/login.js"></script>
 
 
 </body>
